@@ -8,7 +8,7 @@ Kotlin은 정적 타입 프로그래밍 언어로써 [function types](https://ap
 
 고차 함수는 함수를 파라미터로 받거나 반환할 수 있는 함수를 말합니다.
 
-콜렉션의 \[functional programming idiom `fold`\]\([https://en.wikipedia.org/wiki/Fold\_\(higher-order\_function\)\)이](https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29%29이) 좋은 예입니다. 초기 연산값과 결합 함수를 사용하여 현재 연산값을 각 콜렉션 요소와 연속적으로 결합하여 연산값을 대체한 반환값을 만듭니다:
+콜렉션의 [functional programming idiom `fold`](https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29)이 좋은 예입니다. 초기 연산값과 결합 함수를 사용하여 현재 연산값을 각 콜렉션 요소와 연속적으로 결합하여 연산값을 대체한 반환값을 만듭니다:
 
 ```kotlin
 fun <T, R> Collection<T>.fold(
