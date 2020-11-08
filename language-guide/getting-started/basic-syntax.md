@@ -14,7 +14,7 @@ import kotlin.text.*
 
 디렉토리와 packages는 서로 동일할 필요는 없습니다: 소스 파일들은 임의의 위치에 둘 수 있습니다.
 
-See [Packages](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/import-packages-and-imports).
+See [Packages](../basics/import-packages-and-imports.md).
 
 ## 프로그램 시작점
 
@@ -83,7 +83,7 @@ fun main() {
 }
 ```
 
-See [Functions](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/functions).
+See [Functions](../functions-and-lambdas/functions.md).
 
 ## 변수
 
@@ -133,7 +133,7 @@ fun main() {
 }
 ```
 
-See also [Properties And Fields](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/untitled).
+See also [Properties And Fields](../classes-and-objects/untitled.md).
 
 ## 주석
 
@@ -173,7 +173,7 @@ fun main() {
 }
 ```
 
-See [String templates](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/untitled#strings) for details.
+See [String templates](../basics/untitled.md#string-templates) for details.
 
 ## 조건부 표현
 
@@ -205,7 +205,7 @@ fun main() {
 }
 ```
 
-See [_if_{: .keyword }-expressions](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/control-flow-if-when-for-while#if-expression).
+See [_if_-expressions](../basics/control-flow-if-when-for-while.md#if-expression).
 
 ## Null이 가능한 변수와 _null_ 체크
 
@@ -362,7 +362,7 @@ fun main() {
 }
 ```
 
-See [Classes](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-classes-and-inheritance) and [Type casts](https://kotlinlang.org/docs/reference/typecasts.html).
+See [Classes](../classes-and-objects/class-classes-and-inheritance.md#classes) and [Type casts](https://kotlinlang.org/docs/reference/typecasts.html).
 
 ## `for` 문
 
@@ -390,7 +390,7 @@ fun main() {
 }
 ```
 
-See [for loop](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/control-flow-if-when-for-while#for-loops).
+See [for loop](../basics/control-flow-if-when-for-while.md#for-loops).
 
 ## `while` 문
 
@@ -407,7 +407,7 @@ fun main() {
 }
 ```
 
-See [while loop](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/control-flow-if-when-for-while#while-loops).
+See [while loop](../basics/control-flow-if-when-for-while.md#while-loops).
 
 ## `when` 표현
 
@@ -432,7 +432,7 @@ fun main() {
 }
 ```
 
-See [when expression](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/control-flow-if-when-for-while#when-expression).
+See [when expression](../basics/control-flow-if-when-for-while.md#when-expression).
 
 ## 범위
 
@@ -495,7 +495,7 @@ fun main() {
 }
 ```
 
-See [Ranges](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/ranges-and-progressions-1).
+See [Ranges](../collections/ranges-and-progressions-1.md#range).
 
 ## 콜렉션
 
@@ -541,7 +541,7 @@ fun main() {
 }
 ```
 
-See [Collections overview](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/kotlin-kotlin-collections-overview).
+See [Collections overview](../collections/kotlin-kotlin-collections-overview.md).
 
 ## 기본 class 생성과 인스턴스 생성
 
@@ -584,5 +584,5 @@ class Triangle(
 }
 ```
 
-See [classes](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-classes-and-inheritance) and [objects and instances](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/object-expressions-and-declarations).
+See [classes](../classes-and-objects/class-classes-and-inheritance.md#classes) and [objects and instances](../classes-and-objects/object-expressions-and-declarations.md).
 
