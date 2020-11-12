@@ -15,7 +15,7 @@ data class Customer(val name: String, val email: String)
 * `hashCode()`
 * `toString()`
 * `copy()`
-* `component1()`, `component2()`, ..., 모든 프로퍼티에 대해 \(자세한 내용은 [Data 클래스 \(Data classes\)](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-data-classes) 를 참고\)
+* `component1()`, `component2()`, ..., 모든 프로퍼티에 대해 \(자세한 내용은 [데이터 클래스 \(Data classes\)](../classes-and-objects/class-data-classes.md) 를 참고\)
 
 ## 함수 파라미터에 대한 기본 값 \(Default values for function parameters\)
 
