@@ -9,7 +9,7 @@
   * [관용구 \(Idioms\)](language-guide/getting-started/idioms.md)
   * [코딩 작성 스타일 \(Coding Conventions\)](language-guide/getting-started/coding-conventions.md)
 * [Basics](language-guide/basics/README.md)
-  * [기본 유형 \(Basic Types\)](language-guide/basics/untitled.md)
+  * [기본 타입 \(Basic Types\)](language-guide/basics/untitled.md)
   * [패키지 \(Packages\)](language-guide/basics/import-packages-and-imports.md)
   * [제어 흐름 \(Control Flow\): if, when, for, while](language-guide/basics/control-flow-if-when-for-while.md)
   * [반환과 점프 \(Returns and Jumps\)](language-guide/basics/returns-and-jumps.md)

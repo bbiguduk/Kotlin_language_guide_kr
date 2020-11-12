@@ -1,4 +1,4 @@
-# 기본 유형 \(Basic Types\)
+# 기본 타입 \(Basic Types\)
 
 Kotlin에서 모든 변수에서 멤버 함수와 프로퍼티를 호출 할 수 있다는 의미에서 모두다 객체입니다. 일부 타입들은 특별한 내부 표현을 가지고 있습니다 - 예를 들어, number, character, boolean은 런타임 시 기본값으로 표시 될 수 있습니다 - 그러나 일반 class 처럼 보입니다. 이번 섹션에서는 Kotlin 에서 사용하는 기본 유형에 대해 설명하겠습니다: number, character, boolean, array, string.
 
@@ -22,7 +22,7 @@ val oneLong = 1L // Long
 val oneByte: Byte = 1
 ```
 
-부동 소수점 숫자의 경우 Kotlin에서는 `Float` 와 `Double`타입을 제공합니다. [IEEE 754 standard](https://en.wikipedia.org/wiki/IEEE_754) 따르면, 부동 소수점 타입은 _decimal place_, 즉 저장할 수 있는 소수 자릿수에 따라 다릅니다. `Float`는 IEEE 754 _single precision_ 을 반영하는 반면에 `Double`은 _double precision_ 을 제공합니다.
+부동 소수점 숫자의 경우 Kotlin에서는 `Float` 와 `Double`타입을 제공합니다. [IEEE 754 표준 \(IEEE 754 standard\)](https://en.wikipedia.org/wiki/IEEE_754) 따르면, 부동 소수점 타입은 _소수 위치 \(decimal place\)_, 즉 저장할 수 있는 소수 자릿수에 따라 다릅니다. `Float`는 IEEE 754 _single precision_ 을 반영하는 반면에 `Double`은 _double precision_ 을 제공합니다.
 
 | 유형 | 크기 \(bits\) | 최상위 비트 | 지수 비트 | 가수 |
 | :--- | :--- | :--- | :--- | :--- |
@@ -53,7 +53,7 @@ fun main() {
 }
 ```
 
-숫자 타입을 다른 타입으로 변환하려면 [Explicit conversions](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/untitled#explicit-conversions)를 참고하세요.
+숫자 타입을 다른 타입으로 변환하려면 [명시적 변환 \(Explicit conversions\)](untitled.md#explicit-conversions) 를 참고하세요.
 
 ### 리터럴 상수 \(Literal constants\)
 
@@ -87,7 +87,7 @@ val bytes = 0b11010010_01101001_10010100_10010010
 
 Java 플랫폼에서 숫자는 null이 가능한 숫자 \(예. `Int?`\) 또는 제너릭을 사용하지 않으면 JVM 원시 타입으로 저장이 됩니다. null이 가능한 숫자 또는 제너릭을 사용하면 박싱이 되어 객체처럼 사용이 됩니다.
 
-숫자를 박싱하면 identity를 유지하지 않습니다:
+숫자를 박싱하면 정체성을 유지하지 않습니다:
 
 ```kotlin
 fun main() {
@@ -240,9 +240,9 @@ val x = (1 shl 2) and 0x000FF000
 * 비교 연산자: `a < b`, `a > b`, `a <= b`, `a >= b`
 * 범위 인스턴스와 범위 체크: `a..b`, `x in a..b`, `x !in a..b`
 
-`a`와 `b`가 `Float` 또는 `Double` 타입이거나 null이 가능한 타입 \(선언되거나 유추되거나 [smart cast](https://kotlinlang.org/docs/reference/typecasts.html#smart-casts)의 결과\)일 경우의 숫자와 범위에 대한 연산은 EEE 754 Standard for Floating-Point Arithmetic 따릅니다.
+`a`와 `b`가 `Float` 또는 `Double` 타입이거나 null이 가능한 타입 \(선언되거나 유추되거나 [스마트 캐스팅 \(smart cast\)](https://kotlinlang.org/docs/reference/typecasts.html#smart-casts) 의 결과\)일 경우의 숫자와 범위에 대한 연산은 부동 소수점 산술에 대한 IEEE 754 표준을 따릅니다.
 
-그러나 부동 소수가 정적 타입으로 되지 않은 경우 \(예. `Any`, `Comparable<...>`, 타입 파라미터\) 제너릭 사용을 지원하고 total ordering을 지원하기 위해 `Float` 와 `Double` 타입에 대해 `equals` 와 `compareTo`을 사용하는데 아래와 같이 표준과 일치 하지 않습니다:
+그러나 부동 소수가 정적 타입으로 되지 않은 경우 \(예. `Any`, `Comparable<...>`, 타입 파라미터\) 제너릭 사용을 지원하고 전체 순서를 지원하기 위해 `Float` 와 `Double` 타입에 대해 `equals` 와 `compareTo`을 사용하는데 아래와 같이 표준과 일치 하지 않습니다:
 
 * `NaN` 은 자신과 동등
 * `NaN` 은 `POSITIVE_INFINITY`을 포함하여 어떠한 것보다 큼
@@ -280,11 +280,11 @@ fun decimalDigitValue(c: Char): Int {
 
 null이 가능한 참조가 필요한 경우 박싱됩니다.
 
-boolean은 아래와 같은 연산자를 포함합니다.
+부울은 아래와 같은 연산자를 포함합니다.
 
-* `||` – lazy disjunction
-* `&&` – lazy conjunction
-* `!` - negation
+* `||` – 지연 분리 \(lazy disjunction\)
+* `&&` – 지연 결합 \(lazy conjunction\)
+* `!` - 부정 \(negation\)
 
 ## 배열 \(Arrays\)
 
@@ -317,11 +317,11 @@ fun main() {
 
 앞에서 말한 것과 같이, `[]` 연산자는 `get()` 과 `set()` 멤버 함수를 호출합니다.
 
-Kotlin에서 배열은 _불변 \(invariant\)_ 입니다. 이것은 런타임시 발생할 수 있는 오류를 방지하기 위해 `Array<String>`은 `Array<Any>`에 할당할 수 없다는 뜻입니다 \(`Array<out Any>`은 사용 가능, [Type Projections](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/generics#type-projections)을 참고\).
+Kotlin에서 배열은 _불변 \(invariant\)_ 입니다. 이것은 런타임시 발생할 수 있는 오류를 방지하기 위해 `Array<String>`은 `Array<Any>`에 할당할 수 없다는 뜻입니다 \(`Array<out Any>`은 사용 가능, [타입 추론 \(Type Projections\)](../classes-and-objects/generics.md#type-projections) 을 참고\).
 
 ### 원시 타입 배열 \(Primitive type arrays\)
 
-Kotlin은 박싱 오버헤드가 없는 원시 타입의 배열을 나타내는 class를 가지고 있습니다: `ByteArray`, `ShortArray`, `IntArray` 등. 이 class는 `Array` class를 상속 받고 있지 않지만, `Array`와 같은 메서드와 프로퍼티를 가지고 있습니다. 그리고 각각의 대응하는 팩토리 함수를 가지고 있습니다:
+Kotlin은 박싱 오버헤드가 없는 원시 타입의 배열을 나타내는 클래스를 가지고 있습니다: `ByteArray`, `ShortArray`, `IntArray` 등. 이 class는 `Array` class를 상속 받고 있지 않지만, `Array`와 같은 메서드와 프로퍼티를 가지고 있습니다. 그리고 각각의 대응하는 팩토리 함수를 가지고 있습니다:
 
 ```kotlin
 val x: IntArray = intArrayOf(1, 2, 3)
@@ -343,7 +343,7 @@ var arr = IntArray(5) { it * 1 }
 
 ## 부호없는 정수 \(Unsigned integers\)
 
-> 부호없는 타입은 Kotlin 1.3 이상 버전에서 가능하고 현재는 [베타](https://kotlinlang.org/docs/reference/evolution/components-stability.html) 입니다. 자세한 사항은 [아래](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/untitled#experimental-status-of-unsigned-integers) 를 참고바랍니다.
+> 부호없는 타입은 Kotlin 1.3 이상 버전에서 가능하고 현재는 [베타](https://kotlinlang.org/docs/reference/evolution/components-stability.html) 입니다. 자세한 사항은 [아래](untitled.md#beta-status-of-unsigned-integers) 를 참고바랍니다.
 
 Kotlin은 아래와 같이 부호없는 정수 타입을 따릅니다:
 
@@ -356,7 +356,7 @@ Kotlin은 아래와 같이 부호없는 정수 타입을 따릅니다:
 
 > 부호없는 타입에서 부호있는 정수 타입으로 변경 \(그 반대도 포함\) 은 호환성이 보장되지 않습니다.
 
-부호없는 타입은 아직 안정적이지 않은 기능 즉, [인라인 클래스 \(inline classes\)](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-inline-classes) 를 사용하여 구현되어져 있습니다.
+부호없는 타입은 아직 안정적이지 않은 기능 즉, [인라인 클래스 \(inline classes\)](../classes-and-objects/class-inline-classes.md) 를 사용하여 구현되어져 있습니다.
 
 ### 특수 클래스 \(Specialized classes\)
 
@@ -369,7 +369,7 @@ Kotlin은 아래와 같이 부호없는 정수 타입을 따릅니다:
 
 부호있는 정수 배열과 마찬가지로 박싱 오버헤드가 없는 `Array`와 유사한 API를 제공합니다.
 
-또한, `kotlin.ranges.UIntRange`, `kotlin.ranges.UIntProgression`, `kotlin.ranges.ULongRange`, `kotlin.ranges.ULongProgression` class를 통해 `UInt` 와 `ULong`의 [ranges and progressions](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/ranges-and-progressions-1)을 지원합니다.
+또한, `kotlin.ranges.UIntRange`, `kotlin.ranges.UIntProgression`, `kotlin.ranges.ULongRange`, `kotlin.ranges.ULongProgression` class를 통해 `UInt` 와 `ULong`의 [범위와 진행 \(ranges and progressions\)](../collections/ranges-and-progressions-1.md) 을 지원합니다.
 
 ### 리터럴 \(Literals\)
 
@@ -435,7 +435,7 @@ println(s + "def")
 }
 ```
 
-대부분의 경우 [string templates](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/untitled#string-templates)나 raw 문자열을 통해 연결하는 것이 더 효율적입니다.
+대부분의 경우 [문자열 템플릿 \(string templates\)](untitled.md#string-templates) 나 raw 문자열을 통해 연결하는 것이 더 효율적입니다.
 
 ### 문자열 리터럴 \(String literals\)
 
@@ -445,7 +445,7 @@ Kotlin은 2개의 문자열 리터럴 타입을 가지고 있습니다: 이스�
 val s = "Hello, world!\n"
 ```
 
-이스케이핑은 백슬래시와 함께 사용됩니다. 이스케이프 문자는 [Characters](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/untitled#characters) 부분을 참고하시기 바랍니다.
+이스케이핑은 백슬래시와 함께 사용됩니다. 이스케이프 문자는 [문자 \(Characters\)](untitled.md#characters) 부분을 참고하시기 바랍니다.
 
 raw 문자열은 세개의 큰따옴표로 구분되며 이스케이핑이 포함되지 않고, 개행이나 임의의 어떠한 문자도 포함이 가능합니다:
 
