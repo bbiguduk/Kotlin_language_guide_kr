@@ -2,7 +2,7 @@
 
 Kotlin은 세개의 점프 표현이 있습니다:
 
-* _return_. 인접한 함수 또는 [anonymous function](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/higher-order-functions-and-lambdas#anonymous-functions)로 부터 가장 기본적인 반환.
+* _return_. 인접한 함수 또는 [익명 함수 \(anonymous function\)](../functions-and-lambdas/higher-order-functions-and-lambdas.md#anonymous-functions) 로 부터 가장 기본적인 반환.
 * _break_. 인접한 루프를 종료.
 * _continue_. 인접한 루프의 다음 스텝 진행.
 
@@ -12,11 +12,11 @@ Kotlin은 세개의 점프 표현이 있습니다:
 val s = person.name ?: return
 ```
 
-이 타입의 표현은 [Nothing type](https://kotlinlang.org/docs/reference/exceptions.html#the-nothing-type) 입니다.
+이 타입의 표현은 [Nothing 타입 \(Nothing type\)](https://kotlinlang.org/docs/reference/exceptions.html#the-nothing-type) 입니다.
 
 ## break와 continue 라벨 \(Break and Continue Labels\)
 
-Kotlin에서는 어떠한 표현도 _label_로 표시될 수 있습니다. 라벨은 `@`를 추가하여 표시합니다. 예: `abc@`, `fooBar@` \(자세한 내용은 [grammar](https://kotlinlang.org/docs/reference/grammar.html#label) 참고\). 라벨 표현은 앞에 추가해주면 됩니다.
+Kotlin에서는 어떠한 표현도 _label_로 표시될 수 있습니다. 라벨은 `@`를 추가하여 표시합니다. 예: `abc@`, `fooBar@` \(자세한 내용은 [문법 \(grammar\)](https://kotlinlang.org/docs/reference/grammar.html#label) 참고\). 라벨 표현은 앞에 추가해주면 됩니다.
 
 ```kotlin
 loop@ for (i in 1..100) {
@@ -56,7 +56,7 @@ fun main() {
 }
 ```
 
-_return_ 표현은 가장 인접한 함수에서 반환합니다. 위의 예에서 `foo`. \(이러한 로컬 반환은 오직 인라인 함수에서 전달 된 람다 표현식에서만 사용 가능합니다.\) 람다 표현식에서 반환하려면 라벨이 필요하며, 아래와 같은 _return_이 있어야 합니다:
+_return_ 표현은 가장 인접한 함수에서 반환합니다. 위의 예에서 `foo`. \(이러한 로컬 반환은 오직 [인라인 함수](../functions-and-lambdas/inline-functions.md) 에서 전달 된 람다 표현식에서만 사용 가능합니다.\) 람다 표현식에서 반환하려면 라벨이 필요하며, 아래와 같은 _return_이 있어야 합니다:
 
 ```kotlin
 //sampleStart
@@ -92,7 +92,7 @@ fun main() {
 }
 ```
 
-또 다른 방법으로, 람다 표현식을 [anonymous function](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/higher-order-functions-and-lambdas#anonymous-functions)으로 대체 가능합니다. 익명 함수의 _return_ 구문은 익명 함수 자체에서 반환합니다.
+또 다른 방법으로, 람다 표현식을 [익명 함수 \(anonymous function\)](../functions-and-lambdas/higher-order-functions-and-lambdas.md#anonymous-functions) 으로 대체 가능합니다. 익명 함수의 _return_ 구문은 익명 함수 자체에서 반환합니다.
 
 ```kotlin
 //sampleStart
