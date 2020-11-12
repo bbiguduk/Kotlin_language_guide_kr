@@ -1,6 +1,6 @@
 # 접근 제한자 \(Visibility Modifiers\)
 
-class, 객체, 인터페이스, 생성자, 함수, 프로퍼티와 setter는 _\(접근 제한자\)visibility modifiers_ 를 가질 수 있습니다. \(getter는 항상 프로퍼티와 같은 접근 제한자를 갖습니다.\) Kotlin에서는 4개의 접근 제한자가 있습니다: `private`, `protected`, `internal`, `public`. 아무런 표기 없이 사용하면 기본적으로 `public`으로 선언됩니다.
+클래, 객체, 인터페이스, 생성자, 함수, 프로퍼티와 setter는 _\(접근 제한자\)visibility modifiers_ 를 가질 수 있습니다. \(getter는 항상 프로퍼티와 같은 접근 제한자를 갖습니다.\) Kotlin에서는 4개의 접근 제한자가 있습니다: `private`, `protected`, `internal`, `public`. 아무런 표기 없이 사용하면 기본적으로 `public`으로 선언됩니다.
 
 접근 제어자의 범위에 대해 자세히 배워보겠습니다.
 
