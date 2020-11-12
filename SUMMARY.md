@@ -14,7 +14,7 @@
   * [제어 흐름 \(Control Flow\): if, when, for, while](language-guide/basics/control-flow-if-when-for-while.md)
   * [반환과 점프 \(Returns and Jumps\)](language-guide/basics/returns-and-jumps.md)
 * [Classes and Objects](language-guide/classes-and-objects/README.md)
-  * [class와 상속 \(Classes and Inheritance\)](language-guide/classes-and-objects/class-classes-and-inheritance.md)
+  * [클래스와 상속 \(Classes and Inheritance\)](language-guide/classes-and-objects/class-classes-and-inheritance.md)
   * [프로퍼티와 필드 \(Properties and Fields\)](language-guide/classes-and-objects/untitled.md)
   * [인터페이스 \(Interfaces\)](language-guide/classes-and-objects/interfaces.md)
   * [접근 제한자 \(Visibility Modifiers\)](language-guide/classes-and-objects/visibility-modifiers.md)

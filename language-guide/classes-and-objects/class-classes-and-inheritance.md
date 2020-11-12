@@ -1,14 +1,14 @@
-# class와 상속 \(Classes and Inheritance\)
+# 클래스와 상속 \(Classes and Inheritance\)
 
-## Classes
+## 클래스 \(Classes\)
 
-Kotlin에서 class는 _class_ 키워드를 사용하여 선언합니다:
+Kotlin에서 클래스는 _class_ 키워드를 사용하여 선언합니다:
 
 ```kotlin
 class Invoice { /*...*/ }
 ```
 
-class는 class 이름, class 헤더 \(타입 파라미터, 생성자 등\) 그리고 괄호\(```{``}```\)로 묶인 class 바디로 이루어져 있습니다. 헤더와 바디는 선택사항입니다; 만약에 class가 바디가 없다면 괄호를 생략하면 됩니다.
+클래스는 클래스 이름, 클래스 헤더 \(타입 파라미터, 생성자 등\) 그리고 괄호\(```{``}```\)로 묶인 클래스 바디로 이루어져 있습니다. 헤더와 바디는 선택사항입니다; 만약에 클래스가 바디가 없다면 괄호를 생략하면 됩니다.
 
 ```kotlin
 class Empty
@@ -16,7 +16,7 @@ class Empty
 
 ### 생성자 \(Constructors\)
 
-Kotlin에서 class는 **기본 생성자 \(primary constructor\)** 와 하나 또는 그 이상의 **보조 생성자 \(secondary constructors\)**를 가지고 있습니다. 기본 생성자는 class 헤더의 부분입니다: class 이름 다음에 위치합니다 \(타입 파라미터를 가질 수도 있습니다\).
+Kotlin에서 class는 **기본 생성자 \(primary constructor\)** 와 하나 또는 그 이상의 **보조 생성자 \(secondary constructors\)**를 가지고 있습니다. 기본 생성자는 클래스 헤더의 부분입니다: 클래스 이름 다음에 위치합니다 \(타입 파라미터를 가질 수도 있습니다\).
 
 ```kotlin
 class Person constructor(firstName: String) { /*...*/ }
@@ -30,7 +30,7 @@ class Person(firstName: String) { /*...*/ }
 
 기본 생성자는 어떠한 코드도 포함되지 않습니다. 초기화 코드는 _init_ 키워드로 시작하는 **초기화 블럭 \(initializer blocks\)**에 위치 할 수 있습니다.
 
-인스턴스 초기화 중에 초기화 블럭은 class 바디에 나타나는 순서대로 프로퍼티 초기화와 인터리브됩니다.
+인스턴스 초기화 중에 초기화 블럭은 클래스 바디에 나타나는 순서대로 프로퍼티 초기화와 인터리브됩니다.
 
 ```kotlin
 //sampleStart
@@ -54,7 +54,7 @@ fun main() {
 }
 ```
 
-기본 생성자의 파라미터는 초기화 블럭에서 사용 가능합니다. 그리고 class 바디에서 선언 된 프로퍼티 초기화 시에도 사용 가능합니다.
+기본 생성자의 파라미터는 초기화 블럭에서 사용 가능합니다. 그리고 클래스 바디에서 선언 된 프로퍼티 초기화 시에도 사용 가능합니다.
 
 ```kotlin
 class Customer(name: String) {
@@ -68,6 +68,16 @@ Kotlin에서는 기본 생성자에서 초기화하거나 프로퍼티에서 선
 class Person(val firstName: String, val lastName: String, var age: Int) { /*...*/ }
 ```
 
+클래스 프로퍼티를 선언할 때 [후행 콤마 \(trailing comma\)](../getting-started/coding-conventions.md#trailing-commas) 를 사용할 수 있습니다:
+
+```kotlin
+class Person(
+    val firstName: String,
+    val lastName: String,
+    var age: Int, // trailing comma
+) { /*...*/ }
+```
+
 기본적인 프로퍼티 선언 처럼 기본 생성자에 선언 된 프로퍼티는 변경가능 \(_var_\) 또는 읽기전용 \(_val_\)으로 선언할 수 있습니다.
 
 생성자가 annotation 또는 접근 제어자를 가지고 있으면, _constructor_ 키워드를 반드시 표기해야 하며, _constructor_ 키워드 전에 annotation 또는 접근 제어자를 표기해야 합니다:
@@ -76,11 +86,11 @@ class Person(val firstName: String, val lastName: String, var age: Int) { /*...*
 class Customer public @Inject constructor(name: String) { /*...*/ }
 ```
 
-자세한 내용은 [Visibility Modifiers](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/visibility-modifiers#constructors) 참고 바랍니다.
+자세한 내용은 [접근 제한자 \(Visibility Modifiers\)](visibility-modifiers.md) 참고 바랍니다.
 
 #### 보조 생성자 \(Secondary constructors\)
 
-class는 _constructor_ 키워드를 통해 **보조 생성자 \(secondary constructors\)**를 선언할 수 있습니다.
+클래스는 _constructor_ 키워드를 통해 **보조 생성자 \(secondary constructors\)**를 선언할 수 있습니다.
 
 ```kotlin
 class Person {
@@ -91,7 +101,7 @@ class Person {
 }
 ```
 
-class가 기본 생성자를 가지고 있다면, 각각의 보조 생성자는 직접 또는 다른 보조 생성자를 통해 간접적으로 기본 생성자로 위임해야 합니다. 같은 class에 다른 생성자로 위임을 하기 위해선 _this_ 키워드를 사용합니다:
+클래스가 기본 생성자를 가지고 있다면, 각각의 보조 생성자는 직접 또는 다른 보조 생성자를 통해 간접적으로 기본 생성자로 위임해야 합니다. 같은 클래스에 다른 생성자로 위임을 하기 위해선 _this_ 키워드를 사용합니다:
 
 ```kotlin
 class Person(val name: String) {
@@ -102,7 +112,7 @@ class Person(val name: String) {
 }
 ```
 
-초기화 블럭 안에 코드는 효과적으로 기본 생성자의 일부가 됩니다. 기본 생성자로의 위임은 보조 생성자의 첫 번째 문에서 발생합니다. 보조 생성자의 바디가 실행되기 전에 모든 초기화 블럭과 프로퍼티 초기화가 실행됩니다. class가 기본 생성자를 가지고 있지 않더라도 위임은 암묵적으로 이루어 지며, 초기화 블럭도 실행됩니다:
+초기화 블럭 안에 코드는 효과적으로 기본 생성자의 일부가 됩니다. 기본 생성자로의 위임은 보조 생성자의 첫 번째 문에서 발생합니다. 보조 생성자의 바디가 실행되기 전에 모든 초기화 블럭과 프로퍼티 초기화가 실행됩니다. 클래스가 기본 생성자를 가지고 있지 않더라도 위임은 암묵적으로 이루어 지며, 초기화 블럭도 실행됩니다:
 
 ```kotlin
 //sampleStart
@@ -122,21 +132,21 @@ fun main() {
 }
 ```
 
-비추상 class에 어떠한 생성자 \(기본 생성자 또는 보조 생성자\)도 선언하지 않으면, 자동으로 인자 없는 기본 생성자를 생성합니다. 생성자의 가시성은 public 으로 선언 됩니다. class에 public 한 생성자를 원하지 않으면 접근 제어자와 함께 인자가 없는 기본 생성자를 선언하면 됩니다:
+비추상 클래스에 어떠한 생성자 \(기본 생성자 또는 보조 생성자\)도 선언하지 않으면, 자동으로 인자 없는 기본 생성자를 생성합니다. 생성자의 가시성은 public 으로 선언 됩니다. 클래스에 public 한 생성자를 원하지 않으면 접근 제어자와 함께 인자가 없는 기본 생성자를 선언하면 됩니다:
 
 ```kotlin
 class DontCreateMe private constructor () { /*...*/ }
 ```
 
-> **NOTE**: JVM에서 기본 생성자 파라미터에 모두 기본값이 있을경우 컴파일러는 기본값을 사용하는 파라미터가 없는 생성자를 생성합니다. 이것은 파라미터가 없는 생성자로 class 인스턴스를 만드는 Jackson 또는 JPA와 같은 라이브러리에서 Kotlin을 쉽게 사용할 수 있게 합니다.
+> **NOTE**: JVM에서 기본 생성자 파라미터에 모두 기본값이 있을경우 컴파일러는 기본값을 사용하는 파라미터가 없는 생성자를 생성합니다. 이것은 파라미터가 없는 생성자로 클래스 인스턴스를 만드는 Jackson 또는 JPA와 같은 라이브러리에서 Kotlin을 쉽게 사용할 수 있게 합니다.
 >
 > ```kotlin
 > class Customer(val customerName: String = "")
 > ```
 
-### class 인스턴스 생성 \(Creating instances of classes\)
+### 클래스 인스턴스 생성 \(Creating instances of classes\)
 
-class의 인스턴스를 생성하려면 생성자를 일반 함수처럼 호출 하면 됩니다:
+클래스의 인스턴스를 생성하려면 생성자를 일반 함수처럼 호출 하면 됩니다:
 
 ```kotlin
 val invoice = Invoice()
@@ -146,17 +156,17 @@ val customer = Customer("Joe Smith")
 
 참고: Kotlin은 _new_ 키워드를 가지고 있지 않습니다.
 
-중첩, 내부와 익명 내부 class의 인스턴스 생성은 [Nested classes](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-nested-and-inner-classes)을 참고 바랍니다.
+중첩, 내부와 익명 내부 클래스의 인스턴스 생성은 [중첩된 클래스 \(Nested classes\)](class-nested-and-inner-classes.md) 을 참고 바랍니다.
 
-### Class members
+### 클래스 멤버 \(Class members\)
 
-class는 아래를 포함할 수 있습니다:
+클래스는 아래를 포함할 수 있습니다:
 
-* [Constructors and initializer blocks](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-classes-and-inheritance#constructors)
-* [Functions](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/functions)
-* [Properties](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/untitled)
-* [Nested and Inner Classes](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-nested-and-inner-classes)
-* [Object Declarations](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/object-expressions-and-declarations)
+* [생성자와 초기화 구문 블럭 \(Constructors and initializer blocks\)](class-classes-and-inheritance.md#constructors)
+* [함수 \(Functions\)](../functions-and-lambdas/functions.md)
+* [프로퍼티 \(Properties\)](untitled.md)
+* [중첩된 클래스와 내부 클래스 \(Nested and Inner Classes\)](class-nested-and-inner-classes.md)
+* [객체 선언 \(Object Declarations\)](object-expressions-and-declarations.md)
 
 ## 상속 \(Inheritance\)
 
