@@ -1,8 +1,8 @@
 # 기본 구문 \(Basic Syntax\)
 
-## Package 정의와 import
+## 패키지 \(Package\) 정의와 가져오기 \(import\)
 
-Package는 소스파일의 최상단에 위치:
+패키지 \(Package\) 는 소스파일의 최상단에 위치:
 
 ```kotlin
 package my.demo
@@ -12,13 +12,13 @@ import kotlin.text.*
 // ...
 ```
 
-디렉토리와 packages는 서로 동일할 필요는 없습니다: 소스 파일들은 임의의 위치에 둘 수 있습니다.
+디렉토리와 패키지는 서로 동일할 필요는 없습니다: 소스 파일들은 임의의 위치에 둘 수 있습니다.
 
-See [Packages](../basics/import-packages-and-imports.md).
+자세한 내용은 [패키지 \(Packages\)](../basics/import-packages-and-imports.md) 를 참고 바랍니다.
 
 ## 프로그램 시작점
 
-Kotlin application의 시작점은 `main` 함수입니다.
+Kotlin 애플리케이션의 시작점은 `main` 함수입니다.
 
 ```kotlin
 fun main() {
@@ -83,7 +83,7 @@ fun main() {
 }
 ```
 
-See [Functions](../functions-and-lambdas/functions.md).
+자세한 내용은 [함수 \(Functions\)](../functions-and-lambdas/functions.md) 를 참고 바랍니다..
 
 ## 변수
 
@@ -133,11 +133,11 @@ fun main() {
 }
 ```
 
-See also [Properties And Fields](../classes-and-objects/untitled.md).
+자세한 내용은 [프로퍼티와 필드 \(Properties And Fields\)](../classes-and-objects/untitled.md) 를 참고 바랍니다.
 
 ## 주석
 
-다른 언어와 같이 Kotlin도 single-line \(or _end-of-line_\) 과 multi-line \(_block_\) 주석을 지원합니다.
+다른 언어와 같이 Kotlin도 한 줄과 여러줄_lock_\) 주석을 지원합니다.
 
 ```kotlin
 // This is an end-of-line comment
@@ -146,7 +146,7 @@ See also [Properties And Fields](../classes-and-objects/untitled.md).
    on multiple lines. */
 ```
 
-Kotlin에서 주석 블락은 중첩하요 사용할 수 있습니다.
+Kotlin에서 주석 블락은 중첩하여 사용할 수 있습니다.
 
 ```kotlin
 /* The comment starts here
@@ -154,7 +154,7 @@ Kotlin에서 주석 블락은 중첩하요 사용할 수 있습니다.
 and ends here. */
 ```
 
-See [Documenting Kotlin Code](https://kotlinlang.org/docs/reference/kotlin-doc.html) for information on the documentation comment syntax.
+문서에 주석 구문에 대한 내용은 [Kotlin 코드 문서 \(Documenting Kotlin Code\)](https://kotlinlang.org/docs/reference/kotlin-doc.html) 를 참고 바랍니다.
 
 ## 문자열\(String\) 템플릿
 
@@ -173,7 +173,7 @@ fun main() {
 }
 ```
 
-See [String templates](../basics/untitled.md#string-templates) for details.
+자세한 내용은 [문자열 템플릿 \(String templates\)](../basics/untitled.md#string-templates) 을 참고 바랍니다.
 
 ## 조건부 표현
 
@@ -205,7 +205,7 @@ fun main() {
 }
 ```
 
-See [_if_-expressions](../basics/control-flow-if-when-for-while.md#if-expression).
+자세한 내용은 [_if_-표현식 \(if-expressions\)](../basics/control-flow-if-when-for-while.md#if-expression) 을 참고 바랍니다.
 
 ## Null이 가능한 변수와 _null_ 체크
 
@@ -284,7 +284,7 @@ fun main() {
 }
 ```
 
-See [Null-safety](https://kotlinlang.org/docs/reference/null-safety.html).
+자세한 내용은 [Null-안전성 \(Null-safety\)](https://kotlinlang.org/docs/reference/null-safety.html) 을 참고 바랍니다.
 
 ## 타입체크와 자동변환
 
@@ -362,7 +362,7 @@ fun main() {
 }
 ```
 
-See [Classes](../classes-and-objects/class-classes-and-inheritance.md#classes) and [Type casts](https://kotlinlang.org/docs/reference/typecasts.html).
+자세한 내용은 [클래스 \(Classes\)](../classes-and-objects/class-classes-and-inheritance.md#classes) 와 [타입 캐스팅 \(Type casts\)](https://kotlinlang.org/docs/reference/typecasts.html) 을 참고 바랍니다.
 
 ## `for` 문
 
@@ -390,7 +390,7 @@ fun main() {
 }
 ```
 
-See [for loop](../basics/control-flow-if-when-for-while.md#for-loops).
+자세한 내용은 [for 루프 \(for loop\)](../basics/control-flow-if-when-for-while.md#for-loops) 를 참고 바랍니다.
 
 ## `while` 문
 
@@ -407,7 +407,7 @@ fun main() {
 }
 ```
 
-See [while loop](../basics/control-flow-if-when-for-while.md#while-loops).
+자세한 내용은  [while 루프 \(while loop\)](../basics/control-flow-if-when-for-while.md#while-loops) 를 참고 바랍니다.
 
 ## `when` 표현
 
@@ -432,7 +432,7 @@ fun main() {
 }
 ```
 
-See [when expression](../basics/control-flow-if-when-for-while.md#when-expression).
+자세한 내용은 [when 표현 \(when expression\)](../basics/control-flow-if-when-for-while.md#when-expression) 을 참고 바랍니다.
 
 ## 범위
 
@@ -495,7 +495,7 @@ fun main() {
 }
 ```
 
-See [Ranges](../collections/ranges-and-progressions-1.md#range).
+자세한 내용은 [범위 \(Ranges\)](../collections/ranges-and-progressions-1.md#range) 를 참고 바랍니다.
 
 ## 콜렉션
 
@@ -541,9 +541,9 @@ fun main() {
 }
 ```
 
-See [Collections overview](../collections/kotlin-kotlin-collections-overview.md).
+자세한 내용은 [콜렉션 살펴보기 \(Collections overview\)](../collections/kotlin-kotlin-collections-overview.md) 를 참고 바랍니다.
 
-## 기본 class 생성과 인스턴스 생성
+## 기본 클래스 생성과 인스턴스 생성
 
 ```kotlin
 fun main() {
@@ -584,5 +584,5 @@ class Triangle(
 }
 ```
 
-See [classes](../classes-and-objects/class-classes-and-inheritance.md#classes) and [objects and instances](../classes-and-objects/object-expressions-and-declarations.md).
+자세한 내용은 [클래스 \(classes\)](../classes-and-objects/class-classes-and-inheritance.md#classes) 와 [객체와 인스턴스 \(objects and instances\)](../classes-and-objects/object-expressions-and-declarations.md) 를 참고 바랍니다.
 
