@@ -170,21 +170,21 @@ val customer = Customer("Joe Smith")
 
 ## 상속 \(Inheritance\)
 
-Kotlin은 임의로 지정한 슈퍼타입이 없는 class에 대해 `Any` 슈퍼 class를 기본적으로 가지고 있습니다:
+Kotlin은 임의로 지정한 슈퍼타입이 없는 클래스에 대해 `Any` 슈퍼 클래를 기본적으로 가지고 있습니다:
 
 ```kotlin
 class Example // Implicitly inherits from Any
 ```
 
-`Any`는 3개의 메서드를 가지고 있습니다: `equals()`, `hashCode()`, `toString()`. 따라서, Kotlin의 모든 class에는 3개의 메서드가 정의되어 있습니다.
+`Any`는 3개의 메서드를 가지고 있습니다: `equals()`, `hashCode()`, `toString()`. 따라서, Kotlin의 모든 클래스에는 3개의 메서드가 정의되어 있습니다.
 
-기본적으로 Kotlin class는 상속이 불가능 한 final 입니다. 상속 가능한 class를 만들려면 `open` 키워드를 붙여야 합니다.
+기본적으로 Kotlin 클래스는 상속이 불가능 한 final 입니다. 상속 가능한 클래스를 만들려면 `open` 키워드를 붙여야 합니다.
 
 ```kotlin
 open class Base //Class is open for inheritance
 ```
 
-슈퍼타입을 선언하려면 class 헤더 다음에 콜론을 넣고 콜론 다음에 타입을 입력합니다:
+슈퍼타입을 선언하려면 클래스 헤더 다음에 콜론을 넣고 콜론 다음에 타입을 입력합니다:
 
 ```kotlin
 open class Base(p: Int)
@@ -192,9 +192,9 @@ open class Base(p: Int)
 class Derived(p: Int) : Base(p)
 ```
 
-파생 class가 기본 생성자를 가지고 있다면 베이스 class는 기본 생성자의 파라미터를 이용하여 초기화 되거나 꼭 해줘야 합니다.
+파생 클래스가 기본 생성자를 가지고 있다면 베이스 클래스는 기본 생성자의 파라미터를 이용하여 초기화 되거나 꼭 해줘야 합니다.
 
-파생 class가 기본 생성자가 없으면 각 보조 생성자는 _super_ 키워드를 이용하여 기본타입 초기화를 하거나 다른 생성자에 위임 해줘야 합니다. 참고: 이 경우 다른 보조 생성자는 기본타입의 다른 생성자를 호출 할 수 있습니다:
+파생 클래스가 기본 생성자가 없으면 각 보조 생성자는 _super_ 키워드를 이용하여 기본타입 초기화를 하거나 다른 생성자에 위임 해줘야 합니다. 참고: 이 경우 다른 보조 생성자는 기본타입의 다른 생성자를 호출 할 수 있습니다:
 
 ```kotlin
 class MyView : View {
@@ -219,9 +219,9 @@ class Circle() : Shape() {
 }
 ```
 
-`Circle.draw()`는 _override_ 키워드가 필요합니다. 만약에 _override_ 키워드가 없으면 컴파일 시 문제가 생길 수 있습니다. final class \(_open_ 수식어 없는 class\) 멤버에 _open_ 수식어를 사용하여도 아무런 변화가 없습니다. `Shape.fill()`와 같이 _open_ 수식어가 없는 함수를 서브 class에서 _override_ 수식어를 사용하든 안하든 같은 이름으로 선언되지 않습니다.
+`Circle.draw()`는 _override_ 키워드가 필요합니다. 만약에 _override_ 키워드가 없으면 컴파일 시 문제가 생길 수 있습니다. final class \(_open_ 수식어 없는 class\) 멤버에 _open_ 수식어를 사용하여도 아무런 변화가 없습니다. `Shape.fill()`와 같이 _open_ 수식어가 없는 함수를 서브 클래스에서 _override_ 수식어를 사용하든 안하든 같은 이름으로 선언되지 않습니다.
 
-_override_로 표시 된 멤버는 자체적으로 open 되어 있습니다. 즉, 서브 class에서 오버라이드 가능합니다. 만약 재 오버라이딩을 방지하려면 _final_ 키워드를 사용하면 됩니다.
+_override_로 표시 된 멤버는 자체적으로 open 되어 있습니다. 즉, 서브 클래스에서 오버라이드 가능합니다. 만약 재 오버라이딩을 방지하려면 _final_ 키워드를 사용하면 됩니다.
 
 ```kotlin
 open class Rectangle() : Shape() {
@@ -231,7 +231,7 @@ open class Rectangle() : Shape() {
 
 ### 프로퍼티 오버라이드 \(Overriding properties\)
 
-프로퍼티 오버라이드는 메서드 오버라이드와 유사하게 동작합니다; 슈퍼 class에 선언 된 프로퍼티는 자식 class에 유효한 타입으로 _override_ 키워드와 함께 재 선언 해야 합니다. 각 선언 된 프로퍼티는 프로퍼티 초기화나 `get` 메서드로 재정의 할 수 있습니다.
+프로퍼티 오버라이드는 메서드 오버라이드와 유사하게 동작합니다; 슈퍼 클래스에 선언 된 프로퍼티는 자식 클래스에 유효한 타입으로 _override_ 키워드와 함께 재 선언 해야 합니다. 각 선언 된 프로퍼티는 프로퍼티 초기화나 `get` 메서드로 재정의 할 수 있습니다.
 
 ```kotlin
 open class Shape {
@@ -259,9 +259,9 @@ class Polygon : Shape {
 }
 ```
 
-### 파생 class 초기화 순서 \(Derived class initialization order\)
+### 파생 클래스 초기화 순서 \(Derived class initialization order\)
 
-파생 class의 새로운 인스턴스를 생성하는 동안 기본 class 초기화는 첫 번째 단계 \(기본 class 생성자 인수로만 실행\)로 진행 되므로 파생 class의 초기화가 실행 되기 전에 발생합니다.
+파생 클래스의 새로운 인스턴스를 생성하는 동안 기본 클래스 초기화는 첫 번째 단계 \(기본 클래스 생성자 인수로만 실행\)로 진행 되므로 파생 클래스의 초기화가 실행 되기 전에 발생합니다.
 
 ```kotlin
 //sampleStart
@@ -275,7 +275,7 @@ open class Base(val name: String) {
 
 class Derived(
     name: String,
-    val lastName: String
+    val lastName: String,
 ) : Base(name.capitalize().also { println("Argument for Base: $it") }) {
 
     init { println("Initializing Derived") }
@@ -291,11 +291,11 @@ fun main() {
 }
 ```
 
-이 말은 기본 class 생성자가 실행 될 때, 파생 class에 선언 된 프로퍼티나 오버라이드는 아직 초기화 되지 않았다는 의미입니다. 기본 class 초기화 로직 \(다른 오버라이드 된 _open_ 멤버를 통해 직접 또는 간접적\)에 이러한 프로퍼티를 사용할 경우 런타임 에러가 발생 할 수 있습니다.
+이 말은 기본 클래스 생성자가 실행 될 때, 파생 클래스에 선언 된 프로퍼티나 오버라이드는 아직 초기화 되지 않았다는 의미입니다. 기본 클래스 초기화 로직 \(다른 오버라이드 된 _open_ 멤버를 통해 직접 또는 간접적\)에 이러한 프로퍼티를 사용할 경우 런타임 에러가 발생 할 수 있습니다.
 
-### 슈퍼 class 호출 구현 \(Calling the superclass implementation\)
+### 슈퍼 클래스 호출 구현 \(Calling the superclass implementation\)
 
-파생 class는 슈퍼 class 함수와 프로퍼티를 _super_ 키워드를 통해 호출 할 수 있습니다:
+파생 클래스는 슈퍼 클래스 함수와 프로퍼티를 _super_ 키워드를 통해 호출 할 수 있습니다:
 
 ```kotlin
 open class Rectangle {
@@ -313,7 +313,7 @@ class FilledRectangle : Rectangle() {
 }
 ```
 
-내부 class 안에서 outer class의 슈퍼 class를 접근하기 위해선 _super_ 키워드와 outer class 이름을 명시해 줘야 합니다: `super@Outer`:
+내부 클래스 안에서 바깥 클래스의 슈퍼 클래스를 접근하기 위해선 _super_ 키워드와 바깥 클래스 이름을 명시해 줘야 합니다: `super@Outer`:
 
 ```kotlin
 class FilledRectangle: Rectangle() {
@@ -333,7 +333,7 @@ class FilledRectangle: Rectangle() {
 
 ### 오버라이드 규칙 \(Overriding rules\)
 
-Kotlin에서 상속 구현은 아래의 규칙을 따라야 합니다: 만약에 상속 된 여러개의 슈퍼 class에 같은 이름의 멤버가 있는 경우, 멤버를 오버라이드 하거나 재 구현할 수 있도록 제공해야 합니다 \(상속 된 class 중 하나\). 상속 된 구현 부분에서 슈퍼 타입을 표현하려면 _super_ 키워드에 꺾쇠 괄호에 슈퍼 타입 이름을 표기해야 합니다. `super<Base>`:
+Kotlin에서 상속 구현은 아래의 규칙을 따라야 합니다: 만약에 상속 된 여러개의 슈퍼 클래스에 같은 이름의 멤버가 있는 경우, 멤버를 오버라이드 하거나 재 구현할 수 있도록 제공해야 합니다 \(상속 된 클래스 중 하나\). 상속 된 구현 부분에서 슈퍼 타입을 표현하려면 _super_ 키워드에 꺾쇠 괄호에 슈퍼 타입 이름을 표기해야 합니다. `super<Base>`:
 
 ```kotlin
 open class Rectangle {
@@ -355,9 +355,9 @@ class Square() : Rectangle(), Polygon {
 
 `Rectangle` 와 `Polygon` 둘 다 상속하는 것이 좋지만, 둘 다 `draw()`를 가지고 있으므로, `Square`에서 `draw()`를 오버라이드 하고 구현을 할 수 있게 제공해줘야 합니다.
 
-## 추상 class \(Abstract classes\)
+## 추상 클래스 \(Abstract classes\)
 
-class와 멤버 중 일부는 _추상 \(abstract\)_으로 선언 될 수 있습니다. 추상 멤버는 해당 class 안에 구현 부분을 가지고 있지 않습니다. 참고: 추상 class나 함수는 open 으로 선언 할 필요가 없습니다.
+클래스와 멤버 중 일부는 _추상 \(abstract\)_으로 선언 될 수 있습니다. 추상 멤버는 해당 클래스 안에 구현 부분을 가지고 있지 않습니다. 참고: 추상 클래스나 함수는 open 으로 선언 할 필요가 없습니다.
 
 추상 멤버로 비추상 멤버를 오버로이드 할 수 있습니다.
 
@@ -371,9 +371,9 @@ abstract class Rectangle : Polygon() {
 }
 ```
 
-## Companion objects
+## Companion 객체 \(Companion objects\)
 
-class 인스턴스 없이 class 내부 함수 \(예를 들어, 팩토리 메서드\)에 접근하려면 class 안에 [object declaration](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/object-expressions-and-declarations)으로 작성하면 가능합니다.
+클래스 인스턴스 없이 클래스 내부 함수 \(예를 들어, 팩토리 메서드\)에 접근하려면 클래스 안에 [객체 선언 \(object declaration\)](object-expressions-and-declarations.md) 으로 작성하면 가능합니다.
 
-구체적으로, class 안에 [companion object](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/object-expressions-and-declarations#companion-objects)를 선언하면 class 이름만 가지고 해당 멤버에 접근할 수 있습니다.
+구체적으로, 클래스 안에 [companion 객체 \(companion object\)](object-expressions-and-declarations.md#companion-objects) 를 선언하면 클래스 이름만 가지고 해당 멤버에 접근할 수 있습니다.
 
