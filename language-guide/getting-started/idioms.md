@@ -2,7 +2,7 @@
 
 Kotlin에서 자주 사용하는 관용구입니다. 원하는 관용구가 있다면 사용하시기 바랍니다.
 
-## DTO\(Data Transfer Object\) 생성 \(POJO/POCO - Plain Old Java/CLR Object\)
+## DTO\(Data Transfer Object\) 생성 \(POJO/POCO - Plain Old Java/CLR Object\) \(Creating DTOs \(POJOs/POCOs\)\)
 
 ```kotlin
 data class Customer(val name: String, val email: String)
@@ -15,15 +15,15 @@ data class Customer(val name: String, val email: String)
 * `hashCode()`
 * `toString()`
 * `copy()`
-* `component1()`, `component2()`, ..., for all properties \(see [Data classes](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-data-classes)\)
+* `component1()`, `component2()`, ..., 모든 프로퍼티에 대해 \(자세한 내용은 [Data 클래스 \(Data classes\)](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-data-classes) 를 참고\)
 
-## 함수 파라미터에 대한 기본 값
+## 함수 파라미터에 대한 기본 값 \(Default values for function parameters\)
 
 ```kotlin
 fun foo(a: Int = 0, b: String = "") { ... }
 ```
 
-## 리스트 필터링
+## 리스트 필터링 \(Filtering a list\)
 
 ```kotlin
 val positives = list.filter { x -> x > 0 }
@@ -35,7 +35,7 @@ val positives = list.filter { x -> x > 0 }
 val positives = list.filter { it > 0 }
 ```
 
-## 콜렉션 안에 엘리먼트 존재여부 체크
+## 콜렉션 안에 엘리먼트 존재여부 체크 \(Checking element presence in a collection.\)
 
 ```kotlin
 if ("john@example.com" in emailsList) { ... }
@@ -43,13 +43,13 @@ if ("john@example.com" in emailsList) { ... }
 if ("jane@example.com" !in emailsList) { ... }
 ```
 
-## 문자열 보간
+## 문자열 보간 \(String Interpolation\)
 
 ```kotlin
 println("Name $name")
 ```
 
-## 인스턴스 체크
+## 인스턴스 체크 \(Instance Checks\)
 
 ```kotlin
 when (x) {
@@ -59,7 +59,7 @@ when (x) {
 }
 ```
 
-## 쌍으로 이루어진 map/list 구분
+## 쌍으로 이루어진 map/list 구분 \(Traversing a map/list of pairs\)
 
 ```kotlin
 for ((k, v) in map) {
@@ -69,7 +69,7 @@ for ((k, v) in map) {
 
 `k`, `v` 다른 명칭으로 지정가능합니다.
 
-## 범위 사용
+## 범위 사용 \(Using ranges\)
 
 ```kotlin
 for (i in 1..100) { ... }  // closed range: includes 100
@@ -79,26 +79,26 @@ for (x in 10 downTo 1) { ... }
 if (x in 1..10) { ... }
 ```
 
-## 읽기 전용 list
+## 읽기전용 list \(Read-only list\)
 
 ```kotlin
 val list = listOf("a", "b", "c")
 ```
 
-## 읽기 전용 map
+## 읽기전용 map \(Read-only map\)
 
 ```kotlin
 val map = mapOf("a" to 1, "b" to 2, "c" to 3)
 ```
 
-## map 접근
+## map 접근 \(Accessing a map\)
 
 ```kotlin
 println(map["key"])
 map["key"] = value
 ```
 
-## Lazy 프로퍼티
+## 지 프로퍼티 \(Lazy property\)
 
 ```kotlin
 val p: String by lazy {
@@ -106,7 +106,7 @@ val p: String by lazy {
 }
 ```
 
-## 함수 확장
+## 함수 확장 \(Extension Functions\)
 
 ```kotlin
 fun String.spaceToCamelCase() { ... }
@@ -114,7 +114,7 @@ fun String.spaceToCamelCase() { ... }
 "Convert this to camelcase".spaceToCamelCase()
 ```
 
-## Singleton 생성
+## Singleton 생성 \(Creating a singleton\)
 
 ```kotlin
 object Resource {
@@ -122,7 +122,7 @@ object Resource {
 }
 ```
 
-## if not null 짧은 표현
+## if not null 짧은 표현 \(If not null shorthand\)
 
 ```kotlin
 val files = File("Test").listFiles()
@@ -130,7 +130,7 @@ val files = File("Test").listFiles()
 println(files?.size)
 ```
 
-## if not null과 else 짧은 표현
+## if not null과 else 짧은 표현 \(If not null and else shorthand\)
 
 ```kotlin
 val files = File("Test").listFiles()
@@ -138,21 +138,21 @@ val files = File("Test").listFiles()
 println(files?.size ?: "empty")
 ```
 
-## if null 실행 구문
+## if null 실행 구문 \(Executing a statement if null\)
 
 ```kotlin
 val values = ...
 val email = values["email"] ?: throw IllegalStateException("Email is missing!")
 ```
 
-## 콜렉션이 비어있을 수 있는 상태에서 첫번째 item 가져오기
+## 콜렉션이 비어있을 수 있는 상태에서 첫번째 항목 가져오기 \(Get first item of a possibly empty collection\)
 
 ```kotlin
 val emails = ... // might be empty
 val mainEmail = emails.firstOrNull() ?: ""
 ```
 
-## if not null 실행 구문
+## if not null 실행 구문 \(Execute if not null\)
 
 ```kotlin
 val value = ...
@@ -162,7 +162,7 @@ value?.let {
 }
 ```
 
-## null이 가능한 map value에 대한 if not null
+## null이 가능한 map value에 대한 if not null \(Map nullable value if not null\)
 
 ```kotlin
 val value = ...
@@ -171,7 +171,7 @@ val mapped = value?.let { transformValue(it) } ?: defaultValue
 // defaultValue is returned if the value or the transform result is null.
 ```
 
-## when 구문 리턴
+## when 구문 리턴 \(Return on when statement\)
 
 ```kotlin
 fun transform(color: String): Int {
@@ -184,7 +184,7 @@ fun transform(color: String): Int {
 }
 ```
 
-## 'try/catch' 표현
+## 'try/catch' 표현 \('try/catch' expression\)
 
 ```kotlin
 fun test() {
@@ -198,7 +198,7 @@ fun test() {
 }
 ```
 
-## 'if' 표현
+## 'if' 표현 \('if' expression\)
 
 ```kotlin
 fun foo(param: Int) {
@@ -212,7 +212,7 @@ fun foo(param: Int) {
 }
 ```
 
-## `Unit`을 리턴하는 빌더-스타일 메서드 사용방법
+## `Unit`을 리턴하는 빌더-스타일 메서드 사용방법 \(Builder-style usage of methods that return `Unit`\)
 
 ```kotlin
 fun arrayOfMinusOnes(size: Int): IntArray {
@@ -220,7 +220,7 @@ fun arrayOfMinusOnes(size: Int): IntArray {
 }
 ```
 
-## 싱글 표현 함수
+## 단일 표현 함수 \(Single-expression functions\)
 
 ```kotlin
 fun theAnswer() = 42
@@ -245,7 +245,7 @@ fun transform(color: String): Int = when (color) {
 }
 ```
 
-## 객체 인스턴스에서 여러 메서드 호출 \(`with`\)
+## 객체 인스턴스에서 여러 메서드 호출 \(`with`\) \(Calling multiple methods on an object instance \(`with`\)\)
 
 ```kotlin
 class Turtle {
@@ -266,7 +266,7 @@ with(myTurtle) { //draw a 100 pix square
 }
 ```
 
-## 객체의 프로퍼티 구성 \(`apply`\)
+## 객체의 프로퍼티 구성 \(`apply`\) \(Configuring properties of an object \(`apply`\)\)
 
 ```kotlin
 val myRectangle = Rectangle().apply {
@@ -278,7 +278,7 @@ val myRectangle = Rectangle().apply {
 
 이 방법은 프로퍼티를 구성하는데 유용합니다. 객체의 생성자는 접근할 수 없습니다.
 
-## Java 7의 리소스 접근
+## Java 7의 리소스 접근 \(Java 7's try with resources\)
 
 ```kotlin
 val stream = Files.newInputStream(Paths.get("/some/file.txt"))
@@ -287,7 +287,7 @@ stream.buffered().reader().use { reader ->
 }
 ```
 
-## 제너릭 타입 정보를 요구하는 제너릭 함수 표현
+## 제너릭 타입 정보를 요구하는 제너릭 함수 표현 \(Convenient form for a generic function that requires the generic type information\)
 
 ```kotlin
 //  public final class Gson {
@@ -298,7 +298,7 @@ stream.buffered().reader().use { reader ->
 inline fun <reified T: Any> Gson.fromJson(json: JsonElement): T = this.fromJson(json, T::class.java)
 ```
 
-## null이 가능한 Boolean 타입
+## null이 가능한 부 타입 \(Consuming a nullable Boolean\)
 
 ```kotlin
 val b: Boolean? = ...
@@ -309,7 +309,7 @@ if (b == true) {
 }
 ```
 
-## 두 변수 스와핑
+## 두 변수 바꾸기 \(Swapping two variables\)
 
 ```kotlin
 var a = 1
@@ -317,13 +317,13 @@ var b = 2
 a = b.also { b = a }
 ```
 
-## TODO\(\): 미완성 코드에 대한 표기
+## TODO\(\): 미완성 코드에 대한 표기 \(TODO\(\): Marking code as incomplete\)
 
-Kotlin's standard library has a `TODO()` function that will always throw a `NotImplementedError`. Its return type is `Nothing` so it can be used regardless of expected type. There's also an overload that accepts a reason parameter:
+Kotlin의 표준 라이브러리는 항상 `NotImplementedError` 를 발생시키는 `TODO()` 함수를 가지고 있습니다. 반환 타입이 `Nothing` 이므로 예상된 타입에 관계없이 사용될 수 있습니다. 이유 파라미터를 수용하여 오버로드 될 수도 있습니다:
 
 ```kotlin
 fun calcTaxes(): BigDecimal = TODO("Waiting for feedback from accounting")
 ```
 
-IntelliJ IDEA's kotlin plugin understands the semantics of `TODO()` and automatically adds a code pointer in the TODO toolwindow.
+IntelliJ IDEA의 Kotlin 플러그인은 `TODO()` 의 의미를 이해하고 자동으로 TODO 툴창에서 코드 포인터를 추가합니다.
 
