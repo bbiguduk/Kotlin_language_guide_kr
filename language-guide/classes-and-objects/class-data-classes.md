@@ -1,6 +1,7 @@
-# 데이터 class \(Data Classes\)
+# 데이터 클래스 \(Data Classes\)
 
-데이터를 가지는 것이 목적인 class를 자주 만듭니다. 이러한 class에서 일부 표준 기능과 유틸리티 기능은 종종 데이터로 부터 기계적으로 파생될 수 있습니다. Kotlin에서 이것을 _data class_ 라 부르며 `data`로 표기합니다:
+데이터를 가지는 것이 목적인 클래스를 자주 만듭니다. 이러한 클래스에서 일부 표준 기능과 유틸리티 기능은 종종 데이터로 부터 기계적으로 파생될 수 있습니다. Kotlin에서 이것을 _데이터 클래스   
+\(data class\)_ 라 부르며 `data`로 표기합니다:
 
 ```kotlin
 data class User(val name: String, val age: Int)
@@ -8,26 +9,26 @@ data class User(val name: String, val age: Int)
 
 컴파일러는 자동적으로 주 생성자에 선언 된 모든 프로퍼티로 부터 다음 멤버들을 파생합니다:
 
-* `equals()`/`hashCode()`;
-* `"User(name=John, age=42)"`의 `toString()`;
-* 프로퍼티 선언된 순서대로의 [`componentN()` functions](https://kotlinlang.org/docs/reference/multi-declarations.html);
+* `equals()`/`hashCode()` 쌍
+* `"User(name=John, age=42)"` 의 `toString()`;
+* 프로퍼티 선언된 순서대로의 [`componentN()` 함수 \(`componentN()` functions\)](https://kotlinlang.org/docs/reference/multi-declarations.html);
 * `copy()` 함수 \(아래 내용 참고\).
 
-생성 된 코드의 일관성과 동작을 보장하기 위해 data class는 아래의 요구사항을 충족해야 합니다:
+생성 된 코드의 일관성과 동작을 보장하기 위해 데이터 클래스는 아래의 요구사항을 충족해야 합니다:
 
 * 주 생성사는 적어도 하나 이상의 파라미터가 있어야 합니다;
 * 모든 주 생성자 파라미터는 `val` 또는 `var` 로 표기해야 합니다;
-* data class는 abstract, open, sealed 또는 inner 로 사용할 수 없습니다.
-* \(Kotlin 1.1 이전만 해당\) data class 인터페이스로만 구현이 가능합니다.
+* 데이터 클래스는 abstract, open, sealed 또는 inner 로 사용할 수 없습니다.
+* \(Kotlin 1.1 이전만 해당\) 데이터 클래스 인터페이스로만 구현이 가능합니다.
 
 추가적으로 멤버 생성은 멤버 상속과 관련하여 아래의 규칙을 따라야 합니다:
 
-* data class의 본문에 `equals()`, `hashCode()` 또는 `toString()`을 명시적으로 구현하거나 superclass를 _final_로 선언하면 이 함수들은 생성되지 않고 구현된 함수를 사용합니다;
-* 슈퍼타입이 _open_이고 반환 타입이 호환이 되는 `componentN()` 함수를 가지고 있다면 data class에 해당 함수가 생성되며 슈퍼타입을 오버라이드 합니다. 슈퍼타입의 함수가 호환되지 않은 유형이거나 final로 오버라이드 할 수 없다면 에러가 발생합니다;
+* 데이터 클래스의 본문에 `equals()`, `hashCode()` 또는 `toString()`을 명시적으로 구현하거나 슈퍼 클래스를 _final_로 선언하면 이 함수들은 생성되지 않고 구현된 함수를 사용합니다;
+* 슈퍼타입이 _open_이고 반환 타입이 호환이 되는 `componentN()` 함수를 가지고 있다면 데이터 클래스에 해당 함수가 생성되며 슈퍼타입을 재정의 합니다. 슈퍼타입의 함수가 호환되지 않은 유형이거나 final로 재정의 할 수 없다면 에러가 발생합니다;
 * `copy(...)` 함수를 가지고 있는 상속하는 것은 Kotlin 1.2에서 deprecated 되었고 1.3에선 금지 되었습니다.
 * `componentN()` 과 `copy()` 함수를 직접적으로 구현하는 것은 불가합니다.
 
-Kotlin 1.1부터 data class는 다른 class를 확장 할 수 있습니다 \(자세한 내용은 [Sealed classes](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-sealed-classes)를 참고 바랍니다\).
+Kotlin 1.1부터 데이터 클래스는 다른 클래스를 확장 할 수 있습니다 \(자세한 내용은 [한정 클래스 \(Sealed classes\)](class-sealed-classes.md) 를 참고 바랍니다\).
 
 JVM에서 파리미터가 없는 생성자가 필요하다면 모든 프로퍼티는 기본값을 가지고 있어야 합니다 \(자세한 내용은 [Constructors](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-classes-and-inheritance#constructors)를 참고 바랍니다\).
 
