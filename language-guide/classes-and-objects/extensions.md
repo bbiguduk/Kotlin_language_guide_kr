@@ -168,7 +168,7 @@ fun main() {
 
 ## 확장을 멤버로 선언 \(Declaring extensions as members\)
 
-클래스 안에서 다른 클래스를 위한 확장을 선언할 수 있습니다. 확장에는 여러개의 _암시적 리시버_ 가 있습니다 - 한정자 없이 접근 가능한 객체. 확장이 선언 된 클래스의 인스턴스를 _파견 수신자 \(dispatch receiver\)_ 라고 부르며 확장 메서드의 리시버 타입 인스턴스를 확장 수신자 \(extension receiver\)_수신자 확장 \(extension receiver\)수신자 확장 \(extension receiver\)수신자 확장 이라고 부릅니다._ 라고 부릅니다.
+클래스 안에서 다른 클래스를 위한 확장을 선언할 수 있습니다. 확장에는 여러개의 _암시적 리시버_ 가 있습니다 - 한정자 없이 접근 가능한 객체. 확장이 선언 된 클래스의 인스턴스를 _파견 수신자 \(dispatch receiver\)_ 라고 부르며 확장 메서드의 리시버 타입 인스턴스를 _확장 수신자 \(extension receiver\)_ 라고 부릅니다.
 
 ```kotlin
 class Host(val hostname: String) {
