@@ -1,6 +1,6 @@
 # 기본 구문 \(Basic Syntax\)
 
-## 패키지 \(Package\) 정의와 가져오기 \(import\)
+## 패키지 정의와 가져오기 \(Package definition and imports\)
 
 패키지 \(Package\) 는 소스파일의 최상단에 위치:
 
@@ -16,7 +16,7 @@ import kotlin.text.*
 
 자세한 내용은 [패키지 \(Packages\)](../basics/import-packages-and-imports.md) 를 참고 바랍니다.
 
-## 프로그램 시작점
+## 프로그램 시작점 \(Program entry point\)
 
 Kotlin 애플리케이션의 시작점은 `main` 함수입니다.
 
@@ -26,7 +26,7 @@ fun main() {
 }
 ```
 
-## 함수
+## 함수 \(Functions\)
 
 2개의 `Int` 파라미터와 `Int` 리턴타입인 함수는 아래와 같이 표현합니다:
 
@@ -85,7 +85,7 @@ fun main() {
 
 자세한 내용은 [함수 \(Functions\)](../functions-and-lambdas/functions.md) 를 참고 바랍니다..
 
-## 변수
+## 변수 \(Variables\)
 
 읽기만 가능한 변수는 키워드 `val`로 정의합니다. 해당 변수는 최초 한번만 정의 가능합니다.
 
@@ -135,7 +135,7 @@ fun main() {
 
 자세한 내용은 [프로퍼티와 필드 \(Properties And Fields\)](../classes-and-objects/untitled.md) 를 참고 바랍니다.
 
-## 주석
+## 주석 \(Comments\)
 
 다른 언어와 같이 Kotlin도 한 줄과 여러줄_lock_\) 주석을 지원합니다.
 
@@ -156,7 +156,7 @@ and ends here. */
 
 문서에 주석 구문에 대한 내용은 [Kotlin 코드 문서 \(Documenting Kotlin Code\)](https://kotlinlang.org/docs/reference/kotlin-doc.html) 를 참고 바랍니다.
 
-## 문자열\(String\) 템플릿
+## 문자열 템플릿 \(String templates\)
 
 ```kotlin
 fun main() {
@@ -175,7 +175,7 @@ fun main() {
 
 자세한 내용은 [문자열 템플릿 \(String templates\)](../basics/untitled.md#string-templates) 을 참고 바랍니다.
 
-## 조건부 표현
+## 조건부 표현 \(Conditional expressions\)
 
 ```kotlin
 //sampleStart
@@ -205,9 +205,9 @@ fun main() {
 }
 ```
 
-자세한 내용은 [_if_-표현식 \(if-expressions\)](../basics/control-flow-if-when-for-while.md#if-expression) 을 참고 바랍니다.
+자세한 내용은 [_if_-표현 \(if-expressions\)](../basics/control-flow-if-when-for-while.md#if-expression) 을 참고 바랍니다.
 
-## Null이 가능한 변수와 _null_ 체크
+## Null이 가능한 값과 _null_ 체크 \(Nullable values and _null_ checks\)
 
 _null_이 가능한 변수일 경우 반드시 표시\(?\)가 필요합니다.
 
@@ -286,7 +286,7 @@ fun main() {
 
 자세한 내용은 [Null-안전성 \(Null-safety\)](https://kotlinlang.org/docs/reference/null-safety.html) 을 참고 바랍니다.
 
-## 타입체크와 자동변환
+## 타입체크와 자동 캐스팅 \(Type checks and automatic casts\)
 
 어떠한 타입으로 표기가 가능한지 체크하기 위해선 _is_를 사용합니다. 불변하는 변수나 프로퍼티를 특정 타입에 대한 체크를 진행했다면, 추가로 타입변환\(캐스팅\)을 표현하지 않아도 됩니다:
 
@@ -364,7 +364,7 @@ fun main() {
 
 자세한 내용은 [클래스 \(Classes\)](../classes-and-objects/class-classes-and-inheritance.md#classes) 와 [타입 캐스팅 \(Type casts\)](https://kotlinlang.org/docs/reference/typecasts.html) 을 참고 바랍니다.
 
-## `for` 문
+## `for` 루 \(`for` loop\)
 
 ```kotlin
 fun main() {
@@ -392,7 +392,7 @@ fun main() {
 
 자세한 내용은 [for 루프 \(for loop\)](../basics/control-flow-if-when-for-while.md#for-loops) 를 참고 바랍니다.
 
-## `while` 문
+## `while` 루프 \(`while` loop\)
 
 ```kotlin
 fun main() {
@@ -409,7 +409,7 @@ fun main() {
 
 자세한 내용은  [while 루프 \(while loop\)](../basics/control-flow-if-when-for-while.md#while-loops) 를 참고 바랍니다.
 
-## `when` 표현
+## `when` 표현 \(`when` expression\)
 
 ```kotlin
 //sampleStart
@@ -434,7 +434,7 @@ fun main() {
 
 자세한 내용은 [when 표현 \(when expression\)](../basics/control-flow-if-when-for-while.md#when-expression) 을 참고 바랍니다.
 
-## 범위
+## 범위 \(Ranges\)
 
 어떠한 숫자가 범위안에 포함되는지 체크하기 위해선 _in_을 사용한다:
 
@@ -497,7 +497,7 @@ fun main() {
 
 자세한 내용은 [범위 \(Ranges\)](../collections/ranges-and-progressions-1.md#range) 를 참고 바랍니다.
 
-## 콜렉션
+## 콜렉션 \(Collections\)
 
 콜렉션의 반복 표현은 아래와 같습니다:
 
@@ -543,7 +543,7 @@ fun main() {
 
 자세한 내용은 [콜렉션 살펴보기 \(Collections overview\)](../collections/kotlin-kotlin-collections-overview.md) 를 참고 바랍니다.
 
-## 기본 클래스 생성과 인스턴스 생성
+## 기본 클래스와 인스턴스 생성 \(Creating basic classes and their instances\)
 
 ```kotlin
 fun main() {
