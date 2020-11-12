@@ -17,6 +17,7 @@
   * [클래스와 상속 \(Classes and Inheritance\)](language-guide/classes-and-objects/class-classes-and-inheritance.md)
   * [프로퍼티와 필드 \(Properties and Fields\)](language-guide/classes-and-objects/untitled.md)
   * [인터페이스 \(Interfaces\)](language-guide/classes-and-objects/interfaces.md)
+  * [함수형 \(SAM\) 인터페이스 \(Functional \(SAM\) interfaces\)](language-guide/classes-and-objects/sam-functional-sam-interfaces.md)
   * [접근 제한자 \(Visibility Modifiers\)](language-guide/classes-and-objects/visibility-modifiers.md)
   * [확장 \(Extensions\)](language-guide/classes-and-objects/extensions.md)
   * [데이터 class \(Data Classes\)](language-guide/classes-and-objects/class-data-classes.md)
