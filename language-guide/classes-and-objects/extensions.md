@@ -1,6 +1,6 @@
 # 확장 \(Extensions\)
 
-Kotlin은 class를 상속하거나 Decorator와 같은 디자인 패턴을 사용하지 않고 새로운 기능을 확장할 수 있도록 제공해 줍니다. 이것은 _extensions_ 을 통해 선언 됩니다. 예를 들어 수정할 수 없는 서드파티 라이브러리에 있는 class에 대해 새로운 함수를 작성할 수 있습니다. 이러한 함수는 기존 class에 있는 메서드처럼 호출하여 사용이 가능합니다. 이 메카니즘을 _\(함수 확장\) extension functions_ 이라 부릅니다. 기존 class에 새로운 프로퍼티를 정의할 수 있으며, 이것을 _\(프로퍼티 확장\) extension properties_ 이라 합니다.
+Kotlin은 클래를 상속하거나 Decorator와 같은 디자인 패턴을 사용하지 않고 새로운 기능을 확장할 수 있도록 제공해 줍니다. 이것은 _extensions_ 을 통해 선언 됩니다. 예를 들어 수정할 수 없는 서드파티 라이브러리에 있는 class에 대해 새로운 함수를 작성할 수 있습니다. 이러한 함수는 기존 class에 있는 메서드처럼 호출하여 사용이 가능합니다. 이 메카니즘을 _\(함수 확장\) extension functions_ 이라 부릅니다. 기존 class에 새로운 프로퍼티를 정의할 수 있으며, 이것을 _\(프로퍼티 확장\) extension properties_ 이라 합니다.
 
 ## 함수 확장 \(Extension functions\)
 
