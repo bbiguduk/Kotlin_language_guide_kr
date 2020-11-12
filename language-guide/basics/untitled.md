@@ -71,7 +71,7 @@ Kotlin은 부동 소수점 숫자를 위한 표기법도 지원합니다:
 * `Double`이 기본: `123.5`, `123.5e10`
 * `Float`는 `f` 또는 `F`로 표기: `123.5f`
 
-### 숫자 표기시 언더바 \(Kotlin 1.1 이상 지원\)
+### 숫자 표기시 언더바 \(Kotlin 1.1 이상 지원\) \(Underscores in numeric literals \(since 1.1\)\)
 
 숫자를 더 읽기 좋게 언더바를 넣어 표기할 수 있습니다:
 
@@ -92,11 +92,16 @@ Java 플랫폼에서 숫자는 null이 가능한 숫자 \(예. `Int?`\) 또는 �
 ```kotlin
 fun main() {
 //sampleStart
-    val a: Int = 10000
-    println(a === a) // Prints 'true'
+    val a: Int = 100
     val boxedA: Int? = a
     val anotherBoxedA: Int? = a
-    println(boxedA === anotherBoxedA) // !!!Prints 'false'!!!
+    
+    val b: Int = 10000
+    val boxedB: Int? = b
+    val anotherBoxedB: Int? = b
+    
+    println(boxedA === anotherBoxedA) // true
+    println(boxedB === anotherBoxedB) // false
 //sampleEnd
 }
 ```
@@ -169,7 +174,7 @@ val l = 1L + 3 // Long + Int => Long
 
 ### 연산 \(Operations\)
 
-Kotlin은 적절한 class 멤버로 선언 된 숫자에 대해 기본적인 산술연산 \(`+` `-` `*` `/` `%`\)을 제공합니다 \(그러나 컴파일러는 해당 호출에 대해 최적화 합니다\). [Operator overloading](https://kotlinlang.org/docs/reference/operator-overloading.html) 참고 바랍니다.
+Kotlin은 적절한 클래스 멤버로 선언 된 숫자에 대해 기본적인 산술연산 \(`+` `-` `*` `/` `%`\)을 제공합니다 \(그러나 컴파일러는 해당 호출에 대해 최적화 합니다\). [연산 오버로딩 \(Operator overloading\)](https://kotlinlang.org/docs/reference/operator-overloading.html) 참고 바랍니다.
 
 #### 정수 나누기 \(Division of integers\)
 
@@ -269,7 +274,7 @@ fun decimalDigitValue(c: Char): Int {
 
 숫자와 문자는 null이 가능한 참조가 필요한 경우 박싱됩니다. 박싱되면 동일한 객체로 생성되지 않습니다.
 
-## Booleans
+## 부울 \(Booleans\)
 
 `Boolean`로 표기하며 2개의 값을 가지고 있습니다: _true_ 와 _false_.
 
@@ -338,7 +343,7 @@ var arr = IntArray(5) { it * 1 }
 
 ## 부호없는 정수 \(Unsigned integers\)
 
-> 부호없는 타입은 Kotlin 1.3 이상 버전에서 가능합니다. 자세한 사항은 [below](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/untitled#experimental-status-of-unsigned-integers) 참고바랍니다.
+> 부호없는 타입은 Kotlin 1.3 이상 버전에서 가능하고 현재는 [베타](https://kotlinlang.org/docs/reference/evolution/components-stability.html) 입니다. 자세한 사항은 [아래](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/untitled#experimental-status-of-unsigned-integers) 를 참고바랍니다.
 
 Kotlin은 아래와 같이 부호없는 정수 타입을 따릅니다:
 
@@ -351,9 +356,9 @@ Kotlin은 아래와 같이 부호없는 정수 타입을 따릅니다:
 
 > 부호없는 타입에서 부호있는 정수 타입으로 변경 \(그 반대도 포함\) 은 호환성이 보장되지 않습니다.
 
-부호없는 타입은 [inline classes](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-inline-classes)를 사용하여 구현되어져 있습니다.
+부호없는 타입은 아직 안정적이지 않은 기능 즉, [인라인 클래스 \(inline classes\)](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-inline-classes) 를 사용하여 구현되어져 있습니다.
 
-### 특수 class \(Specialized classes\)
+### 특수 클래스 \(Specialized classes\)
 
 기본 배열 타입과 마찬가지로 각 부호없는 타입에도 배열을 가지고 있으며 아래와 같습니다:
 
@@ -387,22 +392,22 @@ val a2 = 0xFFFF_FFFF_FFFFu // ULong: no expected type provided, constant doesn't
 val a = 1UL // ULong, even though no expected type provided and constant fits into UInt
 ```
 
-### 부호없는 정수의 실험적 상태 \(Experimental status of unsigned integers\)
+### 부호없는 정수의 베타 상태 \(Beta status of unsigned integers\)
 
-부호없는 타입은 실험적인 타입입니다. 이 뜻은 이 타입은 안정성을 보장하지 않으며, 계속해서 특성이 변경됩니다. Kotlin 1.3+ 에서 부호없는 연산을 사용하면 이 기능은 실험적이라는 경고가 나타나게 됩니다. 이 경고를 나타나지 않게 하려면 부호없는 타입에 대한 실험적 기능을 사용하겠다는 설정을 해줘야 합니다.
+부호없는 타입의 디자인은 [베타](https://kotlinlang.org/docs/reference/evolution/components-stability.html) 에 있으며 이는 호환성을 위해 노력중이며 안정성이 보장되지 않는다는 의미입니다. Kotlin 1.3 이상에서 부호없는 산술연산을 사용하면 이 기능은 안전하지 않다는 경고를 나타냅니다. 경고를 삭제하려면 부호없는 타입의 사용을 설정해야 합니다.
 
-실험적인 기능에 대한 설정 방법은 2가지가 있습니다: API에 experimental을 표시하거나 표시하지 않는 방법입니다.
+부호없는 타입에 대한 설정은 두가지 방법이 있습니다: API에 대해 사용을 설정하거나 그렇지 않은 방법이 있습니다.
 
-* `@ExperimentalUnsignedTypes` annotation을 부호없는 정수에 선언해 줍니다.
-* `@OptIn(ExperimentalUnsignedTypes::class)` annotation을 선언하거나 컴파일러에 `-Xopt-in=kotlin.ExperimentalUnsignedTypes` 설정을 해줍니다.
+* 선택 요구사항을 적용하려면 `@ExperimentalUnsignedTypes` 와 함께 부호없는 정수에 선언합니다.
+* 이러한 선택없이 적용하려면 `@OptIn(ExperimentalUnsignedTypes::class)` 또는 컴파일러에 `-Xopt-in=kotlin.ExperimentalUnsignedTypes` 를 전달합니다.
 
-항상 부호없는 타입은 실험적이기 때문에 Kotlin에 변경사항이 생기면 기존에 API를 사용 못할 수도 있다는 것을 명심하시기 바랍니다.
+클라이언트가 API 사용에 명시적으로 적용하는 것은 선택이지만 부호없는 타입은 안정적인 기능이 아니므로 이를 사용하는 API는 언어 변경에 의해 손상될 수 있습니다.
 
-추가적인 정보는 [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/experimental.md)를 참고하시기 바랍니다.
+기술적 세부사항은 옵트-인 요구사항 API \(Opt-in Requirements API\) [KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/experimental.md) 을 참고 바랍니다.
 
 ### 추가 논의 \(Further discussion\)
 
-[language proposal for unsigned types](https://github.com/Kotlin/KEEP/blob/master/proposals/unsigned-types.md)를 참고하시기 바랍니다.
+[부호없는 타입에 대한 언어 목적 \(language proposal for unsigned types\)](https://github.com/Kotlin/KEEP/blob/master/proposals/unsigned-types.md) 을 참고하시기 바랍니다.
 
 ## 문자열 \(Strings\)
 
