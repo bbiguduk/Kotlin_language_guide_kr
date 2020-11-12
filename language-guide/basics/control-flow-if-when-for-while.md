@@ -1,6 +1,6 @@
 # 제어 흐름 \(Control Flow\): if, when, for, while
 
-## If Expression
+## If 표현 \(If Expression\)
 
 Kotlin에서 _if_는 표현식입니다. 즉, 어떠한 값을 반환한다는 의미입니다. _if_는 기본적으로 잘 수행이 되므로, 삼항 연산자 \(조건 ? 그러면 : 아니면 \(condition ? then : else\)\)가 필요없습니다.
 
@@ -37,9 +37,9 @@ _if_를 문장보다 표현식으로 사용하는 경우 \(예를 들어, 값을
 
 자세한 내용은 [grammar for _if_{: .keyword }](https://kotlinlang.org/docs/reference/grammar.html#ifExpression) 참고바랍니다.
 
-## When Expression
+## When 표현 \(When Expression\)
 
-_when_은 C언어에서 switch 연산자를 대신 합니다. 아래 간단한 예문을 참고하시기 바랍니다.
+_when_ 표현은 C언어에서 switch 연산자를 대신 합니다. 아래 간단한 예문을 참고하시기 바랍니다.
 
 ```kotlin
 when (x) {
@@ -53,7 +53,7 @@ when (x) {
 
 _when_은 조건이 만족할 때 까지 모든 브랜치 \(케이스\)를 순차적으로 확인합니다. _when_은 표현식 또는 문장으로 사용 가능합니다. 표현식으로 사용하면 조건이 맞는 브랜치의 값은 전체 표현식의 값이 됩니다. 문장으로 사용되면 개별 브랜치는 무시됩니다. \(_if_ 처럼 각 브랜치는 블럭을 가질 수 있으며, 블럭의 마지막 표현식이 반환값이 됩니다.\)
 
-_else_ 브랜치는 모든 조건을 만족하지 않을 경우 해당합니다. _when_을 표현석으로 사용할 경우 컴파일러가 모든 케이스가 존재함 \(예를 들어, [_enum_ class](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-enum-classes) 의 엔트리와 [_sealed_ class](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-enum-classes) 서브 타입\)을 증명할 수 없는 한 _else_ 브랜치는 반드시 포함되어야 합니다.
+_else_ 브랜치는 모든 조건을 만족하지 않을 경우 해당합니다. _when_을 표현석으로 사용할 경우 컴파일러가 모든 케이스가 존재함 \(예를 들어, [_열거형 클래스 \(enum_ class\)](../classes-and-objects/class-enum-classes.md) 의 엔트리와 [_한정 클래스 \(sealed_ class\)](../classes-and-objects/class-sealed-classes.md) 서브 타입\)을 증명할 수 없는 한 _else_ 브랜치는 반드시 포함되어야 합니다.
 
 만약 많은 케이스를 같은 방식으로 처리 된다면, 각각의 조건들을 콤마로 연결할 수 있습니다:
 
@@ -73,7 +73,7 @@ when (x) {
 }
 ```
 
-[range](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/ranges-and-progressions-1) 또는 콜렉션에서 범위 조건으로 _in_ 또는 _!in_을 사용할 수 있습니다:
+[범위 \(range\)](../collections/ranges-and-progressions-1.md) 또는 콜렉션에서 범위 조건으로 _in_ 또는 _!in_을 사용할 수 있습니다:
 
 ```kotlin
 when (x) {
@@ -84,7 +84,7 @@ when (x) {
 }
 ```
 
-_is_ 또는 _!is_을 이용하여 특정 타입에 대한 체크가 가능합니다. [smart casts](https://kotlinlang.org/docs/reference/typecasts.html#smart-casts)로 인해 별도의 체크 없이 메서드나 프로퍼티에 접근할 수 있습니다.
+_is_ 또는 _!is_을 이용하여 특정 타입에 대한 체크가 가능합니다. [스마트 캐스팅 \(smart casts\)](https://kotlinlang.org/docs/reference/typecasts.html#smart-casts) 로 인해 별도의 체크 없이 메서드나 프로퍼티에 접근할 수 있습니다.
 
 ```kotlin
 fun hasPrefix(x: Any) = when(x) {
@@ -98,8 +98,8 @@ _when_은 _if_-_else if_ 체인으로 대체 가능합니다. 만약에 인수�
 ```kotlin
 when {
     x.isOdd() -> print("x is odd")
-    x.isEven() -> print("x is even")
-    else -> print("x is funny")
+    y.isEven() -> print("y is even")
+    else -> print("x+y is even.")
 }
 ```
 
@@ -115,9 +115,9 @@ fun Request.getBody() =
 
 _when_의 subject를 변수로 캡쳐 시 해당 변수는 _when_의 바디에서만 유효합니다.
 
-자세한 내용은 [grammar for _when_](https://kotlinlang.org/docs/reference/grammar.html#whenExpression)를 참고 바랍니다.
+자세한 내용은 [_when_ 에 대한 문법 \(grammar for _when_\)](https://kotlinlang.org/docs/reference/grammar.html#whenExpression) __를 참고 바랍니다.
 
-## For Loops
+## For 루프 \(For Loops\)
 
 _for_ 루프는 반복자를 제공하는 모든 것을 반복합니다. 이것은 C\#에서 `foreach` 루프와 동일합니다. 구문은 아래와 같습니다:
 
@@ -141,7 +141,7 @@ for (item: Int in ints) {
 
 위 세가지 함수는 `operator`로 표시해야 합니다.
 
-숫자 범위를 반복하려면, [range expression](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/ranges-and-progressions-1)을 사용하시기 바랍니다:
+숫자 범위를 반복하려면, [범위 표현 \(range expression\)](../collections/ranges-and-progressions-1.md) 을 사용하시기 바랍니다:
 
 ```kotlin
 fun main() {
@@ -184,9 +184,9 @@ fun main() {
 }
 ```
 
-자세한 내용은 [grammar for _for_](https://kotlinlang.org/docs/reference/grammar.html#forStatement)를 참고바랍니다.
+자세한 내용은 [_for_ 에 대한 문법 \(grammar for _for_\)](https://kotlinlang.org/docs/reference/grammar.html#forStatement) 를 참고바랍니다.
 
-## While Loops
+## While 루프 \(While Loops\)
 
 _while_과 _do_.._while_은 다른 언어처럼 동작합니다.
 
@@ -200,9 +200,9 @@ do {
 } while (y != null) // y is visible here!
 ```
 
-자세한 내용은 [grammar for _while_](https://kotlinlang.org/docs/reference/grammar.html#whileStatement)를 참고바랍니다.
+자세한 내용은 [_while_ 에 대한 문법 \(grammar for _while_\)](https://kotlinlang.org/docs/reference/grammar.html#whileStatement) __를 참고바랍니다.
 
 ## 루프에서의 break와 continue \(Break and continue in loops\)
 
-Kotlin은 다른언어와 동일하게 루프에서 _break_ 와 _continue_를 지원합니다. 자세한 내용은 [Returns and jumps](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/returns-and-jumps)를 참고바랍니다.
+Kotlin은 다른언어와 동일하게 루프에서 _break_ 와 _continue_를 지원합니다. 자세한 내용은 [반환과 점프 \(Returns and jumps\)](returns-and-jumps.md) 를 참고바랍니다.
 
