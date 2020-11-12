@@ -2,7 +2,7 @@
 
 ## 프로퍼티 선언 \(Declaring Properties\)
 
-Kotlin class 안에서 프로퍼티는 _var_로 수정가능하게 또는 _val_로 읽기전용으로 선언이 가능합니다.
+Kotlin 클래 안에서 프로퍼티는 _var_로 수정가능하게 또는 _val_로 읽기전용으로 선언이 가능합니다.
 
 ```kotlin
 class Address {
@@ -87,9 +87,9 @@ var setterWithAnnotation: Any? = null
     @Inject set // annotate the setter with Inject
 ```
 
-### Backing Fields
+### 뒷받침 필드 \(Backing Fields\)
 
-Kotlin class에서 필드는 직접적으로 선언할 수 없습니다. 그러나 프로퍼티가 backing field가 필요할 때 Kotlin은 자동으로 제공해줍니다. `field` 식별자를 통해 backing field에 접근할 수 있습니다:
+Kotlin 클래스에서 필드는 직접적으로 선언할 수 없습니다. 그러나 프로퍼티가 뒷받침 필드 \(backing field\)가 필요할 때 Kotlin은 자동으로 제공해줍니다. `field` 식별자를 통해 뒷받침 필드에 접근할 수 있습니다:
 
 ```kotlin
 var counter = 0 // Note: the initializer assigns the backing field directly
@@ -100,18 +100,18 @@ var counter = 0 // Note: the initializer assigns the backing field directly
 
 `field` 식별자는 프로퍼티 접근을 위해서만 사용 가능합니다.
 
-하나 이상의 접근자로 기본 구현을 하거나 `field` 식별자를 통해 커스텀 접근자를 참조하는 경우 프로퍼티에 backing field는 생성됩니다.
+하나 이상의 접근자로 기본 구현을 하거나 `field` 식별자를 통해 커스텀 접근자를 참조하는 경우 프로퍼티에 뒷받침 필드는 생성됩니다.
 
-다음의 예에는 backing field가 없는 케이스 입니다:
+다음의 예에는 뒷받침 필드가 없는 케이스 입니다:
 
 ```kotlin
 val isEmpty: Boolean
     get() = this.size == 0
 ```
 
-### Backing Properties
+### 뒷받침 프로퍼티 \(Backing Properties\)
 
-"암묵적 backing field" 스킴에 맞지 않는 작업을 하려고 한다면, 항상 _backing property_를 가질 수 있습니다:
+"암묵적 뒷받침 필드" 스킴에 맞지 않는 작업을 하려고 한다면, 항상 _뒷받침 프로퍼티 \(backing property\)_를 가질 수 있습니다:
 
 ```kotlin
 private var _table: Map<String, Int>? = null
@@ -128,9 +128,9 @@ public val table: Map<String, Int>
 
 ## 컴파일-타임 상수 \(Compile-Time Constants\)
 
-컴파일 시 읽기전용 프로퍼티의 값을 알고 있으면 _const_를 사용하여 _compile time constant_ 라고 표시해 줍니다: 이러한 프로퍼티는 다음의 요구사항을 충족해야 합니다:
+컴파일 시 읽기전용 프로퍼티의 값을 알고 있으면 _const_를 사용하여 _컴파일 타입 상수 \(compile time constant\)_ 라고 표시해 줍니다: 이러한 프로퍼티는 다음의 요구사항을 충족해야 합니다:
 
-* [_object_{: .keyword } declaration](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/object-expressions-and-declarations#object-declarations) 또는 [a _companion object_{: .keyword }](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/object-expressions-and-declarations#companion-objects)의 최상위 또는 멤버.
+* [_객체_ 선언 \(_object_ declaration\)](object-expressions-and-declarations.md#object-declarations) 또는 [companion 객체 \(a _companion object_\)](object-expressions-and-declarations.md#companion-objects) __의 최상위 또는 멤버.
 * `String` 타입의 값으로 초기화 또는 원시 타입
 * 커스텀 getter가 없어야 함
 
@@ -144,7 +144,7 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 
 ## 늦은 초기화 프로퍼티와 변수 \(Late-Initialized Properties and Variables\)
 
-일반적으로, 프로퍼티는 생성자에서 null이 아닌 값으로 초기화 되어야 합니다. 이러한 초기화가 꼭 들어맞지 않은 경우가 있습니다. 예를 들어 프로퍼티가 dependency injection이나 unit test의 setup 메서드에서 초기화 되는 경우 생성자에서 null이 아닌 값으로 초기화가 불가능 합니다. 그러나 class의 바디에서 프로퍼티 참조 시 null 체크를 피하고 싶은 경우가 있습니다.
+일반적으로, 프로퍼티는 생성자에서 null이 아닌 값으로 초기화 되어야 합니다. 이러한 초기화가 꼭 들어맞지 않은 경우가 있습니다. 예를 들어 프로퍼티가 dependency injection이나 유닛 테스트의 setup 메서드에서 초기화 되는 경우 생성자에서 null이 아닌 값으로 초기화가 불가능 합니다. 그러나 클래스의 바디에서 프로퍼티 참조 시 null 체크를 피하고 싶은 경우가 있습니다.
 
 이 경우에, `lateinit`로 프로퍼티를 표기하면 가능합니다:
 
@@ -162,13 +162,13 @@ public class MyTest {
 }
 ```
 
-`lateinit`은 class의 바디 안에서 \(주 생성자가 아니고 커스텀 getter와 setter가 아닌 경우\) `var` 프로퍼티에 선언 될 수 있고, Kotlin 1.2 이후부턴 최상위 프로퍼티나 지역 변수에도 사용이 가능합니다. `lateinit` 으로 선언 된 프로퍼티나 변수는 반드시 null이 아니어야 하며 원시 타입이 아니어야 합니다.
+`lateinit`은 클래스의 바디 안에서 \(주 생성자가 아니고 커스텀 getter와 setter가 아닌 경우\) `var` 프로퍼티에 선언 될 수 있고, Kotlin 1.2 이후부턴 최상위 프로퍼티나 지역 변수에도 사용이 가능합니다. `lateinit` 으로 선언 된 프로퍼티나 변수는 반드시 null이 아니어야 하며 원시 타입이 아니어야 합니다.
 
-초기화 되기 전에 `lateinit` 프로퍼티에 접근하면 special exception이 발생합니다.
+초기화 되기 전에 `lateinit` 프로퍼티에 접근하면 특정 예외가 발생합니다.
 
 ### lateinit var 초기화 여부 확인 \(Checking whether a lateinit var is initialized\) \(since 1.2\)
 
-`lateinit var`이 초기화 되었는지 확인하기 위해선 [reference to that property](https://kotlinlang.org/docs/reference/reflection.html#property-references)의 `.isInitialized`을 사용합니다.
+`lateinit var`이 초기화 되었는지 확인하기 위해선 [프로퍼티 참조 \(reference to that property\)](https://kotlinlang.org/docs/reference/reflection.html#property-references) 의 `.isInitialized`을 사용합니다.
 
 ```kotlin
 if (foo::bar.isInitialized) {
@@ -178,13 +178,13 @@ if (foo::bar.isInitialized) {
 
 동일한 타입이나 외부 타입 중 하나 또는 동일 파일에서 최상위에 선언 된 접근 가능한 프로퍼티에 대해서만 확인 가능합니다.
 
-## Overriding Properties
+## 재정의 프로퍼티 \(Overriding Properties\)
 
-자세한 내용은 [Overriding Properties](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-classes-and-inheritance#overriding-properties) 참고 바랍니다.
+자세한 내용은 [재정의 프로퍼티 \(Overriding Properties\)](class-classes-and-inheritance.md#overriding-properties) 참고 바랍니다.
 
 ## 위임 된 프로퍼티 \(Delegated Properties\)
 
-일반적인 프로퍼티는 backing field에서 읽거나 쓸 수 있습니다. 반면에 커스텀 getter와 setter를 사용하면 프로퍼티의 모든 동작을 구현할 수 있습니다. 프로퍼티 동작에 대한 일반적인 패턴이 존재합니다. 예를 들어: lazy 값, 주어진 키로 map에서 읽기, database 접근, 접근 알림 등
+일반적인 프로퍼티는 뒷받침 필드에서 읽거나 쓸 수 있습니다. 반면에 커스텀 getter와 setter를 사용하면 프로퍼티의 모든 동작을 구현할 수 있습니다. 프로퍼티 동작에 대한 일반적인 패턴이 존재합니다. 예를 들어: lazy 값, 주어진 키로 map에서 읽기, database 접근, 접근 알림 등
 
-이러한 동작은 [_delegated properties_](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/delegated-properties)을 이용하여 라이브러리로 구현 할 수 있습니다.
+이러한 동작은 [_위임된 프로퍼티 \(delegated properties\)_](delegated-properties.md) __을 이용하여 라이브러리로 구현 할 수 있습니다.
 
