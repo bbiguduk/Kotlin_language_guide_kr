@@ -2,9 +2,9 @@
 
 매번 필요할 때마다 구현하지만 한 번 구현해서 라이브러리에 넣으면 좋을만한 공통 프로퍼티가 있습니다. 예를 들어:
 
-* lazy 프로퍼티: 처음 접근할 때만 계산되는 값;
-* observable 프로퍼티: 리스너는 프로퍼티가 변하면 알림을 받음
-* 분리 된 프로퍼티 대신 map에 프로퍼티 저장
+* 지연 \(lazy\) 프로퍼티: 처음 접근할 때만 계산되는 값;
+* 관찰자 \(observable\) 프로퍼티: 리스너는 프로퍼티가 변하면 알림을 받음
+* 분리 된 프로퍼티 대신 맵에 프로퍼티 저장
 
 이러한 역할을 위해 Kotlin은 _위임된 프로퍼티 \(delegated properties\)_를 지원합니다:
 
@@ -55,11 +55,11 @@ e.p = "NEW"
 NEW has been assigned to ‘p’ in Example@33a17727.
 ```
 
-위임된 객체에 대한 요구사항은 [below](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/delegated-properties#property-delegate-requirements)를 참고 바랍니다.
+위임된 객체에 대한 요구사항은 [아래](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/delegated-properties#property-delegate-requirements) 를 참고 바랍니다.
 
-Kotlin 1.1 부터 위임된 프로퍼티는 class의 멤버일 필요가 없으며 함수나 코드 블럭 안에 선언할 수 있습니다. 아래의 [the example](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/delegated-properties#local-delegated-properties-since-1-1)을 참고 바랍니다.
+Kotlin 1.1 부터 위임된 프로퍼티는 클래스의 멤버일 필요가 없으며 함수나 코드 블럭 안에 선언할 수 있습니다. 아래의 [예제](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/delegated-properties#local-delegated-properties-since-1-1) 를 참고 바랍니다.
 
-## 기본 위임자 \(Standard Delegates\)
+## 표준 위임자 \(Standard Delegates\)
 
 Kotlin 표준 라이브러리는 위임자를 위한 몇개의 유용한 팩토리 메서드를 제공합니다.
 
@@ -81,7 +81,7 @@ fun main() {
 
 기본적으로 지연 프로퍼티는 **동기적**입니다: 값은 오직 하나의 스레드에서 계산되고 모든 스레드는 같은 값을 주시합니다. 위임자 초기화를 동기화가 필요하지 않아 여러 스레드가 동시에 실행할 수 있도록 하려면 `lazy()` 함수 파라미터에 `LazyThreadSafetyMode.PUBLICATION`을 전달하면 됩니다. 항상 하나의 스레드에서만 초기화가 일어난다면 다중 스레드 안전성을 보장하지 않는 대신 관련된 부하를 줄일 수 있는 `LazyThreadSafetyMode.NONE`을 사용할 수 있습니다.
 
-### Observable
+### 관찰자 \(Observable\)
 
 [`Delegates.observable()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html)은 초기값과 수정을 위한 핸들러 인자를 가지고 있습니다. 핸들러는 프로퍼티에 값이 할당될 때마다 호출 \(할당이 일어난 _후 \(after\)_\)됩니다. 핸들러는 3개의 파라미터를 가지고 있으며 할당된 프로퍼티, 기존 값, 새로운 값 입니다:
 
@@ -175,7 +175,7 @@ fun example(computeFoo: () -> Foo) {
 
 **읽기전용 \(read-only\)** 프로퍼티 \(_val_\)는 다음 파라미터를 가지는 `getValue()` 함수를 제공해야 합니다:
 
-* `thisRef` --- _property owner_ 와 같은 타입 또는 슈퍼타입이어야 합니다. \(확장 프로퍼티의 경우 --- 확장된 타입\).
+* `thisRef` --- _프로퍼티_ 와 같은 타입 또는 슈퍼타입이어야 합니다. \(확장 프로퍼티의 경우 --- 확장된 타입\).
 * `property` --- `KProperty<*>` 타입 또는 슈퍼타입이어야 합니다.
 
 `getValue()` 프로퍼티와 같은 타입이거나 서브타입을 반환해야 합니다.
