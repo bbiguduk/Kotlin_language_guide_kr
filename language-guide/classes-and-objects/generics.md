@@ -22,19 +22,19 @@ val box = Box(1) // 1 has type Int, so the compiler figures out that we are talk
 
 ## 가변 \(Variance\)
 
-Java에서 와일드카드 타입은 가장 모호한 타입 중 하나입니다 \(자세한 내용은 [Java Generics FAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html) 참고 바랍니다\). Kotlin은 이러한 타입은 없지만, 2가지 다른게 있습니다: 선언위치 가변과 타입 추론 입니다.
+Java에서 와일드카드 타입은 가장 모호한 타입 중 하나 입니다 \(자세한 내용은 [Java 제너릭 FAQ \(Java Generics FAQ\)](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html) 참고 바랍니다\). Kotlin은 이러한 타입은 없지만, 2가지 다른게 있습니다: 선언위치 가변과 타입 추론 입니다.
 
-먼저 Java가 왜 모호한 와일드카드 타입을 갖게 되었는지 생각해 봅시다. 이것은 [Effective Java, 3rd Edition](http://www.oracle.com/technetwork/java/effectivejava-136174.html)에 Item 31: _Use bounded wildcards to increase API flexibility_에 설명 되어 있습니다. Java의 제너릭 타입은 **불변 \(invariant\)**입니다. 이 뜻은 `List<String>`은 `List<Object>`의 서브 타입이 아니라는 의미 입니다. 만약에 List가 **불변 \(invariant\)**가 아니라면 이것은 Java의 array보다 좋은 점이 없습니다. 아래 코드는 컴파일은 되나 실행 시 runtime exception이 발생하게 됩니다:
+먼저 Java가 왜 모호한 와일드카드 타입을 갖게 되었는지 생각해 봅시다. 이것은 [Effective Java, 3rd Edition](http://www.oracle.com/technetwork/java/effectivejava-136174.html)에 Item 31: _Use bounded wildcards to increase API flexibility_에 설명 되어 있습니다. Java의 제너릭 타입은 **불변 \(invariant\)**입니다. 이 뜻은 `List<String>`은 `List<Object>`의 서브 타입이 아니라는 의미 입니다. 만약에 리스트가 **불변 \(invariant\)**가 아니라면 이것은 Java의 배열보다 좋은 점이 없습니다. 아래 코드는 컴파일은 되나 실행 시 런타임 예외가 발생하게 됩니다:
 
 ```java
 // Java
 List<String> strs = new ArrayList<String>();
-List<Object> objs = strs; // !!! The cause of the upcoming problem sits here. Java prohibits this!
+List<Object> objs = strs; // !!! A compile-time error here saves us from a runtime exception later
 objs.add(1); // Here we put an Integer into a list of Strings
 String s = strs.get(0); // !!! ClassCastException: Cannot cast Integer to String
 ```
 
-그래서 Java는 run-time 안정성을 보장하기 위해 위와 같은 행위를 금지합니다. 그러나 다른 의미로 예를 들어 `Collection` 인터페이스로 부터 `addAll()` 메서드를 생각해 봅시다. 이 메서드는 어떻게 표현할까요? 아래와 같이 표현 할 수 있습니다:
+그래서 Java는 런타임 안정성을 보장하기 위해 위와 같은 행위를 금지합니다. 그러나 다른 의미로 예를 들어 `Collection` 인터페이스로 부터 `addAll()` 메서드를 생각해 봅시다. 이 메서드는 어떻게 표현할까요? 아래와 같이 표현 할 수 있습니다:
 
 ```java
 // Java
@@ -65,11 +65,11 @@ interface Collection<E> ... {
 }
 ```
 
-**와일드카드 타입 인자 \(wildcard type argument\)** `? extends E`은 `E`의 객체의 콜렉션 또는 `E`의 서브타입의 콜렉션을 받아 들인다는 의미입니다. 이것은 아이템 \(콜렉션의 요소는 E의 subclass의 인스턴스 입니다\)으로 부터 안전하게 **읽기**는 가능하지만 `E`의 알수없는 서브타입에는 **쓰기가 불가능** 합니다. 이 제한으로 인해 원하는 것을 수행할 수 있습니다: `Collection<String>`은 `Collection<? extends Object>`의 서브타입입니다. 어려운 말로 **extends**-bound \(**upper** bound\)로 와일드카드는 타입을 **공변 \(covariant\)** 하게 만든다 라고 합니다.
+**와일드카드 타입 인자 \(wildcard type argument\)** `? extends E`은 `E`의 객체의 콜렉션 또는 `E`의 서브타입의 콜렉션을 받아 들인다는 의미입니다. 이것은 아이템 \(콜렉션의 요소는 E의 서브 클래스의 인스턴스 입니다\)으로 부터 안전하게 **읽기**는 가능하지만 `E`의 알수없는 서브타입에는 **쓰기가 불가능** 합니다. 이 제한으로 인해 원하는 것을 수행할 수 있습니다: `Collection<String>`은 `Collection<? extends Object>`의 서브타입입니다. 어려운 말로 **extends**-bound \(**upper** bound\)로 와일드카드는 타입을 **공변 \(covariant\)** 하게 만든다 라고 합니다.
 
 왜 이러한 방법이 가능한지는 간단합니다: 콜렉션에서 아이템을 **꺼내기**만 한다면 `String` 콜렉션에서 `Object`를 읽는 것은 괜찮습니다. 반대로 콜렉션에 아이템을 **넣기**만 한다면 `Object` 콜렉션에 `String`을 넣어도 괜찮습니다: Java에서 `List<? super String>`은 `List<Object>`의 **슈퍼타입**입니다.
 
-후자를 **contravariance**라고 부르고 `List<? super String>`은 String을 인수로 취하는 메서드만 호출 할 수 있습니다 \(`add(String)` 또는 `set(int, String)`은 호출 가능\). 반면에 `List<T>`을 호출하여 반환 된 `T`는 `String`이 아니라 `Object` 형태 입니다.
+후자를 **반변성 \(contravariance\)** 이라고 부르고 `List<? super String>`은 String을 인수로 취하는 메서드만 호출 할 수 있습니다 \(`add(String)` 또는 `set(int, String)`은 호출 가능\). 반면에 `List<T>`을 호출하여 반환 된 `T`는 `String`이 아니라 `Object` 형태 입니다.
 
 Joshua Bloch는 객체는 **생산자 \(Producers\)**에서만 읽고 **소비자 \(Consumers\)**에서만 쓴다고 말했습니다. 그는 "_유연성을 위해 생산자 또는 소비자에 입력 파라미터는 와일드카드 타입을 사용하라_"고 말했습니다. 그리고 그는 아래의 방법으로 기억하라고 말했습니다:
 
@@ -135,13 +135,13 @@ fun demo(x: Comparable<Number>) {
 
 **in** 과 **out**은 단어 그대로 설명이 되어지는 수식어 입니다 \(C\#에서도 이미 사용 중\) 따라서 반드시 필요한 것은 아니지만 더 고차원 적으로 표현할 수 있습니다:
 
-[**The Existential**](http://en.wikipedia.org/wiki/Existentialism) **Transformation: Consumer in, Producer out!** :-\)
+[**실존적 \(The Existential\)**](http://en.wikipedia.org/wiki/Existentialism) **변환: 소비자 \(Consumer\) 안으로, 생산자 \(Producer\) 밖으로!** :-\)
 
 ## 타입 추론 \(Type projections\)
 
-### 사용 위치 가변 \(Use-site variance\): 타입 추론 \(Type projections\)
+### 사용 위치 가변: 타입 추론 \(Use-site variance: Type projections\)
 
-타입 파라미터 T를 _out_으로 선언하면 서브 타입 문제를 피할 수 있지만 항상 `T`를 반환하도록 강제로 수행 할 수는 없습니다! 가장 좋은 예는 Array 입니다:
+타입 파라미터 T를 _out_으로 선언하면 서브 타입 문제를 피할 수 있지만 항상 `T`를 반환하도록 강제로 수행 할 수는 없습니다! 가장 좋은 예는 배열 입니다:
 
 ```kotlin
 class Array<T>(val size: Int) {
@@ -150,7 +150,7 @@ class Array<T>(val size: Int) {
 }
 ```
 
-class의 `T`는 공변도 반공변도 아니기 때문에 제약이 있습니다. 아래 함수를 참고 하십시오:
+클래스의 `T`는 공변도 반공변도 아니기 때문에 제약이 있습니다. 아래 함수를 참고 하십시오:
 
 ```kotlin
 fun copy(from: Array<Any>, to: Array<Any>) {
@@ -169,7 +169,7 @@ copy(ints, any)
 //   ^ type is Array<Int> but Array<Any> was expected
 ```
 
-아까와 비슷한 문제가 존재합니다: `Array<T>`은 `T`에 대해 불변이기 때문에 `Array<Int>` 와 `Array<Any>`은 서로의 서브타입이 아닙니다. 왜냐하면 복사가 잘못 동작 할 수도 있기 때문입니다. 예를 들어 `from`에 String을 쓴다고 가정합시다. 만약 `Int`를 전달하게 된다면 `ClassCastException`가 발생하게 됩니다.
+아까와 비슷한 문제가 존재합니다: `Array<T>`은 `T`에 대해 불변이기 때문에 `Array<Int>` 와 `Array<Any>`은 서로의 서브타입이 아닙니다. 왜냐하면 복사가 잘못 동작 할 수도 있기 때문입니다. 예를 들어 `from`에 문자열을 쓴다고 가정합시다. 만약 `Int`를 전달하게 된다면 `ClassCastException`가 발생하게 됩니다.
 
 따라서 `copy()`의 잘못 동작하는 것을 방지하기 위해 `from`에 쓰려는 행동을 금지할 수 있습니다:
 
@@ -199,15 +199,15 @@ Kotlin은 **별 추론 \(star-projection\)**을 제공합니다:
 
 제너릭 타입이 여러개의 타입 파라미터를 가지면 각각 따로 추론할 수 있습니다. 예를 들어 `interface Function<in T, out U>`로 선언하면 다음의 별 추론이 가능합니다:
 
-* `Function<*, String>` means `Function<in Nothing, String>`;
-* `Function<Int, *>` means `Function<Int, out Any?>`;
-* `Function<*, *>` means `Function<in Nothing, out Any?>`.
+* `Function<*, String>` 은 `Function<in Nothing, String>` 을 의미합니다.
+* `Function<Int, *>` 은 `Function<Int, out Any?>` 을 의미합니다.
+* `Function<*, *>` 은 `Function<in Nothing, out Any?>` 을 의미합니다.
 
-_참고_: 별 추론은 Java의 raw 타입과 유사하지만 안전합니다.
+_참고_: 별 추론은 Java의 원시 타입과 유사하지만 안전합니다.
 
 ## 제너릭 함수 \(Generic functions\)
 
-함수도 class 처럼 타입 파라미터를 가질 수 있습니다. 타입 파라미터는 함수 이름 **전**에 위치합니다:
+함수도 클래스 처럼 타입 파라미터를 가질 수 있습니다. 타입 파라미터는 함수 이름 **전**에 위치합니다:
 
 ```kotlin
 fun <T> singletonList(item: T): List<T> {
@@ -235,9 +235,9 @@ val l = singletonList(1)
 
 주어진 타입 파라미터로 대체될 수 있는 모든 가능한 타입은 **제너릭 제약 \(generic constraints\)**로 인해 제한 될 수 있습니다.
 
-### Upper bounds
+### 상한 \(Upper bounds\)
 
-Java의 _extends_와 같은 **upper bound**은 가장 많이 쓰이는 제약입니다:
+Java의 _확장_와 같상한 \(은 **upper bou\)nd**은 가장 많이 쓰이는 제약입니다:
 
 ```kotlin
 fun <T : Comparable<T>> sort(list: List<T>) {  ... }
