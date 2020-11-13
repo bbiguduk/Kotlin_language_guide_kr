@@ -18,7 +18,7 @@ typealias MyHandler = (Int, String, Any) -> Unit
 typealias Predicate<T> = (T) -> Boolean
 ```
 
-내부 class와 중첩 class의 별칭도 제공 가능합니다:
+내부 클래스와 중첩 클래스의 별칭도 제공 가능합니다:
 
 ```kotlin
 class A {
