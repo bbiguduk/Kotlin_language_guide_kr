@@ -237,7 +237,7 @@ val l = singletonList(1)
 
 ### 상한 \(Upper bounds\)
 
-Java의 _확장_와 같상한 \(은 **upper bou\)nd**은 가장 많이 쓰이는 제약입니다:
+Java의 _확장_ 같상\(은 **upper bou\)nd**은 가장 많이 쓰이는 제약입니다:
 
 ```kotlin
 fun <T : Comparable<T>> sort(list: List<T>) {  ... }
