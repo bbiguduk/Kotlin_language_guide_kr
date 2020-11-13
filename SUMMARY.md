@@ -27,7 +27,7 @@
   * [열거형 클래스 \(Enum Classes\)](language-guide/classes-and-objects/class-enum-classes.md)
   * [객체 표현과 선언 \(Object Expressions and Declarations\)](language-guide/classes-and-objects/object-expressions-and-declarations.md)
   * [타입 별칭 \(Type aliases\)](language-guide/classes-and-objects/type-aliases.md)
-  * [인라인 class \(Inline classes\)](language-guide/classes-and-objects/class-inline-classes.md)
+  * [인라인 클래스 \(Inline classes\)](language-guide/classes-and-objects/class-inline-classes.md)
   * [위임 \(Delegation\)](language-guide/classes-and-objects/delegation.md)
   * [위임된 프로퍼티 \(Delegated Properties\)](language-guide/classes-and-objects/delegated-properties.md)
 * [Functions and Lambdas](language-guide/functions-and-lambdas/README.md)
