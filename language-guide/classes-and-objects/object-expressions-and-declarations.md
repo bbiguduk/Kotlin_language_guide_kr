@@ -1,10 +1,10 @@
 # 객체 표현과 선언 \(Object Expressions and Declarations\)
 
-때로는 새로운 서브 class를 명시적으로 선언하지 않고 일부 class를 약간 수정한 객체를 만들어야 할 때가 있습니다. Kotlin은 이 경우에 _객체 표현 \(object expressions\)_ 와 _객체 선언 \(object declarations\)_로 처리합니다.
+때로는 새로운 서브 클래스를 명시적으로 선언하지 않고 일부 클래스를 약간 수정한 객체를 만들어야 할 때가 있습니다. Kotlin은 이 경우에 _객체 표현 \(object expressions\)_ 와 _객체 선언 \(object declarations\)_로 처리합니다.
 
 ## 객체 표현 \(Object expressions\)
 
-일부 타입 \(또는 타입들\)에서 상속되는 익명 class의 객체를 생성하려면 다음과 같이 작성해야 합니다:
+일부 타입 \(또는 타입들\)에서 상속되는 익명 클래스의 객체를 생성하려면 다음과 같이 작성해야 합니다:
 
 ```kotlin
 window.addMouseListener(object : MouseAdapter() {
@@ -116,11 +116,11 @@ object DefaultListener : MouseAdapter() {
 }
 ```
 
-**참고**: 객체 선언은 함수내에 직접 중첩될 수 있지만 로컬일 수 없습니다. 다른 객체 선언이나 내부 class가 아닌 곳에는 중첩이 가능합니다.
+**참고**: 객체 선언은 함수내에 직접 중첩될 수 있지만 로컬일 수 없습니다. 다른 객체 선언이나 내부 클래스가 아닌 곳에는 중첩이 가능합니다.
 
-### 동반 객체 \(Companion Objects\)
+### Companion 객체 \(Companion Objects\)
 
-class 안에 객체 선언은 _companion_ 키워드와 함께 사용할 수 있습니다:
+클래스 안에 객체 선언은 _companion_ 키워드와 함께 사용할 수 있습니다:
 
 ```kotlin
 class MyClass {
@@ -130,7 +130,7 @@ class MyClass {
 }
 ```
 
-동반 객체의 멤버는 간단하게 class 이름으로 호출 할 수 있습니다:
+동반 객체의 멤버는 간단하게 클래스 이름으로 호출 할 수 있습니다:
 
 ```kotlin
 val instance = MyClass.create()
@@ -146,7 +146,7 @@ class MyClass {
 val x = MyClass.Companion
 ```
 
-다른 이름이 아닌 해당 class 자체의 이름으로 동반 객체에 참조가 가능합니다:
+다른 이름이 아닌 해당 클래스 자체의 이름으로 동반 객체에 참조가 가능합니다:
 
 ```kotlin
 class MyClass1 {
@@ -178,7 +178,7 @@ class MyClass {
 val f: Factory<MyClass> = MyClass
 ```
 
-`@JvmStatic` annotation을 사용하면 동반 객체의 멤버를 static 메서드와 static 필드로 생성할 수 있습니다. 자세한 내용은 [Java interoperability](https://kotlinlang.org/docs/reference/java-to-kotlin-interop.html#static-fields)을 참고 바랍니다.
+`@JvmStatic` annotation을 사용하면 동반 객체의 멤버를 static 메서드와 static 필드로 생성할 수 있습니다. 자세한 내용은 [Java 상호 운용성 \(Java interoperability\)](https://kotlinlang.org/docs/reference/java-to-kotlin-interop.html#static-fields) 을 참고 바랍니다.
 
 ### 객체 표현과 선언의 의미상 차이 \(Semantic difference between object expressions and declarations\)
 
