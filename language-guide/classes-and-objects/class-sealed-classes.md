@@ -15,7 +15,7 @@ object NotANumber : Expr()
 
 한정 클래스는 자체적으로 [추상적 \(abstract\)](class-classes-and-inheritance.md#abstract-classes) 이며, 직접적으로 인스턴스화 될 수 없고 _추상_ 멤버는 가질 수 있습니다.
 
-한정 클래는 _private_이 아닌 생성자를 사용할 수 없습니다 \(한정 클래의 생성자는 기본적으로 _private_ 입니다\).
+한정 클래스는 _private_이 아닌 생성자를 사용할 수 없습니다 \(한정 클래스의 생성자는 기본적으로 _private_ 입니다\).
 
 한정 클래스의 서브 클래스를 확장하는 클래스는 꼭 같은 파일에 위치할 필요는 없습니다.
 
