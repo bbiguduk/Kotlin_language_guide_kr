@@ -24,7 +24,7 @@
   * [한정 클래스 \(Sealed Classes\)](language-guide/classes-and-objects/class-sealed-classes.md)
   * [제너릭 \(Generics\)](language-guide/classes-and-objects/generics.md)
   * [중첩된 클래스와 내부 클래스 \(Nested and Inner Classes\)](language-guide/classes-and-objects/class-nested-and-inner-classes.md)
-  * [열거형 class \(Enum Classes\)](language-guide/classes-and-objects/class-enum-classes.md)
+  * [열거형 클래스 \(Enum Classes\)](language-guide/classes-and-objects/class-enum-classes.md)
   * [객체 표현과 선언 \(Object Expressions and Declarations\)](language-guide/classes-and-objects/object-expressions-and-declarations.md)
   * [타입 별칭 \(Type aliases\)](language-guide/classes-and-objects/type-aliases.md)
   * [인라인 class \(Inline classes\)](language-guide/classes-and-objects/class-inline-classes.md)
