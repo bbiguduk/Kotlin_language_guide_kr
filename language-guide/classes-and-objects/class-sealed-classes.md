@@ -15,11 +15,11 @@ object NotANumber : Expr()
 
 한정 클래스는 자체적으로 [추상적 \(abstract\)](class-classes-and-inheritance.md#abstract-classes) 이며, 직접적으로 인스턴스화 될 수 없고 _추상_ 멤버는 가질 수 있습니다.
 
-한정 클래는 _private_이 아닌 생성자를 사용할 수 없습니다 \(sealed class의 생성자는 기본적으로 _private_ 입니다\).
+한정 클래는 _private_이 아닌 생성자를 사용할 수 없습니다 \(한정 클래의 생성자는 기본적으로 _private_ 입니다\).
 
-sealed class의 subclass를 확장하는 class는 꼭 같은 파일에 위치할 필요는 없습니다.
+한정 클래스의 서브 클래스를 확장하는 클래스는 꼭 같은 파일에 위치할 필요는 없습니다.
 
-sealed class를 사용으로 얻는 가장 큰 이득은 [`when` expression](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/basics/control-flow-if-when-for-while#when-expression)에서 사용할 때 입니다. 모든 조건 \(case\)에 대해 동작을 구현한다면 `else` 조건을 추가하지 않아도 됩니다. 그러나 반드시 `when`을 표현구로 사용해야 하며 구문일 때는 사용이 불가합니다.
+한정 클래스를 사용으로 얻는 가장 큰 이득은 [`when` 표현 \(`when` expression\)](../basics/control-flow-if-when-for-while.md#when-when-expression) 에서 사용할 때 입니다. 모든 조건 \(case\)에 대해 동작을 구현한다면 `else` 조건을 추가하지 않아도 됩니다. 그러나 반드시 `when`을 표현구로 사용해야 하며 구문일 때는 사용이 불가합니다.
 
 ```kotlin
 fun eval(expr: Expr): Double = when(expr) {
