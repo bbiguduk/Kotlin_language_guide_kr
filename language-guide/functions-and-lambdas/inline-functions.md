@@ -104,7 +104,7 @@ inline fun f(crossinline body: () -> Unit) {
 
 > `break` 와 `continue`는 아직 인라인 람다에서 사용이 불가하지만 지원되도록 계획 중입니다.
 
-## 타입 파라미터 구체화 \(Reified type parameters\)
+## 구체화된 타입 파라미터 \(Reified type parameters\)
 
 파라미터로 전달된 타입을 접근 해야 할 경우가 있습니다.
 

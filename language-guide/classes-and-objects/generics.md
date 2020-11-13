@@ -237,20 +237,20 @@ val l = singletonList(1)
 
 ### 상한 \(Upper bounds\)
 
-Java의 _확장_ 같상\(은 **upper bou\)nd**은 가장 많이 쓰이는 제약입니다:
+Java의 _확장과_ 같은 **상한 \(upper bound\)** 은 가장 많이 쓰이는 제약입니다:
 
 ```kotlin
 fun <T : Comparable<T>> sort(list: List<T>) {  ... }
 ```
 
-콜론뒤에 명시 된 타입이 **upper bound** 입니다: `Comparable<T>`의 서브타입만 `T`로 대체 가능합니다. 예를 들어:
+콜론뒤에 명시 된 타입이 **상한 \(upper bound\)** 입니다: `Comparable<T>`의 서브타입만 `T`로 대체 가능합니다. 예를 들어:
 
 ```kotlin
 sort(listOf(1, 2, 3)) // OK. Int is a subtype of Comparable<Int>
 sort(listOf(HashMap<Int, String>())) // Error: HashMap<Int, String> is not a subtype of Comparable<HashMap<Int, String>>
 ```
 
-따로 명시하지 않으면 upper bound의 기본값은 `Any?`입니다. 꺽쇠 \(**&lt;&gt;**\)에는 오직 하나의 upper bound만 표기합니다. 같은 타입 파라미터에 하나 이상의 upper bound가 필요한 경우 **where**로 분리해줍니다:
+따로 명시하지 않으면 상한의 기본값은 `Any?`입니다. 꺽쇠 \(**&lt;&gt;**\)에는 오직 하나의 상한만 표기합니다. 같은 타입 파라미터에 하나 이상의 상한이 필요한 경우 **where**로 분리해줍니다:
 
 ```kotlin
 fun <T> copyWhenGreater(list: List<T>, threshold: T): List<String>
@@ -264,11 +264,11 @@ fun <T> copyWhenGreater(list: List<T>, threshold: T): List<String>
 
 ## 타입 삭제 \(Type erasure\)
 
-Kotlin은 제너릭 선언에 대한 안정성 확인을 컴파일 시간에만 수행합니다. runtime시에는 제너릭 타입의 인스턴스는 타입 인자 정보를 가지고 있지 않습니다. 타입 정보는 지워집니다. 예를 들어 `Foo<Bar>` 와 `Foo<Baz?>`의 인스턴스는 `Foo<*>`에 의해 지워집니다.
+Kotlin은 제너릭 선언에 대한 안정성 확인을 컴파일 시간에만 수행합니다. 런타임 시에는 제너릭 타입의 인스턴스는 타입 인자 정보를 가지고 있지 않습니다. 타입 정보는 지워집니다. 예를 들어 `Foo<Bar>` 와 `Foo<Baz?>`의 인스턴스는 `Foo<*>`에 의해 지워집니다.
 
 따라서 런타임 시 어떤 타입 인자에 의해 제너릭 타입의 인스턴스가 생성되었는지 확인 할 수 없으며 컴파일러는 [_is_ 키워드 사용을 금지합니다](https://kotlinlang.org/docs/reference/typecasts.html#type-erasure-and-generic-type-checks).
 
-타입 인자를 가지고 있는 제너릭 타입의 타입 캐스트는 런타임 시 체크 할 수 없습니다. 예: `foo as List<String>` [unchecked casts](https://kotlinlang.org/docs/reference/typecasts.html#unchecked-casts)은 더 상위 레벨 프로그램 로직에 의해 안정성이 암시 되지만 컴파일러가 직접 유추할 수 없는 경우에 사용할 수 있습니다. 컴파일러는 이러한 unchecked casts에 경고하고, 런타임시에는 제너릭이 아닌 부분만 검사합니다 \(`foo as List<*>`\).
+타입 인자를 가지고 있는 제너릭 타입의 타입 캐스트는 런타임 시 체크 할 수 없습니다. 예: `foo as List<String>` [확인되지 않은 캐스팅 \(unchecked casts\)](https://kotlinlang.org/docs/reference/typecasts.html#unchecked-casts) 은 더 상위 레벨 프로그램 로직에 의해 안정성이 암시 되지만 컴파일러가 직접 유추할 수 없는 경우에 사용할 수 있습니다. 컴파일러는 이러한 확인되지 않은 캐스팅에 경고하고, 런타임시에는 제너릭이 아닌 부분만 검사합니다 \(`foo as List<*>`\).
 
-제너릭 함수의 타입 인자는 컴파일 시에 체크합니다. 함수 안에서는 타입 파라미터는 타입 체크로 사용이 불가능하고 타입 파라미터에 의한 타입 캐스트도 체크하지 않습니다. 그러나 인라인 함수의 [reified type parameters](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/inline-functions#reified-type-parameters)은 호출 위치의 인라인 함수 안에서 실제 타입 인자로 대체되기 때문에 위에서 말한 제너릭 타입 인스턴스의 제약 안에서 타입 검사와 캐스트를 할 수 있습니다.
+제너릭 함수의 타입 인자는 컴파일 시에 체크합니다. 함수 안에서는 타입 파라미터는 타입 체크로 사용이 불가능하고 타입 파라미터에 의한 타입 캐스트도 체크하지 않습니다. 그러나 인라인 함수의 [구체화된 타입 파라미터 \(reified type parameters\)](../functions-and-lambdas/inline-functions.md#reified-type-parameters) 은 호출 위치의 인라인 함수 안에서 실제 타입 인자로 대체되기 때문에 위에서 말한 제너릭 타입 인스턴스의 제약 안에서 타입 검사와 캐스트를 할 수 있습니다.
 
