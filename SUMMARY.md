@@ -21,7 +21,7 @@
   * [접근 제한자 \(Visibility Modifiers\)](language-guide/classes-and-objects/visibility-modifiers.md)
   * [확장 \(Extensions\)](language-guide/classes-and-objects/extensions.md)
   * [데이터 클래스 \(Data Classes\)](language-guide/classes-and-objects/class-data-classes.md)
-  * [한정 class \(Sealed Classes\)](language-guide/classes-and-objects/class-sealed-classes.md)
+  * [한정 클래스 \(Sealed Classes\)](language-guide/classes-and-objects/class-sealed-classes.md)
   * [제너릭 \(Generics\)](language-guide/classes-and-objects/generics.md)
   * [내부 class \(Inner classes\)](language-guide/classes-and-objects/class-nested-and-inner-classes.md)
   * [열거형 class \(Enum Classes\)](language-guide/classes-and-objects/class-enum-classes.md)
