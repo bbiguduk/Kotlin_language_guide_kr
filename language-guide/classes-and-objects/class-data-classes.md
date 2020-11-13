@@ -30,15 +30,15 @@ data class User(val name: String, val age: Int)
 
 Kotlin 1.1부터 데이터 클래스는 다른 클래스를 확장 할 수 있습니다 \(자세한 내용은 [한정 클래스 \(Sealed classes\)](class-sealed-classes.md) 를 참고 바랍니다\).
 
-JVM에서 파리미터가 없는 생성자가 필요하다면 모든 프로퍼티는 기본값을 가지고 있어야 합니다 \(자세한 내용은 [Constructors](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-classes-and-inheritance#constructors)를 참고 바랍니다\).
+JVM에서 파리미터가 없는 생성자가 필요하다면 모든 프로퍼티는 기본값을 가지고 있어야 합니다 \(자세한 내용은 [생성자 \(Constructors\)](class-classes-and-inheritance.md#constructors) 를 참고 바랍니다\).
 
 ```kotlin
 data class User(val name: String = "", val age: Int = 0)
 ```
 
-## class에 선언 된 프로퍼티 \(Properties Declared in the Class Body\)
+## 클래스에 선언 된 프로퍼티 \(Properties Declared in the Class Body\)
 
-컴파일러는 자동으로 생성 된 함수를 위한 주 생성자에 선언 된 프로퍼티만 사용합니다. 특정 프로퍼티를 제외하려면 class body 안에 선언 하면 됩니다:
+컴파일러는 자동으로 생성 된 함수를 위한 주 생성자에 선언 된 프로퍼티만 사용합니다. 특정 프로퍼티를 제외하려면 클래스 바디 안에 선언 하면 됩니다:
 
 ```kotlin
 data class Person(val name: String) {
@@ -65,9 +65,9 @@ fun main() {
 }
 ```
 
-## Copying
+## 복사 \(Copying\)
 
-프로퍼티의 일부를 변경하지만 나머지는 변경하지 않기 위해 가끔 복사를 사용해야 합니다. 이러한 기능을 위해 `copy()` 함수가 생성됩니다. 위에서 `User` class는 아래와 같이 구현 됩니다:
+프로퍼티의 일부를 변경하지만 나머지는 변경하지 않기 위해 가끔 복사를 사용해야 합니다. 이러한 기능을 위해 `copy()` 함수가 생성됩니다. 위에서 `User` 클래스는 아래와 같이 구현 됩니다:
 
 ```kotlin
 fun copy(name: String = this.name, age: Int = this.age) = User(name, age)
@@ -80,9 +80,9 @@ val jack = User(name = "Jack", age = 1)
 val olderJack = jack.copy(age = 2)
 ```
 
-## Data Classes and Destructuring Declarations
+## 데이터 클래스와 구조해체 선언 \(Data Classes and Destructuring Declarations\)
 
-data class의 _Component functions_ 은 [destructuring declarations](https://kotlinlang.org/docs/reference/multi-declarations.html)에 사용할 수 있습니다:
+데이터 클래스의 _컴포넌트 함수 \(Component functions\)_ 은 [구조해체 선언 \(destructuring declarations\)](https://kotlinlang.org/docs/reference/multi-declarations.html) 에 사용할 수 있습니다:
 
 ```kotlin
 val jane = User("Jane", 35) 
@@ -90,7 +90,7 @@ val (name, age) = jane
 println("$name, $age years of age") // prints "Jane, 35 years of age"
 ```
 
-## Standard Data Classes
+## 표준 데이터 클래스 \(Standard Data Classes\)
 
-기본 라이브러리는 `Pair` 와 `Triple`을 제공합니다. 대부분의 경우 named data class는 의미있는 프로퍼티 이름을 제공하여 코드를 더 읽기 쉽게 하기 때문에 더 나은 디자인입니다.
+기본 라이브러리는 `Pair` 와 `Triple`을 제공합니다. 대부분의 경우 지정된 데이터 클래스는 의미있는 프로퍼티 이름을 제공하여 코드를 더 읽기 쉽게 하기 때문에 더 나은 디자인입니다.
 
