@@ -26,21 +26,34 @@ Stream().read() // create instance of class Stream and call read()
 
 ### 파라미터 \(Parameters\)
 
-함수 파라미터는 Pascal 표기법으로 정의합니다: i.e. _이름: 타입_. 파라미터는 콤마로 구분됩니다. 각 파라미터는 반드시 타입을 명시해야 합니다:
+함수 파라미터는 Pascal 표기법으로 정의합니다: i.e. _이름_: _타입_. 파라미터는 콤마로 구분됩니다. 각 파라미터는 반드시 타입을 명시해야 합니다:
 
 ```kotlin
 fun powerOf(number: Int, exponent: Int) { /*...*/ }
 ```
 
-### 기본 인자 \(Default arguments\)
-
-함수 파라미터는 기본값을 가질 수 있으며 기본값이 있는 인자는 생략 가능합니다. 다른 언어 대비 오버로드에 이점이 있습니다:
+함수 파라미터 선언할 때 [후행 콤마 \(trailing comma\)](../getting-started/coding-conventions.md#trailing-commas) 를 사용할 수 있습니다:
 
 ```kotlin
-fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size) { /*...*/ }
+fun powerOf(
+    number: Int,
+    exponent: Int, // trailing comma
+) { /*...*/ }
 ```
 
-기본값은 타입 선언 뒤에 **=** 와 값을 넣어 정의할 수 있습니다.
+### 기본 인자 \(Default arguments\)
+
+함수 파라미터는 해당 인수를 건너뛸 때 사용하는 기본값을 가질 수 있습니다. 이렇게 하면 다른 언어에 비해 71 개의 과부하가 줄어듭니다:
+
+```kotlin
+fun read(
+    b: Array<Byte>, 
+    off: Int = 0, 
+    len: Int = b.size,
+) { /*...*/ }
+```
+
+기본값은 타입 선언 뒤에 `=` 와 값을 넣어 정의할 수 있습니다.
 
 오버라이드 메서드는 항상 기존 메서드의 파라미터 기본값을 사용합니다. 기본 파라미터 값이 있는 메서드를 오버라이드 할 때 기본 파라미터 값은 생략되어 표기됩니다:
 
@@ -50,22 +63,31 @@ open class A {
 }
 
 class B : A() {
-    override fun foo(i: Int) { /*...*/ }  // no default value allowed
+    override fun foo(i: Int) { /*...*/ }  // no default value is allowed
 }
 ```
 
 기본값이 있는 파라미터가 없는 파라미터보다 앞에 위치한다면, 기본값은 [named arguments](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/functions#named-arguments)로 호출해야 사용합니다:
 
 ```kotlin
-fun foo(bar: Int = 0, baz: Int) { /*...*/ }
+fun foo(
+    bar: Int = 0, 
+    baz: Int,
+) { /*...*/ }
 
 foo(baz = 1) // The default value bar = 0 is used
 ```
 
+If the last argument after default parameters is a [lambda](https://kotlinlang.org/docs/reference/lambdas.html#lambda-expression-syntax), you can pass it either as a named argument or [outside the parentheses](https://kotlinlang.org/docs/reference/lambdas.html#passing-a-lambda-to-the-last-parameter):
+
 기본값이 있는 파라미터 뒤에 마지막 인자가 [lambda](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/higher-order-functions-and-lambdas#lambda-expression-syntax)인 경우 named argument나 [outside the parentheses](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/higher-order-functions-and-lambdas#passing-trailing-lambdas)로 전달할 수 있습니다:
 
 ```kotlin
-fun foo(bar: Int = 0, baz: Int = 1, qux: () -> Unit) { /*...*/ }
+fun foo(
+    bar: Int = 0,
+    baz: Int = 1,
+    qux: () -> Unit,
+) { /*...*/ }
 
 foo(1) { println("hello") }     // Uses the default value baz = 1
 foo(qux = { println("hello") }) // Uses both default values bar = 0 and baz = 1 
