@@ -78,9 +78,7 @@ fun foo(
 foo(baz = 1) // The default value bar = 0 is used
 ```
 
-If the last argument after default parameters is a [lambda](https://kotlinlang.org/docs/reference/lambdas.html#lambda-expression-syntax), you can pass it either as a named argument or [outside the parentheses](https://kotlinlang.org/docs/reference/lambdas.html#passing-a-lambda-to-the-last-parameter):
-
-기본값이 있는 파라미터 뒤에 마지막 인자가 [lambda](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/higher-order-functions-and-lambdas#lambda-expression-syntax)인 경우 named argument나 [outside the parentheses](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/higher-order-functions-and-lambdas#passing-trailing-lambdas)로 전달할 수 있습니다:
+기본값이 있는 파라미터 뒤에 마지막 인자가 [람다 \(lambda\)](higher-order-functions-and-lambdas.md#lambda-expression-syntax) 인 경우 인자 명칭이나 [괄호 외부 \(outside the parentheses\)](higher-order-functions-and-lambdas.md#passing-trailing-lambdas) 로 전달할 수 있습니다:
 
 ```kotlin
 fun foo(
@@ -96,47 +94,58 @@ foo { println("hello") }        // Uses both default values bar = 0 and baz = 1
 
 ### 인자 명칭 \(Named arguments\)
 
-함수 호출 시 함수 파라미터에 이름을 붙일 수 있습니다. 이것은 함수의 파라미터가 많거나 기본값이 있는경우 편리하게 이용할 수 있습니다.
+함수를 호출할 때 하나 이상의 인자에 이름을 지정할 수 있습니다. 이것은 함수에 많은 수의 인자가 있고 값을 인자와 연결하기 어려울 때 유용할 수 있습니다. 특히 부울 또는 `null` 값인 경우 더욱 그렇습니다.
 
-아래 함수를 살펴봅시다:
+함수 호출에서 인자 명칭을 사용할 때 나열되는 순서를 자유롭게 변경할 수 있고 기본값을 사용하려는 경우 모두 제외할 수 있습니다.
+
+기본값이 있는 4개의 인자가 있는 다음 `reformat()` 함수를 생각해 봅시다.
 
 ```kotlin
-fun reformat(str: String,
-             normalizeCase: Boolean = true,
-             upperCaseFirstLetter: Boolean = true,
-             divideByCamelHumps: Boolean = false,
-             wordSeparator: Char = ' ') {
+fun reformat(
+    str: String,
+    normalizeCase: Boolean = true,
+    upperCaseFirstLetter: Boolean = true,
+    divideByCamelHumps: Boolean = false,
+    wordSeparator: Char = ' ',
+) {
 /*...*/
 }
 ```
 
-기본 인자를 이용하여 함수 호출을 할 수 있습니다:
+이 함수를 호출할 때 인자의 이름을 지정할 필요는 없습니다:
 
 ```kotlin
-reformat(str)
-```
-
-그러나 기본값을 이용하지 않고 호출하면 아래와 같은 형태가 됩니다:
-
-```kotlin
-reformat(str, true, true, false, '_')
-```
-
-인자에 명칭과 함께 함수를 호출하면 보다 보기 쉬운 코드가 됩니다:
-
-```kotlin
-reformat(str,
-    normalizeCase = true,
-    upperCaseFirstLetter = true,
-    divideByCamelHumps = false,
-    wordSeparator = '_'
+reformat(
+    'String!',
+    false,
+    upperCaseFirstLetter = false,
+    divideByCamelHumps = true,
+    '_'
 )
 ```
+
+기본값으로 모든 인자를 건너뛸 수 있습니다:
+
+```kotlin
+reformat('This is a long String!')
+```
+
+기본값으로 일부 인자를 건너뛸 수 있습니다. 그러나 첫번째 건너뛴 인자 다음에 모든 후속 인자의 이름을 지정해야 합니다:
+
+```kotlin
+reformat('This is a short String!', upperCaseFirstLetter = false, wordSeparator = '_')
+```
+
+spread 연산자를 사용하여 이름과 함께 [가변 갯수의 인자 \(variable number of arguments\) \(vararg\)](functions.md#variable-number-of-arguments-varargs) 를 전달할 수 있습니다:
+
+You can pass a [variable number of arguments \(`vararg`\)](https://kotlinlang.org/docs/reference/functions.html#variable-number-of-arguments-varargs) with names using the `spread` operator:
 
 그리고 모든 인자에 명칭을 붙일 필요는 없습니다:
 
 ```kotlin
-reformat(str, wordSeparator = '_')
+fun foo(vararg strings: String) { /*...*/ }
+
+foo(strings = *arrayOf("a", "b", "c"))
 ```
 
 순차적 인자 \(positional arguments\)와 명칭 인자 \(named arguments\)를 통해 함수를 호출 할 때 모든 순차적 인자는 명칭 인자 앞에 와야 합니다. 예를 들어 `f(1, y = 2)`은 가능하지만 `f(x = 1, 2)`은 불가능 합니다.
