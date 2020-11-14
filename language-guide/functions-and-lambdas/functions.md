@@ -26,9 +26,7 @@ Stream().read() // create instance of class Stream and call read()
 
 ### 파라미터 \(Parameters\)
 
-Function parameters are defined using Pascal notation, i.e. _name_: _type_. Parameters are separated using commas. Each parameter must be explicitly typed:
-
-함수 파라미터는 Pascal 표기법으로 정의합니다: i.e. _이름: 타입type_. 파라미터는 콤마로 구분됩니다. 각 파라미터는 반드시 타입을 명시해야 합니다:
+함수 파라미터는 Pascal 표기법으로 정의합니다: i.e. _이름: 타입_. 파라미터는 콤마로 구분됩니다. 각 파라미터는 반드시 타입을 명시해야 합니다:
 
 ```kotlin
 fun powerOf(number: Int, exponent: Int) { /*...*/ }
