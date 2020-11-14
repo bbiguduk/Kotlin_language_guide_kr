@@ -55,9 +55,9 @@ e.p = "NEW"
 NEW has been assigned to ‘p’ in Example@33a17727.
 ```
 
-위임된 객체에 대한 요구사항은 [아래](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/delegated-properties#property-delegate-requirements) 를 참고 바랍니다.
+위임된 객체에 대한 요구사항은 [아래](delegated-properties.md#property-delegate-requirements) 를 참고 바랍니다.
 
-Kotlin 1.1 부터 위임된 프로퍼티는 클래스의 멤버일 필요가 없으며 함수나 코드 블럭 안에 선언할 수 있습니다. 아래의 [예제](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/delegated-properties#local-delegated-properties-since-1-1) 를 참고 바랍니다.
+Kotlin 1.1 부터 위임된 프로퍼티는 클래스의 멤버일 필요가 없으며 함수나 코드 블럭 안에 선언할 수 있습니다. 아래의 [예제](delegated-properties.md#local-delegated-properties) 를 참고 바랍니다.
 
 ## 표준 위임자 \(Standard Delegates\)
 
@@ -213,7 +213,7 @@ fun example(computeFoo: () -> Foo) {
 
 **읽기전용 \(read-only\)** 프로퍼티 \(_val_\)는 다음 파라미터를 가지는 `getValue()` 함수를 제공해야 합니다:
 
-* `thisRef` --- _프로퍼티 소유_와 같은 타입 또는 슈퍼타입이어야 합니다. \(확장 프로퍼티의 경우 --- 확장된 타입\).
+* `thisRef` --- _프로퍼티 소유자 \(property owner\)_ 와 같은 타입 또는 슈퍼타입이어야 합니다. \(확장 프로퍼티의 경우 --- 확장된 타입\).
 * `property` --- `KProperty<*>` 타입 또는 슈퍼타입이어야 합니다.
 
 `getValue()` 프로퍼티와 같은 타입이거나 서브타입을 반환해야 합니다.
@@ -234,7 +234,7 @@ class ResourceDelegate {
 
 **가변 \(mutable\)** 프로퍼티 \(_var_\)는 아래의 파라미터를 가지는 `setValue()` 함수도 제공해야 합니다:
 
-* `thisRef` --- _property owner_ 와 같은 타입 또는 슈퍼타입이어야 합니다. \(확장 프로퍼티의 경우 --- 확장된 타입\).
+* `thisRef` --- _프로퍼티 소유자 \(property owner\)_ 와 같은 타입 또는 슈퍼타입이어야 합니다. \(확장 프로퍼티의 경우 --- 확장된 타입\).
 * `property` --- `KProperty<*>` 타입 또는 슈퍼타입이어야 합니다.
 * `value` --- 프로퍼티와 같은 타입이거나 서브타입이어야 합니다.
 
@@ -277,11 +277,7 @@ var readWrite: Int by resourceDelegate()
 
 ### 번역 규칙 \(Translation Rules\)
 
-내부적으로 
-
-Under the hood, for every delegated property the Kotlin compiler generates an auxiliary property and delegates to it. For instance, for the property `prop` the hidden property `prop$delegate` is generated, and the code of the accessors simply delegates to this additional property:
-
-위임된 프로퍼티를 위해 Kotlin 컴파일러는 보조 프로퍼티를 만들어 위임합니다. 예를 들어 `prop` 프로퍼티를 위해 숨겨진 프로퍼티 `prop$delegate`를 생성되고 위임합니다:
+내부적으로 모든 위임된 프로퍼티에 대해 Kotlin 컴파일러는 보조 프로퍼티를 생성하고 여기에 위임합니다. 예를 들어 프로퍼티 `prop` 의 경우 숨겨진 프로퍼티 `prop$delegate` 생성되고 접근자의 코드는 다음 추가 프로퍼티에 간단히 위임합니다:
 
 ```kotlin
 class C {
@@ -297,15 +293,15 @@ class C {
 }
 ```
 
-Kotlin 컴파일러는 `prop`의 모든 정보를 인자에 제공합니다: 첫 번째 인자 `this`는 `C` class의 인스턴스를 나타내고 `this::prop`는 `prop`을 나타내는 `KProperty`에 반영 된 객체 입니다.
+Kotlin 컴파일러는 인수에 `prop` 에 필요한 모든 정보를 제공합니다: 첫번째 인수 `this` 는 바깥 클래스 `C` 의 인스턴스를 참조하고 `this::prop` 은 `prop` 자체를 설명하는 `KProperty` 타입의 반사 객체 입니다.
 
-`this::prop` 표현과 같은 참조는 [bound callable reference](https://kotlinlang.org/docs/reference/reflection.html#bound-function-and-property-references-since-11)라고 하며 Kotlin 1.1 부터 지원합니다.
+코드에서 [바인딩 된 호출 가능한 참조 \(bound callable referece\)](https://kotlinlang.org/docs/reference/reflection.html#bound-function-and-property-references-since-11) 직접 참조하는 `this::prop` 구문은 Kotlin 1.1 부터 사용 가능합니다.
 
-### 위임 제공 \(Providing a delegate\) \(since 1.1\)
+### 위임 제공 \(Providing a delegate\)
 
-`provideDelegate` 연산자를 정의해서 프로퍼티 구현이 위임 된 객체를 생성하는 로직을 확장할 수 있습니다. `by`의 오른편에 `provideDelegate`의 멤버나 확장 함수로 정의 한 객체는 해당 함수는 프로퍼티의 위임자 프로퍼티를 생성하기 위해 호출 됩니다.
+`provideDelegate` 연산자를 정의하여 프로퍼티 구현이 위임되는 객체를 만드는 논리를 확장할 수 있습니다. by 의 오른쪽에 사용된 객체가 `provideDelegate` 를 멤버 또는 확장 함수로 정의하면 해당 함수가 호출되어 프로퍼티 위임 인스턴스를 생성합니다.
 
-`provideDelegate`의 사용 가능 한 케이스 중 하나는 프로퍼티의 정합성 판단입니다. 이것은 getter 또는 setter가 호출 될 때 뿐만 아니라 생성될 때도 판단합니다.
+`provideDelegate` 의 가능한 사용 사례 중 하나는 초기화 시 프로퍼티의 일관성을 확인하는 것입니다.
 
 예를 들어 바인딩 전에 프로퍼티 이름을 체크하고 싶으면 아래와 같이 작성하면 됩니다:
 
@@ -337,10 +333,10 @@ class MyUI {
 
 `provideDelegate`는 `getValue`의 파라미터와 같습니다:
 
-* `thisRef` --- _property owner_ 와 같은 타입 또는 슈퍼타입이어야 합니다. \(확장 프로퍼티의 경우 --- 확장된 타입\).
+* `thisRef` --- _프로퍼티 소유자 \(property owner\)_ 와 같은 타입 또는 슈퍼타입이어야 합니다. \(확장 프로퍼티의 경우 --- 확장된 타입\).
 * `property` --- `KProperty<*>` 타입 또는 슈퍼타입이어야 합니다.
 
-`provideDelegate` 메서드는 `MyUI` 인스턴스를 생성하는 동안 각 프로퍼티마다 호출되고 바로 검증을 수행합니다.
+`provideDelegate` 메서드는 `MyUI` 인스턴스를 생성하는 동안 각 프로퍼티에 대해 호출되고 바로 검증을 수행합니다.
 
 프로퍼티와 위임자를 연결을 인터셉트 할 수 없다면 같은 기능을 하기위해 불편하지만 프로퍼티 이름을 명시적으로 전달해야 합니다:
 
@@ -360,7 +356,7 @@ fun <T> MyUI.bindResource(
 }
 ```
 
-생성된 코드에 `provideDelegate` 메서드는 보조 프로퍼티 `prop$delegate`을 초기화 할 때 호출됩니다. 프로퍼티 선언 `val prop: Type by MyDelegate()`에 대해 생성 된 코드와 위의 생성 된 코드 \(`provideDelegate` 메서드가 없는 경우\)를 비교해 보시기 바랍니다:
+생성된 코드에 `provideDelegate` 메서드는 보조 프로퍼티 `prop$delegate`을 초기화 할 때 호출됩니다. 프로퍼티 선언 `val prop: Type by MyDelegate()`에 대해 생성 된 코드와 [위의](delegated-properties.md#translation-rules) 생성 된 코드 \(`provideDelegate` 메서드가 없는 경우\)를 비교해 보시기 바랍니다:
 
 ```kotlin
 class C {
@@ -379,4 +375,16 @@ class C {
 ```
 
 `provideDelegate` 메서드가 오직 보조 프로퍼티 생성에 영향을 끼치고 getter 또는 setter를 위한 생성된 코드에는 영향을 미치지 않는 점에 주목하시기 바랍니다.
+
+표
+
+표준 라이브러리의 `PropertyDelegateProvider` 인터페이스를 사용하면 새로운 클래스를 생성하지 않고도 위임 제공자를 생성할 수 있습니다.
+
+```kotlin
+val provider = PropertyDelegateProvider { thisRef: Any?, property ->
+    ReadOnlyProperty<Any?, Int> {_, property -> 42 }
+}
+
+val delegate: Int by provider
+```
 
