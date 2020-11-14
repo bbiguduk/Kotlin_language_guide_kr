@@ -67,7 +67,7 @@ class B : A() {
 }
 ```
 
-기본값이 있는 파라미터가 없는 파라미터보다 앞에 위치한다면, 기본값은 [named arguments](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/functions#named-arguments)로 호출해야 사용합니다:
+기본값이 있는 파라미터가 없는 파라미터보다 앞에 위치한다면, 기본값은 [인자 명칭 \(named arguments\) ](functions.md#named-arguments)로 호출해야 사용합니다:
 
 ```kotlin
 fun foo(
@@ -136,21 +136,7 @@ reformat('This is a long String!')
 reformat('This is a short String!', upperCaseFirstLetter = false, wordSeparator = '_')
 ```
 
-spread 연산자를 사용하여 이름과 함께 [가변 갯수의 인자 \(variable number of arguments\) \(vararg\)](functions.md#variable-number-of-arguments-varargs) 를 전달할 수 있습니다:
-
-You can pass a [variable number of arguments \(`vararg`\)](https://kotlinlang.org/docs/reference/functions.html#variable-number-of-arguments-varargs) with names using the `spread` operator:
-
-그리고 모든 인자에 명칭을 붙일 필요는 없습니다:
-
-```kotlin
-fun foo(vararg strings: String) { /*...*/ }
-
-foo(strings = *arrayOf("a", "b", "c"))
-```
-
-순차적 인자 \(positional arguments\)와 명칭 인자 \(named arguments\)를 통해 함수를 호출 할 때 모든 순차적 인자는 명칭 인자 앞에 와야 합니다. 예를 들어 `f(1, y = 2)`은 가능하지만 `f(x = 1, 2)`은 불가능 합니다.
-
-[길이가 가변인 인자 \(_vararg_\)](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/functions#variable-number-of-arguments-varargs)는 아래와 같이 **spread \(`*`\)** 연산자를 사용하여 전달합니다:
+`spread` 연산자를 사용하여 이름과 함께 [가변 갯수의 인자 \(variable number of arguments\) \(vararg\)](functions.md#variable-number-of-arguments-varargs) 를 전달할 수 있습니다:
 
 ```kotlin
 fun foo(vararg strings: String) { /*...*/ }
@@ -188,7 +174,7 @@ fun printHello(name: String?) { ... }
 fun double(x: Int): Int = x * 2
 ```
 
-컴파일러가 반환 타입 추론이 가능하다면 반환 타입도 [optional](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/functions#explicit-return-types) 입니다:
+컴파일러가 반환 타입 추론이 가능하다면 반환 타입도 [옵셔널 \(optional\)](functions.md#explicit-return-types) 입니다:
 
 ```kotlin
 fun double(x: Int) = x * 2
@@ -232,9 +218,9 @@ val list = asList(-1, 0, *a, 4)
 
 _infix_ 키워드로 표기된 함수는 인픽스 표기를 이용하여 호출할 수 있습니다 \(호출할 때 점과 괄호를 생략할 수 있습니다\). 인픽스 함수는 아래의 요구사항을 만족해야 합니다:
 
-* 멤버 함수이거나 [확장 함수 \(extension functions\)](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/extensions) 이어야 합니다.
+* 멤버 함수이거나 [확장 함수 \(extension functions\)](../classes-and-objects/extensions.md) 이어야 합니다.
 * 하나의 파라미터를 가지고 있어야 합니다.
-* [가변 길이 인자 \(accept variable number of arguments\)](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/functions#variable-number-of-arguments-varargs)나 [기본값 \(default value\)](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/functions#default-arguments)은 사용할 수 없습니다.
+* [가변 길이 인자 \(accept variable number of arguments\)](functions.md#variable-number-of-arguments-varargs)나 [기본값 \(default value\)](functions.md#default-arguments)은 사용할 수 없습니다.
 
 ```kotlin
 infix fun Int.shl(x: Int): Int { ... }
@@ -257,7 +243,7 @@ infix fun Int.shl(x: Int): Int { ... }
 > * `a && b xor c` is equivalent to `a && (b xor c)`  
 > * `a xor b in c` is equivalent to `(a xor b) in c`
 >
-> 연산자 우선순위는 [Grammar reference](https://kotlinlang.org/docs/reference/grammar.html#expressions)을 참고 바랍니다.
+> 연산자 우선순위는 [문법 참조 \(Grammar reference\) ](https://kotlinlang.org/docs/reference/grammar.html#expressions)를 참고 바랍니다.
 
 인픽스 함수는 항상 리시버와 파라미터를 지정해야 합니다. 인픽스 표기를 사용하여 현재 리시버에 메서드를 호출 할 때 명시적으로 `this`를 표기해야 합니다. 일반 메서드 호출처럼 생략이 불가합니다. 구문 분석을 위해 반드시 필요합니다.
 
@@ -324,7 +310,7 @@ class Sample() {
 Sample().foo() // creates instance of class Sample and calls foo
 ```
 
-class와 오버라이드 멤버에 대한 자세한 내용은 [Classes](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-classes-and-inheritance) 와 [Inheritance](http://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/class-classes-and-inheritance#inheritance)을 참고 바랍니다.
+클래스와 재정의 멤버에 대한 자세한 내용은 [클래스 \(Classes\)](../classes-and-objects/class-classes-and-inheritance.md) 와 [상속 \(Inheritance\) ](../classes-and-objects/class-classes-and-inheritance.md#inheritance)을 참고 바랍니다.
 
 ## 제너릭 함수 \(Generic functions\)
 
@@ -334,23 +320,23 @@ class와 오버라이드 멤버에 대한 자세한 내용은 [Classes](http://a
 fun <T> singletonList(item: T): List<T> { /*...*/ }
 ```
 
-자세한 내용은 [Generics](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/generics)을 참고 바랍니다.
+자세한 내용은 [제너릭 \(Generics\) ](../classes-and-objects/generics.md)을 참고 바랍니다.
 
 ## 인라인 함수 \(Inline functions\)
 
-인라인 함수는 [인라인 함수 section](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/inline-functions)를 참고 바랍니다.
+인라인 함수는 [여기](inline-functions.md) 에 설명되어 있습니다.
 
 ## 확장 함수 \(Extension functions\)
 
-확장 함수는 [their own section](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/classes-and-objects/extensions)를 참고 바랍니다.
+확장 함수는 [여기](../classes-and-objects/extensions.md) 에 설명되어 있습니다.
 
 ## 고차 함수와 람다 \(Higher-order functions and lambdas\)
 
-고차 함수와 람다는 [their own section](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/functions-and-lambdas/higher-order-functions-and-lambdas)를 참고 바랍니다.
+고차 함수와 람다는 [여기 ](higher-order-functions-and-lambdas.md)를 참고 바랍니다.
 
 ## 꼬리 재귀 함수 \(Tail recursive functions\)
 
-Kotlin은 [tail recursion](https://en.wikipedia.org/wiki/Tail_call)라고 알려진 함수형 프로그래밍 스타일을 제공합니다. 이 알고리즘을 통해 스택 오버플로우의 리스크 없이 재귀 함수를 사용할 수 있습니다. 함수에 `tailrec` 수식어를 붙이고 필요한 형식에 맞는다면 컴파일러는 재귀를 최적화 하고 빠르고 효율적인 루프 기반 버전으로 남겨줍니다:
+Kotlin은 [꼬리 재귀 \(tail recursion\)](https://en.wikipedia.org/wiki/Tail_call) 라고 알려진 함수형 프로그래밍 스타일을 제공합니다. 이 알고리즘을 통해 스택 오버플로우의 리스크 없이 재귀 함수를 사용할 수 있습니다. 함수에 `tailrec` 수식어를 붙이고 필요한 형식에 맞는다면 컴파일러는 재귀를 최적화 하고 빠르고 효율적인 루프 기반 버전으로 남겨줍니다:
 
 ```kotlin
 val eps = 1E-10 // "good enough", could be 10^-15
