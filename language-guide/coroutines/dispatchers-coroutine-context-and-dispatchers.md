@@ -1,4 +1,4 @@
-# 코루틴 컨택스트와 Dispatchers \(Coroutine Context and Dispatchers\)
+# 코루틴 컨택스트와 디스패처 \(Coroutine Context and Dispatchers\)
 
 코루틴은 Kotlin 표준 라이브러리에 정의된 [CoroutineContext](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/) 타입의 값으로 표현된 어떤 컨택스트에서 실행됩니다.
 
