@@ -1,6 +1,6 @@
 # 맵 동작 \(Map Specific Operations\)
 
-[maps](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/kotlin-kotlin-collections-overview#map)에서 키와 값의 타입은 사용자가 정의합니다. 맵 항목에 대한 키 기반 접근은 키로 값을 얻는 것부터 키와 값을 필터링하는 것까지 다양한 기능을 제공합니다. 이 페이지에서 표준 라이브러리의 맵 처리 함수에 대해 설명합니다.
+[맵 \(maps\)](kotlin-kotlin-collections-overview.md#map)에서 키와 값의 타입은 사용자가 정의합니다. 맵 항목에 대한 키 기반 접근은 키로 값을 얻는 것부터 키와 값을 필터링하는 것까지 다양한 기능을 제공합니다. 이 페이지에서 표준 라이브러리의 맵 처리 함수에 대해 설명합니다.
 
 ## 키와 값 추출 \(Retrieving keys and values\)
 
@@ -36,7 +36,7 @@ fun main() {
 
 ## 필터링 \(Filtering\)
 
-다른 콜렉션과 같이 [`filter()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html) 함수를 이용하여 맵 [filter](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/filtering)를 할 수 있습니다. 맵에서 `filter()`를 호출할 때 인자로 `Pair`를 조건에 전달합니다. 이를 통해 키와 값을 모두 조건에서 사용할 수 있습니다.
+다른 콜렉션과 같이 [`filter()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html) 함수를 이용하여 맵 [필터 \(filter\)](filtering.md) 를 할 수 있습니다. 맵에서 `filter()`를 호출할 때 인자로 `Pair`를 조건에 전달합니다. 이를 통해 키와 값을 모두 조건에서 사용할 수 있습니다.
 
 ```kotlin
 fun main() {
@@ -90,15 +90,15 @@ fun main() {
 }
 ```
 
-변경가능한 맵에서 [`plusAssign`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html) \(`+=`\) 와 [`minusAssign`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html) \(`-=`\) 연산의 사용방법은 아래의 [Map write operations](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/map-specific-operations#map-write-operations)를 참고 바랍니다.
+변경가능한 맵에서 [`plusAssign`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html) \(`+=`\) 와 [`minusAssign`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html) \(`-=`\) 연산의 사용방법은 아래의 [맵 쓰기 동작 \(Map write operations\)](map-specific-operations.md#map-write-operations) 를 참고 바랍니다.
 
 ## 맵 쓰기 동작 \(Map write operations\)
 
-[Mutable](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/kotlin-kotlin-collections-overview#collection-types) 맵은 맵에 특화된 쓰기 동작을 제공합니다. 이러한 동작은 맵에 키 기반 접근으로 값을 변경할 수 있습니다.
+[변경 가능한 \(Mutable\)](kotlin-kotlin-collections-overview.md#collection-types) 맵은 맵에 특화된 쓰기 동작을 제공합니다. 이러한 동작은 맵에 키 기반 접근으로 값을 변경할 수 있습니다.
 
 맵에서의 쓰기 동작은 아래의 규칙을 포함합니다:
 
-* 값은 업데이트 될 수 있습니다. 반대로 키는 절대 변경되지 않습니다: Values can be updated. In turn, keys never change: 맵에 요소를 추가하면 그 키는 변경되지 않습니다.
+* 값은 업데이트 될 수 있습니다. 반대로 키는 절대 변경되지 않습니다: 맵에 요소를 추가하면 그 키는 변경되지 않습니다.
 * 각 키는 항상 하나의 값이 연결되어 있습니다. 전체 항목을 추가하고 제거할 수 있습니다.
 
 아래는 변경 가능한 맵에서 사용 가능한 쓰기 작업을 위한 표준 라이브러리 함수에 대한 설명입니다.
@@ -145,13 +145,13 @@ fun main() {
 맵에 새로운 항목을 추가할 때 짧은 표현으로도 사용이 가능하며 두가지 방법이 있습니다:
 
 * [`plusAssign`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html) \(`+=`\) 동작.
-* `put()`에 대한 연산 alias: `[]`.
+* `set()`에 대한 연산 별칭: `[]`.
 
 ```kotlin
 fun main() {
 //sampleStart
     val numbersMap = mutableMapOf("one" to 1, "two" to 2)
-    numbersMap["three"] = 3     // calls numbersMap.put("three", 3)
+    numbersMap["three"] = 3     // calls numbersMap.set("three", 3)
     numbersMap += mapOf("four" to 4, "five" to 5)
     println(numbersMap)
 //sampleEnd
