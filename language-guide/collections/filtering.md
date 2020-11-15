@@ -1,8 +1,8 @@
 # 필터링 \(Filtering\)
 
-필터링은 콜렉션 작업에서 가장 중요한 작업 중 하나입니다. Kotlin에서 필터링 조건은 콜렉션 요소를 가져와 조건과 일치하면 `true` 그 반대면 `false`를 반환하는 람다 함수인 _predicates_ 로 정의 됩니다
+필터링은 콜렉션 작업에서 가장 중요한 작업 중 하나입니다. Kotlin에서 필터링 조건은 콜렉션 요소를 가져와 조건과 일치하면 `true` 그 반대면 `false`를 반환하는 람다 함수인 _속성 \(predicates\)_ 으로 정의 됩니다
 
-표준 라이브러리는 단일 호출로 콜렉션을 필터링 할 수 있는 확장 함수의 그룹이 포함되어 있습니다. 이러한 함수는 기존 콜렉션을 변경하지 않기 때문에 [mutable and read-only](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/kotlin-kotlin-collections-overview#collection-types) 콜렉션 사용이 가능합니다. 필터링 결과를 변경하려면 변수에 저장하거나 필터링 후 함수를 연결해야 합니다.
+표준 라이브러리는 단일 호출로 콜렉션을 필터링 할 수 있는 확장 함수의 그룹이 포함되어 있습니다. 이러한 함수는 기존 콜렉션을 변경하지 않기 때문에 [변경 가능과 읽기-전용 \(mutable and read-only\)](kotlin-kotlin-collections-overview.md#collection-types) 콜렉션 사용이 가능합니다. 필터링 결과를 변경하려면 변수에 저장하거나 필터링 후 함수를 연결해야 합니다.
 
 ## 조건 필터링 \(Filtering by predicate\)
 
@@ -91,7 +91,7 @@ fun main() {
 
 * [`any()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/any.html)는 주어진 조건에 하나라도 요소가 일치하면 `true`를 반환합니다.
 * [`none()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/none.html)은 주어진 조건에 요소가 일치하지 않으면 `true`를 반환합니다.
-* [`all()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/all.html)은 주어진 조건에 모든 요소가 일치하면 `true`를 반환합니다. `all()`은 빈 콜렉션에서 호출되면 항상 `true`를 반환합니다. 이러한 결과는 로직에서 [_vacuous truth_](https://en.wikipedia.org/wiki/Vacuous_truth)라고 알고 있습니다.
+* [`all()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/all.html)은 주어진 조건에 모든 요소가 일치하면 `true`를 반환합니다. `all()`은 빈 콜렉션에서 호출되면 항상 `true`를 반환합니다. 이러한 결과는 로직에서 [_공허한 진실 \(vacuous truth\)_ ](https://en.wikipedia.org/wiki/Vacuous_truth)이라고 알고 있습니다.
 
 ```kotlin
 fun main() {
