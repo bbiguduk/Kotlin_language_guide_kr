@@ -2,15 +2,15 @@
 
 Kotlin 콜렉션은 콜렉션에서 하나의 요소를 뽑을 수 있는 함수 셋을 제공합니다. 함수는 이 페이지에서 설명되어 있으면 리스트와 셋에 모두 적용 됩니다.
 
-[definition of list](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/kotlin-kotlin-collections-overview)에서 보았듯이 리스트는 순서가 있는 콜렉션입니다. 그러므로 리스트의 모든 요소는 참조에 필요한 위치를 가지고 있습니다. 이 페이지에 설명 된 함수 외에도 리스트는 인덱스로 요소를 검색하고 추출하는 방법을 제공합니다. 더 자세한 내용은 [List Specific Operations](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/list-specific-operations) 참고 바랍니다.
+[리스트의 정의 \(definition of list\) ](kotlin-kotlin-collections-overview.md)에서 보았듯이 리스트는 순서가 있는 콜렉션입니다. 그러므로 리스트의 모든 요소는 참조에 필요한 위치를 가지고 있습니다. 이 페이지에 설명 된 함수 외에도 리스트는 인덱스로 요소를 검색하고 추출하는 방법을 제공합니다. 더 자세한 내용은 [리스트 동작 \(List Specific Operations\)](list-specific-operations.md) 참고 바랍니다.
 
-set은 [definition](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/kotlin-kotlin-collections-overview)에 의해 순서가 있는 콜렉션이 아닙니다. 그러나 Kotlin `Set`은 요소의 순서를 저장합니다. 입력 순서 \(`LinkedHashSet`\), 자연 정렬 \(`SortedSet`\) 또는 다른 순서일 수 있습니다. 요소의 set의 순서는 모를 수도 있습니다. 이러한 경우 요소는 여전히 순서대로 정렬되므로 위치에 대한 함수는 순서 결과를 반환합니다. 그러나 사용된 `Set`에 특정 구현을 모르면 호출자는 이러한 결과를 예측할 수 없습니다.
+집합은 [정의 \(definition\) ](kotlin-kotlin-collections-overview.md)에 의해 순서가 있는 콜렉션이 아닙니다. 그러나 Kotlin `Set`은 요소의 순서를 저장합니다. 입력 순서 \(`LinkedHashSet`\), 자연 정렬 \(`SortedSet`\) 또는 다른 순서일 수 있습니다. 요소의 set의 순서는 모를 수도 있습니다. 이러한 경우 요소는 여전히 순서대로 정렬되므로 위치에 대한 함수는 순서 결과를 반환합니다. 그러나 사용된 `Set`에 특정 구현을 모르면 호출자는 이러한 결과를 예측할 수 없습니다.
 
 ## 위치로 추출 \(Retrieving by position\)
 
 [`elementAt()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/element-at.html) 함수는 특정 위치의 요소를 추출할 때 사용합니다. 인자로 정수형 숫자와 함께 호출하면 주어진 위치에 콜렉션 요소를 알 수 있습니다. 첫번째 요소는 위치 `0`이며 마지막은 `(size - 1)`입니다.
 
-`elementAt()`은 인덱스 접근은 지원하지 않거나 정적으로 알려지지 않은 콜렉션에 유용합니다. `List`의 경우 [indexed access operator](list-operations.html#retrieving-elements-by-index) \(`get()` or `[]`\)을 자주 사용합니다.
+`elementAt()`은 인덱스 접근은 지원하지 않거나 정적으로 알려지지 않은 콜렉션에 유용합니다. `List`의 경우 [인덱스된 접근 연산자 \(indexed access operator\)](list-specific-operations.md#retrieving-elements-by-index) \(`get()` or `[]`\)을 자주 사용합니다.
 
 ```kotlin
 fun main() {
@@ -105,6 +105,8 @@ fun main() {
 //sampleEnd
 }
 ```
+
+빈 콜렉션에서 `random()` 은 예외를 발생합니다. 예외 대신에 null 을 받으려면 [`randomOrNull()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/random-or-null.html) 을 사용합니다.
 
 ## 존재 여부 판단 \(Checking existence\)
 
