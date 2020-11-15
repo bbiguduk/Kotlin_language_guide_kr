@@ -1,4 +1,4 @@
-# 그룹 \(Grouping\)
+# 그룹핑 \(Grouping\)
 
 Kotlin 표준 라이브러리는 콜렉션 요소를 그룹핑 하기 위한 확장 함수를 제공합니다. 기본 함수 [`groupBy()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/group-by.html)는 람다 함수이며 하나의 `Map`을 반환합니다. 맵에서 각 키는 람다의 결과이며 일치하는 값은 그룹 된 요소의 `List` 입니다. 예를 들어 `String`의 첫 글자를 그룹으로 할 때 이 함수를 사용할 수 있습니다.
 

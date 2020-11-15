@@ -44,7 +44,7 @@
   * [콜렉션 변환 \(Collection Transformations\)](language-guide/collections/collection-transformations.md)
   * [필터링 \(Filtering\)](language-guide/collections/filtering.md)
   * [\`plus\` 와 \`minus\` 동작 \(\`plus\` and \`minus\` Operators\)](language-guide/collections/plus-minus-plus-and-minus-operators.md)
-  * [그룹 \(Grouping\)](language-guide/collections/untitled.md)
+  * [그룹핑 \(Grouping\)](language-guide/collections/untitled.md)
   * [콜렉션 부분화 \(Retrieving Collection Parts\)](language-guide/collections/retrieving-collection-parts.md)
   * [요소 추출 \(Retrieving Single Elements\)](language-guide/collections/retrieving-single-elements.md)
   * [콜렉션 정렬 \(Collection Ordering\)](language-guide/collections/collection-ordering.md)
