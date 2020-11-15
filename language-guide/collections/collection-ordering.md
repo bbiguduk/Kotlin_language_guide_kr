@@ -4,12 +4,12 @@
 
 Kotlin에서 객체의 순서는 여러가지 방법으로 정의되어 있습니다.
 
-먼저 _natural_ 정렬이 있습니다. [`Comparable`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html) 인터페이스 상속자를 위해 정의되었습니다. 자연 정렬을 다른 특별한 정렬을 사용하지 않을 때 사용됩니다.
+먼저 _자연 \(natural\)_ 정렬이 있습니다. [`Comparable`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html) 인터페이스 상속자를 위해 정의되었습니다. 자연 정렬을 다른 특별한 정렬을 사용하지 않을 때 사용됩니다.
 
 대부분의 타입은 다음과 같습니다:
 
 * 숫자 타입은 기본적인 숫자 정렬로 사용합니다: `1`이 `0`보다 크고; `-3.4f`이 `-5f`보다 큽니다.
-* `Char` 와 `String` [lexicographical order](https://en.wikipedia.org/wiki/Lexicographical_order) 사용합니다: `b`가 `a`보다 크고 `world`가 `hello`보다 큽니다.
+* `Char` 와 `String` [사전 순서 \(lexicographical order\)](https://en.wikipedia.org/wiki/Lexicographical_order) 사용합니다: `b`가 `a`보다 크고 `world`가 `hello`보다 큽니다.
 
 사용자 정의 타입을 자연 정렬로 정의하려면 타입이 `Comparable` 상속을 받아야 합니다. `compareTo()` 함수를 구현해야 합니다. `compareTo()`는 같은 타입의 다른 객체를 인자로 받고 더 큰 객체에 대해 정수형 값으로 반환합니다:
 
@@ -36,7 +36,7 @@ fun main() {
 }
 ```
 
-_Custom_ 정렬을 원하는 방식으로 어떠한 타입의 객체든 정렬 할 수 있습니다. 특히 비교할 수 없는 객체의 순서를 정의하거나 비교가능한 타입의 정렬을 정의할 수 있습니다. 커스텀 정렬을 정의하려면 [`Comparator`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparator/index.html)을 생성해야 합니다. `Comparator`는 `compare()` 함수를 포함합니다: class의 두 인스턴스를 받아 비교하고 정수형 값으로 반환합니다. 결과는 위에서 설명한 `compareTo()`의 결과와 같습니다.
+_사용자 정의 \(Custom\)_ 정렬을 원하는 방식으로 어떠한 타입의 객체든 정렬 할 수 있습니다. 특히 비교할 수 없는 객체의 순서를 정의하거나 비교가능한 타입의 정렬을 정의할 수 있습니다. 커스텀 정렬을 정의하려면 [`Comparator`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparator/index.html)을 생성해야 합니다. `Comparator`는 `compare()` 함수를 포함합니다: 클래스의 두 인스턴스를 받아 비교하고 정수형 값으로 반환합니다. 결과는 위에서 설명한 `compareTo()`의 결과와 같습니다.
 
 ```kotlin
 fun main() {
@@ -54,12 +54,12 @@ fun main() {
 ```kotlin
 fun main() {
 //sampleStart    
-println(listOf("aaa", "bb", "c").sortedWith(compareBy { it.length }))
+    println(listOf("aaa", "bb", "c").sortedWith(compareBy { it.length }))
 //sampleEnd
 }
 ```
 
-Kotlin 콜렉션 패키지는 콜렉션의 자연적, 커스텀 그리고 랜덤 정렬을 위한 함수를 제공합니다. 이 페이지에서 [read-only](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/kotlin-kotlin-collections-overview#collection-types) 콜렉션에 적용하는 정렬 함수를 설명합니다. 이 함수는 정렬이 요청된 기존 콜렉션의 요소를 포함한 새로운 콜렉션을 반환합니다. [mutable](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/kotlin-kotlin-collections-overview#collection-types) 콜렉션 정렬에 대한 자세한 설명은 [List Specific Operations](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/list-specific-operations#sorting)을 참고 바랍니다.
+Kotlin 콜렉션 패키지는 콜렉션의 자연적, 커스텀 그리고 랜덤 정렬을 위한 함수를 제공합니다. 이 페이지에서 [읽기-전용 \(read-only\)](kotlin-kotlin-collections-overview.md#collection-types) 콜렉션에 적용하는 정렬 함수를 설명합니다. 이 함수는 정렬이 요청된 기존 콜렉션의 요소를 포함한 새로운 콜렉션을 반환합니다. [변경 가능한 \(mutable\)](kotlin-kotlin-collections-overview.md#collection-types) 콜렉션 정렬에 대한 자세한 설명은 [리스트 동작 \(List Specific Operations\) ](list-specific-operations.md#sorting)을 참고 바랍니다.
 
 ## 자연 정렬 \(Natural order\)
 
@@ -76,7 +76,7 @@ fun main() {
 }
 ```
 
-## 커스텀 정렬 \(Custom orders\)
+## 사용자 정의 정렬 \(Custom orders\)
 
 커스텀 정렬이나 비교 불가한 객체의 정렬은 [`sortedBy()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sorted-by.html) 와 [`sortedByDescending()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sorted-by-descending.html) 함수를 사용합니다. 콜렉션 요소를 `Comparable` 값에 매핑하고 콜렉션 값을 자연 정렬을 하는 selector 함수를 사용합니다.
 
