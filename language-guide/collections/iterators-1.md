@@ -1,6 +1,6 @@
 # 반복자 \(Iterators\)
 
-콜렉션 요소를 탐색하기 위해 Kotlin 표준 라이브러리는 일반적으로 사용되는 _iterators_ 매커니즘을 지원합니다 - 객체는 콜렉션의 구조를 노출시키지 않고 요소에 순차적으로 접근할 수 있습니다. 반복자는 콜렉션 요소 하나하나 작업 진행이 필요할 때 유용합니다.
+콜렉션 요소를 탐색하기 위해 Kotlin 표준 라이브러리는 일반적으로 사용되는 반_iterators_ 매커니즘을 지원합니다 - 객체는 콜렉션의 구조를 노출시키지 않고 요소에 순차적으로 접근할 수 있습니다. 반복자는 콜렉션 요소 하나하나 작업 진행이 필요할 때 유용합니다.
 
 반복자는 [`iterator()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/iterator.html) 함수 호출을 통해 `Set` 과 `List`를 포함하여 [`Iterable<T>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/) 인터페이스의 상속자를 얻을 수 있습니다. 반복자를 얻으면 콜렉션의 첫번째 요소를 가리킵니다; [`next()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterator/next.html) 함수를 호출하면 다음 요소가 존재한다면 다음 위치의 요소를 반환합니다. 반복자가 마지막 요소를 전달하면 더이상 요소를 검색하는데 사용할 수 없습니다. 또한 이전 위치로 재설정 할 수도 없습니다. 콜렉션을 다시 반복하려면 새로운 반복자를 생성해야 합니다.
 
