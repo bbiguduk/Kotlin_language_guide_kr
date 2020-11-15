@@ -40,7 +40,7 @@
   * [반복자 \(Iterators\)](language-guide/collections/iterators-1.md)
   * [범위와 진행 \(Ranges and Progressions\)](language-guide/collections/ranges-and-progressions-1.md)
   * [시퀀스 \(Sequences\)](language-guide/collections/sequences.md)
-  * [콜렉션 동작 \(Collection Operations Overview\)](language-guide/collections/collection-operations-overview.md)
+  * [콜렉션 동작 개요 \(Collection Operations Overview\)](language-guide/collections/collection-operations-overview.md)
   * [콜렉션 변환 \(Collection Transformations\)](language-guide/collections/collection-transformations.md)
   * [필터링 \(Filtering\)](language-guide/collections/filtering.md)
   * [\`plus\` 와 \`minus\` 동작 \(\`plus\` and \`minus\` Operators\)](language-guide/collections/plus-minus-plus-and-minus-operators.md)
