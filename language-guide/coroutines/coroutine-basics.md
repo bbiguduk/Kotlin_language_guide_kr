@@ -206,7 +206,7 @@ import kotlinx.coroutines.*
 fun main() = runBlocking {
     repeat(100_000) { // launch a lot of coroutines
         launch {
-            delay(1000L)
+            delay(5000L)
             print(".")
         }
     }
@@ -215,7 +215,7 @@ fun main() = runBlocking {
 
 > [여기](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-basic-08.kt)에서 전체 코드를 볼 수 있습니다.
 
-이 예제는 10만개의 코루틴을 실행하고 1초 후에 각 코루틴은 점 \(.\)을 출력합니다.
+이 예제는 10만개의 코루틴을 실행하고 5초 후에 각 코루틴은 점 \(.\)을 출력합니다.
 
 이제 쓰레드로 같은 구현을 실행 해봅시다. 어떤 일이 벌어질까요? \(아마 대부분 메모리 부족 오류가 발생할 것입니다\)
 

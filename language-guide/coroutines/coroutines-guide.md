@@ -6,19 +6,19 @@ Kotlin은 언어로서 표준 라이브러리에서 최소한의 저레벨 API �
 
 이것은 `kotlinx.coroutines`의 핵심 기능에 대한 가이드이며 여러 예제로 구성되어 있으며 여러 주제로 나뉩니다.
 
-코루틴을 사용하고 이 가이드의 예제를 따라하려면 [in the project README](https://github.com/kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects)에 설명 된대로 `kotlinx-coroutines-core` 모듈을 추가해야 합니다.
+코루틴을 사용하고 이 가이드의 예제를 따라하려면 [프로젝에서 README \(in the project README\)](https://github.com/kotlin/kotlinx.coroutines/blob/master/README.md#using-in-your-projects) 에 설명 된대로 `kotlinx-coroutines-core` 모듈을 추가해야 합니다.
 
 ## 콘텐츠 \(Table of contents\)
 
-* [Basics](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/coroutines/coroutine-basics)
-* [Cancellation and Timeouts](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/coroutines/cancellation-and-timeouts)
-* [Composing Suspending Functions](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/coroutines/composing-suspending-functions)
-* [Coroutine Context and Dispatchers](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/coroutines/dispatchers-coroutine-context-and-dispatchers)
-* [Asynchronous Flow](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/coroutines/flow-asynchronous-flow)
-* [Channels](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/coroutines/channels)
-* [Exception Handling and Supervision](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/coroutines/exception-handling)
-* [Shared Mutable State and Concurrency](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/coroutines/untitled)
-* [Select Expression \(experimental\)](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/coroutines/select-select-expression-experimental)
+* [코루틴 기본 \(Basics\)](coroutine-basics.md)
+* [취소와 타임아웃 \(Cancellation and Timeouts\)](cancellation-and-timeouts.md)
+* [일시 중단 함수 구성 \(Composing Suspending Functions\)](composing-suspending-functions.md)
+* [코루틴 컨텍스트와 디스패처 \(Coroutine Context and Dispatchers\)](dispatchers-coroutine-context-and-dispatchers.md)
+* [비동기 플로우 \(Asynchronous Flow\)](flow-asynchronous-flow.md)
+* [채널 \(Channels\)](channels.md)
+* [예외 처리와 감독 \(Exception Handling and Supervision\)](exception-handling.md)
+* [공유된 변경 가능한 상태와 동시성 \(Shared Mutable State and Concurrency\)](untitled.md)
+* [Select 표현 \(Select Expression\) \(experimental\)](select-select-expression-experimental.md)
 
 ## 추가 참조 \(Additional references\)
 
