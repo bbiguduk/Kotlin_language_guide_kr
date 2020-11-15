@@ -51,7 +51,7 @@
   * [콜렉션 집합 작업 \(Collection Aggregate Operations\)](language-guide/collections/collection-aggregate-operations.md)
   * [콜렉션 쓰기 동작 \(Collection Write Operations\)](language-guide/collections/collection-write-operations.md)
   * [리스트 동작 \(List Specific Operations\)](language-guide/collections/list-specific-operations.md)
-  * [셋 동작 \(Set Specific Operations\)](language-guide/collections/set-specific-operations.md)
+  * [집합 동작 \(Set Specific Operations\)](language-guide/collections/set-specific-operations.md)
   * [맵 동작 \(Map Specific Operations\)](language-guide/collections/map-specific-operations.md)
 * [Coroutines](language-guide/coroutines/README.md)
   * [Kotlin 코루틴 개요 \(Kotlin Collections Overview\)](language-guide/coroutines/coroutines-guide.md)
