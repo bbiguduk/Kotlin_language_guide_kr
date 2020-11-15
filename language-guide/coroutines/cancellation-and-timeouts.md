@@ -243,3 +243,84 @@ I'm sleeping 2 ...
 Result is null
 ```
 
+## 비동기 타임아웃과 리소스 \(Asynchronous timeout and resources\)
+
+[withTimeout](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-timeout.html) 의 타임아웃 이벤트는 해당 블럭에서 실행중인 코드와 관련하여 비동기적이며 타임아웃 블럭 내에서 반환되기 직전에 언제든지 발생할 수 있습니다. 블럭의 외부에서 닫거나 해제해야 하는 블럭 내부의 리소스를 열거나 획득하는 경우 이를 염두에 두어야 합니다.
+
+예를 들어 여기서는 획득한 카운터를 증가시키고 `close` 함수에서 이 카운터를 감소시켜 생성된 횟수를 추적하는 `Resource` 클래스를 사용하여 닫기 가능한 리소스를 모방합니다. 작은 타임아웃으로 많은 코루틴을 실행하면 약간의 지연 후 `withTimeout` 블럭 내에서 이 리소스를 획득하고 외부에서 해제해 보십시오.
+
+```kotlin
+import kotlinx.coroutines.*
+
+//sampleStart
+var acquired = 0
+
+class Resource {
+    init { acquired++ } // Acquire the resource
+    fun close() { acquired-- } // Release the resource
+}
+
+fun main() {
+    runBlocking {
+        repeat(100_000) { // Launch 100K coroutines
+            launch { 
+                val resource = withTimeout(60) { // Timeout of 60 ms
+                    delay(50) // Delay for 50 ms
+                    Resource() // Acquire a resource and return it from withTimeout block     
+                }
+                resource.close() // Release the resource
+            }
+        }
+    }
+    // Outside of runBlocking all coroutines have completed
+    println(acquired) // Print the number of resources still acquired
+}
+//sampleEnd
+```
+
+> [여기](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-08.kt) 에서 전체 코드를 볼 수 있습니다.
+
+위의 코드를 실행하면 항상 0을 출력하는 것은 아니지만 실제로 0이 아닌 값을 보려면 이 예제에서 타임아웃을 변경해야 할 수 있습니다.
+
+> 여기서 100K 코루틴에서 `acquired` 카운터를 증가 및 감소시키는 것은 항상 동일한 메인 스레드에서 발생하기 때문에 완전히 안전합니다. 이에 대한 자세한 내용은 코루틴 컨텍스트에 대한 다음 장에서 설명합니다.
+
+이 문제를 해결하려면 `withTimeout` 블럭에서 반환하는 것과 반대로 리소스에 대한 참조를 변수에 저장할 수 있습니다.
+
+```kotlin
+import kotlinx.coroutines.*
+
+var acquired = 0
+
+class Resource {
+    init { acquired++ } // Acquire the resource
+    fun close() { acquired-- } // Release the resource
+}
+
+fun main() {
+//sampleStart
+    runBlocking {
+        repeat(100_000) { // Launch 100K coroutines
+            launch { 
+                var resource: Resource? = null // Not acquired yet
+                try {
+                    withTimeout(60) { // Timeout of 60 ms
+                        delay(50) // Delay for 50 ms
+                        resource = Resource() // Store a resource to the variable if acquired      
+                    }
+                    // We can do something else with the resource here
+                } finally {  
+                    resource?.close() // Release the resource if it was acquired
+                }
+            }
+        }
+    }
+    // Outside of runBlocking all coroutines have completed
+    println(acquired) // Print the number of resources still acquired
+//sampleEnd
+}
+```
+
+> [여기](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-09.kt) 에서 전체 코드를 볼 수 있습니다.
+
+이 예제는 항상 0을 출력합니다. 리소스는 누출되지 않습니다.
+
