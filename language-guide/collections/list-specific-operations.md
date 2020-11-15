@@ -1,10 +1,10 @@
 # 리스트 동작 \(List Specific Operations\)
 
-[`List`](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/kotlin-kotlin-collections-overview#list)는 Kotlin에서 가장 유명한 내장 콜렉션입니다. 리스트 요소에 대한 인덱스 접근은 강력한 동작들을 제공합니다.
+[`List`](kotlin-kotlin-collections-overview.md#list)는 Kotlin에서 가장 유명한 내장 콜렉션입니다. 리스트 요소에 대한 인덱스 접근은 강력한 동작들을 제공합니다.
 
 ## 인덱스로 요소 추출 \(Retrieving elements by index\)
 
-리스트는 요소 검색을 위한 모든 공통 연산을 지원합니다: `elementAt()`, `first()`, `last()`, 와 [Retrieving Single Elements](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/retrieving-single-elements)에 나와있는 연산. 리스트 요소에 인덱스 접근이 가장 특별한 것이므로 요소를 읽는 가장 간단한 방법은 인덱스로 요소를 검색하는 것입니다. 인자로 인덱스를 전달하는 [`get()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/get.html) 함수 또는 짧은 표현으로 `[index]`로 수행합니다.
+리스트는 요소 검색을 위한 모든 공통 연산을 지원합니다: `elementAt()`, `first()`, `last()`, 와 [요소 추출 \(Retrieving Single Elements\)](retrieving-single-elements.md) 에 나와있는 연산. 리스트 요소에 인덱스 접근이 가장 특별한 것이므로 요소를 읽는 가장 간단한 방법은 인덱스로 요소를 검색하는 것입니다. 인자로 인덱스를 전달하는 [`get()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/get.html) 함수 또는 짧은 표현으로 `[index]`로 수행합니다.
 
 요청한 인덱스보다 리스트 크기가 작으면 예외를 발생합니다. 이러한 예외를 우회할 수 있는 두개의 함수가 있습니다:
 
@@ -26,7 +26,7 @@ fun main() {
 
 ## 리스트 부분 추출 \(Retrieving list parts\)
 
-[Retrieving Collection Parts](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/retrieving-collection-parts)을 위한 기본 동작으로 리스트는 리스트의 특정 요소의 범위를 반환하는 [`subList()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/sub-list.html) 함수를 제공합니다. 따라서 기존 콜렉션이 변경되면 이전에 생성된 서브리스트도 변경되고 그 반대 동작도 동일합니다.
+[콜렉션 부분화 \(Retrieving Collection Parts\) ](retrieving-collection-parts.md)를 위한 기본 동작으로 리스트는 리스트의 특정 요소의 범위를 반환하는 [`subList()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/sub-list.html) 함수를 제공합니다. 따라서 기존 콜렉션이 변경되면 이전에 생성된 서브리스트도 변경되고 그 반대 동작도 동일합니다.
 
 ```kotlin
 fun main() {
@@ -70,7 +70,7 @@ fun main() {
 
 ### 정렬된 리스트에서의 이진 검색 \(Binary search in sorted lists\)
 
-리스트에서 요소를 검색하는 다른 방법이 있습니다 – [binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm). 다른 검색 함수보다 빠르게 동작하지만 _리스트가 오름차순으로_ [_sorted_](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/collection-ordering) _되어 있어야 합니다._ 그렇지 않으면 결과가 정의되지 않습니다.
+리스트에서 요소를 검색하는 다른 방법이 있습니다 – [이진 검색 \(binary search\)](https://en.wikipedia.org/wiki/Binary_search_algorithm). 다른 검색 함수보다 빠르게 동작하지만 _리스트가 오름차순으로_ [_정렬 \(sorted\)_](collection-ordering.md) _되어 있어야 합니다._ 그렇지 않으면 결과가 정의되지 않습니다.
 
 정렬된 리스트에서 요소를 검색하려면 인자로 값을 [`binarySearch()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/binary-search.html) 함수에 전달하여 호출합니다. 해당 요소가 존재한다면 해당 인덱스를 반환하고 그렇지 않으면 `(-insertionPoint - 1)`을 반환합니다. 여기서 `insertionPoint`은 정렬된 리스트에 적합한 위치의 인덱스 입니다. 주어진 값과 함께 하나 이상의 요소가 있을경우 검색은 그들의 인덱스를 반환할 수 있습니다.
 
@@ -149,7 +149,7 @@ fun main() {
 
 ## 리스트 쓰기 동작 \(List write operations\)
 
-콜렉션 수정 동작은 [Collection Write Operations](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/collection-write-operations)에 자세히 나와있습니다. [mutable](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/kotlin-kotlin-collections-overview#collection-types) 리스트는 쓰기 동작을 제공합니다. 이러한 동작은 인덱스를 통해 요소에 접근하여 리스트 수정 기능을 확장합니다.
+콜렉션 수정 동작은 [콜렉션 쓰기 동작 \(Collection Write Operations\) ](collection-write-operations.md)에 자세히 나와있습니다. [변경 가능한 \(mutable\)](kotlin-kotlin-collections-overview.md#collection-types) 리스트는 쓰기 동작을 제공합니다. 이러한 동작은 인덱스를 통해 요소에 접근하여 리스트 수정 기능을 확장합니다.
 
 ### 추가 \(Adding\)
 
@@ -206,9 +206,26 @@ fun main() {
 }
 ```
 
+첫번째와 마지막 요소를 삭제하기 위해 짧은 [`removeFirst()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove-first.html) 와 [`removeLast()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove-last.html) 가 있습니다. 빈 리스트에선 예외를 발생한다는 것을 명심해야 합니다. 대신에 null 을 받으려면 [`removeFirstOrNull()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove-first-or-null.html) 과 [`removeLastOrNull()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove-last-or-null.html) 을 사용해야 합니다.
+
+```kotlin
+fun main() {
+//sampleStart
+    val numbers = mutableListOf(1, 2, 3, 4, 3)    
+    numbers.removeFirst()
+    numbers.removeLast()
+    println(numbers)
+    
+    val empty = mutableListOf<Int>()
+    // empty.removeFirst() // NoSuchElementException: List is empty.
+    empty.removeFirstOrNull() //null
+//sampleEnd
+}
+```
+
 ### 정렬 \(Sorting\)
 
-[Collection Ordering](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/collection-ordering)에서 특정 순서로 콜렉션 요소를 추출하는 내용을 설명하였습니다. 변경 가능한 리스트의 경우 표준 라이브러리는 동일한 순서의 동작을 수행하는 유사한 확장 함수를 제공합니다. 리스트 인스턴스에 해당 동작을 적용하면 요소의 순서가 변경됩니다.
+[콜렉션 정렬 \(Collection Ordering\) ](collection-ordering.md)에서 특정 순서로 콜렉션 요소를 추출하는 내용을 설명하였습니다. 변경 가능한 리스트의 경우 표준 라이브러리는 동일한 순서의 동작을 수행하는 유사한 확장 함수를 제공합니다. 리스트 인스턴스에 해당 동작을 적용하면 요소의 순서가 변경됩니다.
 
 이러한 정렬 함수는 읽기 전용 리스트에 적용한 함수와 유사한 이름을 가지지만 접미사 `ed/d`가 포함되어 있지 않습니다:
 
