@@ -20,10 +20,10 @@ fun main() {
 `Grouping`는 다음의 동작을 지원합니다:
 
 * [`eachCount()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/each-count.html)는 각 그룹의 요소의 갯수를 반환합니다.
-* [`fold()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html) 와 [`reduce()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html)은 분리된 콜렉션으로 각 그룹에서 [fold and reduce](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/collection-aggregate-operations#fold-and-reduce) 작업을 수행하고 결과를 반환합니다.
+* [`fold()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html) 와 [`reduce()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html)은 분리된 콜렉션으로 각 그룹에서 [접기와 줄이기 \(fold and reduce\)](collection-aggregate-operations.md#fold-and-reduce) 작업을 수행하고 결과를 반환합니다.
 * [`aggregate()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/aggregate.html)는 각 그룹의 모든 요소에 주어진 작업을 적용하고 결과를 반환합니다.
 
-   이것은 가장 일반적인 `Grouping` 동작입니다. fold와 reduce 외에 다른 작업을 구현할 때 사용하면 됩니다.
+   이것은 가장 일반적인 `Grouping` 동작입니다. 접기와 줄이기 외에 다른 작업을 구현할 때 사용하면 됩니다.
 
 ```kotlin
 fun main() {
