@@ -2,9 +2,9 @@
 
 Kotlin 표준 라이브러리는 콜렉션의 부분을 다루는 확장 함수가 포함되어 있습니다. 이 함수는 요소를 선택하고 결과 콜렉션을 다양한 방법으로 제공합니다: 요소의 위치를 명시적으로 리스트화 하거나 특별한 크기의 결과를 얻거나 다른 여러가지 방법이 있습니다.
 
-## Slice
+## 일부분 \(Slice\)
 
-[`slice()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/slice.html)는 주어진 인덱스의 콜렉션 요소를 하나의 리스트로 반환합니다. 인덱스는 [range](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/ranges-and-progressions-1) 또는 콜렉션의 정수형 값으로 전달됩니다.
+[`slice()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/slice.html)는 주어진 인덱스의 콜렉션 요소를 하나의 리스트로 반환합니다. 인덱스는 [범위 \(range\)](ranges-and-progressions-1.md) 또는 콜렉션의 정수형 값으로 전달됩니다.
 
 ```kotlin
 fun main() {
@@ -17,7 +17,7 @@ fun main() {
 }
 ```
 
-## Take 와 drop
+## 가져오기와 버리기 \(Take and drop\)
 
 일정 갯수의 요소를 처음부터 가져오려면 [`take()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/take.html) 함수를 사용합니다. 마지막부터 가져오려면 [`takeLast()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/take-last.html) 함수를 사용합니다. 두 함수 모두 콜렉션 크기보다 큰 수로 호출하면 콜렉션 전체를 반환합니다.
 
@@ -54,7 +54,7 @@ fun main() {
 }
 ```
 
-## Chunked
+## 청크 \(Chunked\)
 
 주어진 크기로 콜렉션을 쪼갤 때 [`chunked()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/chunked.html) 함수를 사용합니다. `chunked()`는 쪼갤 크기 인 하나의 인자를 받으며 주어진 크기의 `List`의 `List`를 반환합니다. 첫번째 요소부터 시작하여 `size` 만큼의 요소를 포함하고 그 다음 요소도 같은 `size`의 요소를 포함하여 쪼개집니다. 마지막 부분은 주어진 크기보다 작을 수 있습니다.
 
@@ -78,9 +78,9 @@ fun main() {
 }
 ```
 
-## Windowed
+## 창 \(Windowed\)
 
-주어진 크기로 콜렉션 요소의 모든 가능한 범위를 나타낼 수 있습니다. [`windowed()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/windowed.html) 함수를 사용할 수 있으며 주어진 크기를 슬라이딩 창문처럼 콜렉션의 가능한 범위를 반환합니다. `chunked()` 달리, `windowed()`는 각 콜렉션 요소에서 시작하여 요소 범위 \(_windows_\)를 반환합니다. 모든 window는 하나의 `List` 요소로 반환됩니다.
+주어진 크기로 콜렉션 요소의 모든 가능한 범위를 나타낼 수 있습니다. [`windowed()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/windowed.html) 함수를 사용할 수 있으며 주어진 크기를 슬라이딩 창문처럼 콜렉션의 가능한 범위를 반환합니다. `chunked()` 달리, `windowed()`는 각 콜렉션 요소에서 시작하여 요소 범위 \(_창 \(windows\)_\)를 반환합니다. 모든 창은 하나의 `List` 요소로 반환됩니다.
 
 ```kotlin
 fun main() {
@@ -93,8 +93,8 @@ fun main() {
 
 `windowed()`는 더 유연한 파라미터를 제공합니다:
 
-* `step`은 두 window의 첫 요소의 거리를 정의합니다. 기본값은 1이므로 모든 요소에서 시작하는 window가 포함됩니다. step을 2로 증가시키면 첫번째, 세번째 등 홀수 요소에서 시작하는 window만 받게 됩니다.
-* `partialWindows`은 콜렉션의 마지막에 주어진 크기보다 작은 window를 포함합니다. 예를 들어 세 요소의 window를 요청할 경우 마지막 두개의 요소는 생성할 수 없습니다. `partialWindows` 설정을 하게 되면 크기가 2인 하나의 리스트가 추가되게 됩니다.
+* `step`은 두 창의 첫 요소의 거리를 정의합니다. 기본값은 1이므로 모든 요소에서 시작하는 창은 포함됩니다. 단계를 2로 증가시키면 첫번째, 세번째 등 홀수 요소에서 시작하는 창 만 받게 됩니다.
+* `partialWindows`은 콜렉션의 마지막에 주어진 크기보다 작은 창을 포함합니다. 예를 들어 세 요소의 창을 요청할 경우 마지막 두개의 요소는 생성할 수 없습니다. `partialWindows` 설정을 하게 되면 크기가 2인 하나의 리스트가 추가되게 됩니다.
 
 마지막으로 반환 된 범위에 바로 변환을 적용할 수 있습니다. 이것은 `windowed()` 호출 시 람다 함수로 변환을 제공합니다.
 
@@ -108,7 +108,7 @@ fun main() {
 }
 ```
 
-두 요소로 window 생성할 때 별도의 함수인 [`zipWithNext()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/zip-with-next.html)이 있습니다. 리시버 콜렉션의 인접한 요소의 쌍을 생성합니다. `zipWithNext()`은 콜렉션을 쌍으로 나누지 않습니다; 마지막 요소를 제외한 각 요소에 쌍을 생성하므로 `[1, 2, 3, 4]`의 결과는 `[[1, 2`\], `[3, 4]]`이 아닌 `[[1, 2], [2, 3], [3, 4]]` 입니다. `zipWithNext()`는 변한 함수를 호출 할 수 있습니다; 리시버 콜렉션의 두 요소를 인수로 사용해야 합니다.
+두 요소로 창을 생성할 때 별도의 함수인 [`zipWithNext()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/zip-with-next.html)이 있습니다. 리시버 콜렉션의 인접한 요소의 쌍을 생성합니다. `zipWithNext()`은 콜렉션을 쌍으로 나누지 않습니다; 마지막 요소를 제외한 각 요소에 쌍을 생성하므로 `[1, 2, 3, 4]`의 결과는 `[[1, 2`\], `[3, 4]]`이 아닌 `[[1, 2], [2, 3], [3, 4]]` 입니다. `zipWithNext()`는 변한 함수를 호출 할 수 있습니다; 리시버 콜렉션의 두 요소를 인수로 사용해야 합니다.
 
 ```kotlin
 fun main() {
