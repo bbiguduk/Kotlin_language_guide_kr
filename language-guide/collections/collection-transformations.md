@@ -28,7 +28,7 @@ fun main() {
 }
 ```
 
-map을 변환할 때 2가지 옵션이 있습니다: 키를 변환하고 값을 변경하지 않거나 그 반대의 경우가 있습니다. 키를 변환하려면 [`mapKeys()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/map-keys.html)를 사용하고 값을 변환하려면 [`mapValues()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/map-values.html) 사용합니다. 두 함수 모두 map 항목을 인자로 사용하므로 키와 값을 모두 조작할 수 있습니다.
+맵을 변환할 때 2가지 옵션이 있습니다: 키를 변환하고 값을 변경하지 않거나 그 반대의 경우가 있습니다. 키를 변환하려면 [`mapKeys()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/map-keys.html)를 사용하고 값을 변환하려면 [`mapValues()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/map-values.html) 사용합니다. 두 함수 모두 맵 항목을 인자로 사용하므로 키와 값을 모두 조작할 수 있습니다.
 
 ```kotlin
 fun main() {
@@ -40,9 +40,9 @@ fun main() {
 }
 ```
 
-## Zipping
+## 압축 \(Zipping\)
 
-_Zipping_ 변환은 두 콜렉션의 같은 위치의 요소를 쌍으로 만들어 줍니다. Kotlin 표준 라이브러리에서는 [`zip()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/zip.html) 확장 함수를 이용하여 수행할 수 있습니다. 콜렉션에서 호출되거나 다른 콜렉션을 인자로 가진 배열에서 호출되면 `zip()`은 `Pair` 객체의 `List`를 반환합니다. 수신자 콜렉션의 요소는 그 쌍의 첫번째 요소입니다. 콜렉션의 사이즈가 다르면 `zip()`의 결과는 더 작은 사이즈를 따릅니다; 더 큰 콜렉션의 요소는 결과에 포함되지 않습니다. `zip()`은 인픽스 형태인 `a zip b`으로 호출 될 수도 있습니다.
+_압축 \(Zipping\)_ 변환은 두 콜렉션의 같은 위치의 요소를 쌍으로 만들어 줍니다. Kotlin 표준 라이브러리에서는 [`zip()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/zip.html) 확장 함수를 이용하여 수행할 수 있습니다. 콜렉션에서 호출되거나 다른 콜렉션을 인자로 가진 배열에서 호출되면 `zip()`은 `Pair` 객체의 `List`를 반환합니다. 수신자 콜렉션의 요소는 그 쌍의 첫번째 요소입니다. 콜렉션의 사이즈가 다르면 `zip()`의 결과는 더 작은 사이즈를 따릅니다; 더 큰 콜렉션의 요소는 결과에 포함되지 않습니다. `zip()`은 인픽스 형태인 `a zip b`으로 호출 될 수도 있습니다.
 
 ```kotlin
 fun main() {
@@ -70,12 +70,12 @@ fun main() {
 }
 ```
 
-`Pair`의 `List`를 가지고 있을 때 역변환도 가능합니다 - _unzipping_ - 이것은 각 쌍으로 부터 2개의 리스트를 만듭니다:
+`Pair`의 `List`를 가지고 있을 때 역변환도 가능합니다 - _압축 해제 \(unzipping\)_ - 이것은 각 쌍으로 부터 2개의 리스트를 만듭니다:
 
 * 첫번째 리스트는 `Pair`의 첫번째 요소를 포함합니다. 
 * 두번째 리스트는 `Pair`의 두번째 요소를 포함합니다.
 
-[`unzip()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/unzip.html)을 호출하여 pair의 list를 분리 할 수 있습니다.
+[`unzip()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/unzip.html)을 호출하여 쌍 \(pair\)의 리스트 \(list\)를 분리 할 수 있습니다.
 
 ```kotlin
 fun main() {
@@ -88,7 +88,7 @@ fun main() {
 
 ## 조합 \(Association\)
 
-_Association_ 변환을 통해 콜렉션 요소와 이와 연관된 값에서 맵을 만들 수 있습니다. 다른 조합 타입에서 요소는 조합 맵의 키거나 값일 수 있습니다.
+_조합 \(Association\)_ 변환을 통해 콜렉션 요소와 이와 연관된 값에서 맵을 만들 수 있습니다. 다른 조합 타입에서 요소는 조합 맵의 키거나 값일 수 있습니다.
 
 기본 조합 함수 [`associateWith()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/associate-with.html)은 기존 콜렉션이 키인 `Map`을 만들고 주어진 변환 함수에 의해 값을 생성합니다. 만약에 두 요소가 같다면 마지막 요소만 맵에 남아있습니다.
 
@@ -140,7 +140,7 @@ fun parseFullName(fullName: String): FullName {
 
 여기서는 먼저 요소에 대해 변환 함수를 호출하고 함수 결과에서 쌍을 만듭니다.
 
-## Flattening
+## 플랫화 \(Flattening\)
 
 중첩된 콜렉션을 작업할 때 중첩된 콜렉션 요소를 플랫하게 접근할 수 있는 표준 라이브러리 함수를 찾을 것입니다.
 
