@@ -8,7 +8,7 @@ if (i in 1..4) {  // equivalent of 1 <= i && i <= 4
 }
 ```
 
-정수 타입의 범위 \([`IntRange`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-range/index.html), [`LongRange`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-long-range/index.html), [`CharRange`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-char-range/index.html)\)는 반복할 수 있는 추가 기능이 있습니다. 이러한 범위는 정수 타입의 [progressions](https://en.wikipedia.org/wiki/Arithmetic_progression) 입니다. 이러한 범위는 일반적으로 `for` 루프 반복에 사용됩니다.
+정수 타입의 범위 \([`IntRange`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-range/index.html), [`LongRange`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-long-range/index.html), [`CharRange`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-char-range/index.html)\)는 반복할 수 있는 추가 기능이 있습니다. 이러한 범위는 정수 타입의 [진행 \(progressions\)](https://en.wikipedia.org/wiki/Arithmetic_progression) 입니다. 이러한 범위는 일반적으로 `for` 루프 반복에 사용됩니다.
 
 ```kotlin
 fun main() {
@@ -56,7 +56,7 @@ fun main() {
 
 범위는 수학적 의미로 닫힌 간격으로 정의합니다: 범위에 포함 된 두 개의 끝점 값으로 정의합니다. 범위는 비교가능한 타입에 대해 정의됩니다: 순서가 있으면 임의의 인스턴스가 두 개의 지정된 인스턴스 사이의 범위에 있는지 여부를 정의할 수 있습니다. 범위에서 주요 연산자는 `contains` 이며 `in` 와 `!in` 연산자 형태로 사용됩니다.
 
-class의 범위를 생성하려면 시작값에서 `rangeTo()` 함수를 호출하고 종료 값을 인자로 제공해야 합니다. `rangeTo()`는 `..` 형태 연산자로 호출되기도 합니다.
+클래스의 범위를 생성하려면 시작값에서 `rangeTo()` 함수를 호출하고 종료 값을 인자로 제공해야 합니다. `rangeTo()`는 `..` 형태 연산자로 호출되기도 합니다.
 
 ```kotlin
 class Version(val major: Int, val minor: Int): Comparable<Version> {
@@ -79,7 +79,7 @@ fun main() {
 
 ## 진행 \(Progression\)
 
-위의 예와 같이 `Int`, `Long`, `Char` 와 같은 정수 타입의 범위는 [arithmetic progressions](https://en.wikipedia.org/wiki/Arithmetic_progression)으로 처리될 수 있습니다. Kotlin에서 진행은 특별한 타입으로 정의됩니다: [`IntProgression`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-progression/index.html), [`LongProgression`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-long-progression/index.html), [`CharProgression`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-char-progression/index.html).
+위의 예와 같이 `Int`, `Long`, `Char` 와 같은 정수 타입의 범위는 [산술적 진행 \(arithmetic progressions\) ](https://en.wikipedia.org/wiki/Arithmetic_progression)으로 처리될 수 있습니다. Kotlin에서 진행은 특별한 타입으로 정의됩니다: [`IntProgression`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-progression/index.html), [`LongProgression`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-long-progression/index.html), [`CharProgression`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-char-progression/index.html).
 
 진행에서는 세 개의 프로퍼티가 있습니다: `first` 요소, `last` 요소, 0이 아닌 `step`. 첫 번째 요소는 `first`이고 다음 요소는 이전요소에 `step`을 더한 값입니다. 양수의 단계로 반복을 진행하는 것은 Java/JavaScript에서 인덱스 된 `for` 루프와 같습니다.
 
@@ -99,7 +99,7 @@ fun main() {
 }
 ```
 
-커스텀한 step을 진행에서 정의할 때는 범위에 `step` 함수를 사용합니다.
+커스텀한 단계를 진행에서 정의할 때는 범위에 `step` 함수를 사용합니다.
 
 ```kotlin
 fun main() {
@@ -111,8 +111,8 @@ fun main() {
 
 진행에서 `last` 요소는 아래와 같이 계산됩니다:
 
-* 양수의 step: 최대값은 최종값보다 크지 않으므로 `(last - first) % step == 0`.
-* 음수의 step: 최소값은 최종값보다 작지 않으므로 `(last - first) % step == 0`.
+* 양수의 단계: 최대값은 최종값보다 크지 않으므로 `(last - first) % step == 0`.
+* 음수의 단계: 최소값은 최종값보다 작지 않으므로 `(last - first) % step == 0`.
 
 따라서 `last` 요소는 항상 최종값과 같지 않습니다.
 
@@ -134,7 +134,7 @@ fun main() {
 }
 ```
 
-진행은 `N` 이 `Int`, `Long`, `Char` 인 `Iterable<N>`을 구현합니다. 그래서 `map`, `filter`과 같은 [collection functions](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/collection-operations-overview)를 사용할 수 있습니다.
+진행은 `N` 이 `Int`, `Long`, `Char` 인 `Iterable<N>`을 구현합니다. 그래서 `map`, `filter`과 같은 [콜렉션 함수 \(collection functions\) ](collection-operations-overview.md)를 사용할 수 있습니다.
 
 ```kotlin
 fun main() {
