@@ -169,7 +169,7 @@ fun main() {
 
 ### 맵 \(Map\)
 
-[`Map<K, V>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/)은 `Collection` 인터페이스를 상속하지 않습니다. 그러나 Kotlin 콜렉션 타입입니다. `Map`은 _key-value_ \(또는 _entries_\) 쌍으로 가지고 있습니다. 키는 고유하나 다른 키는 같은 값을 가지고 있을 수 있습니다. `Map` 인터페이스는 키로부터 값에 접근하거나 키와 값을 찾는 등의 특별한 함수를 제공합니다.
+[`Map<K, V>`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/)은 `Collection` 인터페이스를 상속하지 않습니다. 그러나 Kotlin 콜렉션 타입입니다. `Map`은 _키-값 \(key-value\)_ \(또는 엔트_e ries_\) 쌍으로 가지고 있습니다. 키는 고유하나 다른 키는 같은 값을 가지고 있을 수 있습니다. `Map` 인터페이스는 키로부터 값에 접근하거나 키와 값을 찾는 등의 특별한 함수를 제공합니다.
 
 ```kotlin
 fun main() {
