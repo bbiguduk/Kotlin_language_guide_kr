@@ -1,6 +1,6 @@
 # 콜렉션 쓰기 동작 \(Collection Write Operations\)
 
-[Mutable collections](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/kotlin-kotlin-collections-overview#collection-types)은 예를 들어 요소를 추가 또는 삭제를 위한 콜렉션 콘텐츠를 변경할 수 있는 동작을 지원합니다. 이 페이지에서 `MutableCollection`의 동작 가능한 모든 구현을 설명하도록 하겠습니다. `List` 와 `Map`에서 가능한 동작은 [List Specific Operations](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/list-specific-operations) 와 [Map Specific Operations](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/map-specific-operations)을 참고 바랍니다.
+[변경 가능한 콜렉션 \(Mutable collections\) ](kotlin-kotlin-collections-overview.md#collection-types)은 예를 들어 요소를 추가 또는 삭제를 위한 콜렉션 콘텐츠를 변경할 수 있는 동작을 지원합니다. 이 페이지에서 `MutableCollection`의 동작 가능한 모든 구현을 설명하도록 하겠습니다. `List` 와 `Map`에서 가능한 동작은 [리스트 동작 \(List Specific Operations\)](list-specific-operations.md) 와 [맵 동작 \(Map Specific Operations\) ](map-specific-operations.md)을 참고 바랍니다.
 
 ## 요소 추가 \(Adding elements\)
 
@@ -32,7 +32,7 @@ fun main() {
 }
 ```
 
-[`plus` operator](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/plus-minus-plus-and-minus-operators)의 내부에 있는 [`plusAssign`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html) \(`+=`\)를 이용하여 요소를 추가 할 수 있습니다. 변경가능한 콜렉션에 적용하면 `+=`은 두번째 연산자 \(요소 또는 다른 콜렉션\)를 콜렉션 끝에 추가합니다.
+[`plus` 연산자 \(`plus` operator\)](plus-minus-plus-and-minus-operators.md) 의 내부에 있는 [`plusAssign`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html) \(`+=`\)를 이용하여 요소를 추가 할 수 있습니다. 변경가능한 콜렉션에 적용하면 `+=`은 두번째 연산자 \(요소 또는 다른 콜렉션\)를 콜렉션 끝에 추가합니다.
 
 ```kotlin
 fun main() {
@@ -91,7 +91,7 @@ fun main() {
 }
 ```
 
-콜렉션에서 요소를 삭제하는 다른 방법은 [`minus`](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/plus-minus-plus-and-minus-operators)의 내부에 있는 [`minusAssign`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html) \(`-=`\) 동작입니다. 두번째 인자는 요소 타입의 단일 인스턴스 또는 다른 콜렉션이 가능합니다. 하나의 요소와 함께 사용 시 `-=`은 첫 일치하는 항목을 삭제합니다. 반대로 콜렉션일 경우 모든 일치하는 항목을 삭제합니다. 예를 들어 리스트에 중복 요소가 있으면 한번에 삭제됩니다. 두번째 피연산자는 콜렉션에 없는 요소를 포함할 수 있습니다. 이러한 요소는 동작에 영향을 미치지 않습니다.
+콜렉션에서 요소를 삭제하는 다른 방법은 [`minus`](plus-minus-plus-and-minus-operators.md)의 내부에 있는 [`minusAssign`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html) \(`-=`\) 동작입니다. 두번째 인자는 요소 타입의 단일 인스턴스 또는 다른 콜렉션이 가능합니다. 하나의 요소와 함께 사용 시 `-=`은 첫 일치하는 항목을 삭제합니다. 반대로 콜렉션일 경우 모든 일치하는 항목을 삭제합니다. 예를 들어 리스트에 중복 요소가 있으면 한번에 삭제됩니다. 두번째 피연산자는 콜렉션에 없는 요소를 포함할 수 있습니다. 이러한 요소는 동작에 영향을 미치지 않습니다.
 
 ```kotlin
 fun main() {
@@ -108,5 +108,5 @@ fun main() {
 
 ## 요소 업데이트 \(Updating elements\)
 
-리스트와 맵은 요소 업데이트를 제공합니다. [List Specific Operations](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/list-specific-operations) 와 [Map Specific Operations](https://app.gitbook.com/@bbiguduk/s/kotlin/language-guide/collections/map-specific-operations)에 자세히 설명되어 있습니다. 셋의 경우 업데이트는 실제로 요소를 삭제하고 다시 추가하기 때문에 의미가 없습니다.
+리스트와 맵은 요소 업데이트를 제공합니다. [리스트 동작 \(List Specific Operations\)](list-specific-operations.md) 와 [맵 동작 \(Map Specific Operations\) ](map-specific-operations.md)에 자세히 설명되어 있습니다. 셋의 경우 업데이트는 실제로 요소를 삭제하고 다시 추가하기 때문에 의미가 없습니다.
 
