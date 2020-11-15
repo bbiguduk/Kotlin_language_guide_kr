@@ -1,6 +1,6 @@
 # 콜렉션 집합 작업 \(Collection Aggregate Operations\)
 
-Kotlin 콜렉션은 콜렉션 내용을 기반으로 하나의 값을 반환하는 작업에 대한 일반적으로 사용되는 _aggregate operations_ 함수를 포함하고 있습니다. 대부분 알고 있고 다른 언어와 같은 동작을 합니다:
+Kotlin 콜렉션은 콜렉션 내용을 기반으로 하나의 값을 반환하는 작업에 대한 일반적으로 사용되는 _집합 연산 \(aggregate operations\)_ 함수를 포함하고 있습니다. 대부분 알고 있고 다른 언어와 같은 동작을 합니다:
 
 * [`min()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/min.html) 과 [`max()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/max.html)은 요소의 가장 작은 값과 가장 큰 값을 반환합니다;
 * [`average()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/average.html)은 콜렉션 요소의 평균을 반환합니다;
@@ -107,4 +107,11 @@ fun main() {
 //sampleEnd
 }
 ```
+
+모든 줄이기 연산은 빈 콜렉션에서 예외를 발생합니다. 예외 대신에 `null` 을 받으려면 `*OrNull()` 을 사용하면 됩니다:
+
+* [`reduceOrNull()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-or-null.html)
+* [`reduceRightOrNull()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-right-or-null.html)
+* [`reduceIndexedOrNull()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-indexed-or-null.html)
+* [`reduceRightIndexedOrNull()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-right-indexed-or-null.html)
 
