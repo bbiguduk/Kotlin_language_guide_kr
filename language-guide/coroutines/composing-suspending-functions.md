@@ -214,7 +214,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 
 ## 비동기를 이용한 구조적 동시성 \(Structured concurrency with async\)
 
-Concurrent using async에서의 예제의 함수를 사용하여 `doSomethingUsefulOne` 와 `doSomethingUsefulTwo`을 동시에 수행하여 결과 값을 더하고 반환해봅시다. [async](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html) 코루틴 빌더는 [CoroutineScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html)의 확장으로 정의되기 때문에 [coroutineScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html) 함수가 제공하는 것을 포함해야 합니다:
+Concurrent using async에서의 예제의 함수를 사용하여 `doSomethingUsefulOne` 와 `doSomethingUsefulTwo`을 동시에 수행하여 결과 값을 더하고 반환해봅시다. [async](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html) 코루틴 빌더는 [CoroutineScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html)의 확장으로 정의되기 때문에 스코프에 넣어야 하며 이것이 [coroutineScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html) 함수가 제공하는 것입니다:
 
 ```kotlin
 suspend fun concurrentSum(): Int = coroutineScope {
