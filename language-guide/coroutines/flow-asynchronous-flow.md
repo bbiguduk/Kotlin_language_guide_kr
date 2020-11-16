@@ -47,7 +47,7 @@ fun main() {
 
 ### 중단 함수 \(Suspending functions\)
 
-그러나 위 코드의 계산은 코드를 실행하는 main 쓰레드를 차단합니다. 이러한 값들을 비동기적으로 계산하려면 함수 `simple` `ㄴ`에 `suspend` 수식어를 붙여 main 쓰레드를 차단하지 않고 작업을 수행하고 그 결과를 리스트로 반환할 수 있습니다:
+그러나 위 코드의 계산은 코드를 실행하는 main 쓰레드를 차단합니다. 이러한 값들을 비동기적으로 계산하려면 함수 s`smple` `ㄴ`에 `suspend` 수식어를 붙여 main 쓰레드를 차단하지 않고 작업을 수행하고 그 결과를 리스트로 반환할 수 있습니다:
 
 ```kotlin
 import kotlinx.coroutines.*                 
