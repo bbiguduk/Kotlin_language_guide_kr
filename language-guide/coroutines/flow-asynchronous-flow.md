@@ -47,19 +47,19 @@ fun main() {
 
 ### 중단 함수 \(Suspending functions\)
 
-그러나 위 코드의 계산은 코드를 실행하는 main 쓰레드를 차단합니다. 이러한 값들을 비동기적으로 계산하려면 함수 `simple` 에 `suspend` 수식어를 붙여 main 쓰레드를 차단하지 않고 작업을 수행하고 그 결과를 리스트로 반환할 수 있습니다:
+그러나 위 코드의 계산은 코드를 실행하는 main 쓰레드를 차단합니다. 이러한 값들을 비동기적으로 계산하려면 함수 `simple` 에 `suspend` 수식어를 붙여 메인 쓰레드를 차단하지 않고 작업을 수행하고 그 결과를 리스트로 반환할 수 있습니다:
 
 ```kotlin
 import kotlinx.coroutines.*                 
 
 //sampleStart
-suspend fun foo(): List<Int> {
+suspend fun simple(): List<Int> {
     delay(1000) // pretend we are doing something asynchronous here
     return listOf(1, 2, 3)
 }
 
 fun main() = runBlocking<Unit> {
-    foo().forEach { value -> println(value) } 
+    simple().forEach { value -> println(value) } 
 }
 //sampleEnd
 ```
@@ -68,7 +68,7 @@ fun main() = runBlocking<Unit> {
 
 이 코드의 실행결과는 1초 간격으로 숫자를 출력합니다.
 
-### Flows
+### 플로우 \(Flows\)
 
 `List<Int>` 결과 타입을 사용하는 것은 모든 값을 한번에 반환할 수 있다는 의미입니다. 비동기적으로 계산되는 값을 스트림으로 표현하려면 동기적으로 계산된 값을 나타내는 `Sequence<Int>` 타입처럼 [`Flow<Int>`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/index.html) 타입을 사용할 수 있습니다:
 
@@ -77,7 +77,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart               
-fun foo(): Flow<Int> = flow { // flow builder
+fun simple(): Flow<Int> = flow { // flow builder
     for (i in 1..3) {
         delay(100) // pretend we are doing something useful here
         emit(i) // emit next value
@@ -93,7 +93,7 @@ fun main() = runBlocking<Unit> {
         }
     }
     // Collect the flow
-    foo().collect { value -> println(value) } 
+    simple().collect { value -> println(value) } 
 }
 //sampleEnd
 ```
@@ -115,22 +115,22 @@ I'm not blocked 3
 
 * [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/index.html) 타입에 대한 빌더 함수를 [flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html)라고 합니다.
 * `flow { ... }`의 빌더 블럭은 중단될 수 있습니다.
-* `foo()` 함수는 더이상 `suspend` 수식어를 붙이지 않습니다.
+* `simple()` 함수는 더이상 `suspend` 수식어를 붙이지 않습니다.
 * [emit](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html) 함수를 사용하여 플로우에서 배출됩니다.
 * [collect](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html) 함수를 사용하여 플로우에서 값을 수집할 수 있습니다.
 
-> [delay](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html)를 `foo`의 `flow { ... }` 본문에 `Thread.sleep`으로 대체할 수 있습니다. 이경우 main 쓰레드가 차단되는지 확인해봅시다.
+> [delay](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html)를 `simple`의 `flow { ... }` 본문에 `Thread.sleep`으로 대체할 수 있습니다. 이경우 메인 쓰레드가 차단되는지 확인해봅시다.
 
-## Flows are cold
+## 플로우는 콜드 스트림 \(Flows are cold\)
 
-플로우는 sequence와 같이 _cold_ stream 입니다 - [flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html) 빌더에 코드는 플로우가 수집될 때까지 실행되지 않습니다. 이는 아래 예제에서 확인할 수 있습니다:
+플로우는 시퀀스와 같이 _콜드 스트림 \(cold stream\)_ 입니다 - [flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html) 빌더에 코드는 플로우가 수집될 때까지 실행되지 않습니다. 이는 아래 예제에서 확인할 수 있습니다:
 
 ```kotlin
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart      
-fun foo(): Flow<Int> = flow { 
+fun simple(): Flow<Int> = flow { 
     println("Flow started")
     for (i in 1..3) {
         delay(100)
@@ -139,8 +139,8 @@ fun foo(): Flow<Int> = flow {
 }
 
 fun main() = runBlocking<Unit> {
-    println("Calling foo...")
-    val flow = foo()
+    println("Calling simple function...")
+    val flow = simple()
     println("Calling collect...")
     flow.collect { value -> println(value) } 
     println("Calling collect again...")
@@ -154,7 +154,7 @@ fun main() = runBlocking<Unit> {
 출력결과는 아래와 같습니다:
 
 ```text
-Calling foo...
+Calling simple function...
 Calling collect...
 Flow started
 1
@@ -167,7 +167,7 @@ Flow started
 3
 ```
 
-이것은 플로우를 반환하는 `foo()` 함수에 `suspend` 수식어를 붙이지 않는 중요한 이유입니다. 저절로 `foo()`는 빠르게 반환하여 아무것도 기다리지 않습니다. 플로우는 수집될 때마다 실행되기 때문에 다시 `collect`를 호출할 때 "Flow started" 출력문을 볼 수 있습니다.
+이것은 플로우를 반환하는 `simple` 함수에 `suspend` 수식어를 붙이지 않는 중요한 이유입니다. 저절로 `simple()`는 빠르게 반환하여 아무것도 기다리지 않습니다. 플로우는 수집될 때마다 실행되기 때문에 다시 `collect`를 호출할 때 "Flow started" 출력문을 볼 수 있습니다.
 
 ## 플로우 취소 \(Flow cancellation\)
 
@@ -180,7 +180,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart           
-fun foo(): Flow<Int> = flow { 
+fun simple(): Flow<Int> = flow { 
     for (i in 1..3) {
         delay(100)          
         println("Emitting $i")
@@ -190,7 +190,7 @@ fun foo(): Flow<Int> = flow {
 
 fun main() = runBlocking<Unit> {
     withTimeoutOrNull(250) { // Timeout after 250ms 
-        foo().collect { value -> println(value) } 
+        simple().collect { value -> println(value) } 
     }
     println("Done")
 }
@@ -199,7 +199,7 @@ fun main() = runBlocking<Unit> {
 
 > [여기](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-06.kt)에서 전체 코드를 볼 수 있습니다.
 
-아래 출력 결과와 같이 `foo()` 함수에서 2개의 숫자만 배출되는 것을 주목하십시오:
+아래 출력 결과와 같이 `simple()` 함수에서 2개의 숫자만 배출되는 것을 주목하십시오:
 
 ```text
 Emitting 1
@@ -423,11 +423,11 @@ Filter 5
 
 ## 플로우 컨텍스트 \(Flow context\)
 
-플로우의 콜렉션은 항상 코루틴에서 호출한 컨텍스트에서 발생합니다. 예를 들어 `foo` 플로우가 있는 경우 `foo` 플로우의 상세한 구현과 상관없이 코드의 작성자에 의해 특정 컨텍스트에서 실행됩니다:
+플로우의 콜렉션은 항상 코루틴에서 호출한 컨텍스트에서 발생합니다. 예를 들어 `simple` 플로우가 있는 경우 `simple` 플로우의 상세한 구현과 상관없이 코드의 작성자에 의해 특정 컨텍스트에서 실행됩니다:
 
 ```kotlin
 withContext(context) {
-    foo.collect { value ->
+    simple().collect { value ->
         println(value) // run in the specified context 
     }
 }
@@ -435,7 +435,7 @@ withContext(context) {
 
 이 플로우의 프로퍼티는 _컨텍스트 보전_ 이라 부릅니다.
 
-기본적으로 `flow { ... }` 빌더에 코드는 플로우의 콜렉터가 제공하는 컨텍스트에서 실행됩니다. 예를 들어 호출된 쓰레드를 출력하고 3개의 숫자를 배출하는 `foo`를 구현한다고 생각해봅시다:
+기본적으로 `flow { ... }` 빌더에 코드는 플로우의 콜렉터가 제공하는 컨텍스트에서 실행됩니다. 예를 들어 호출된 쓰레드를 출력하고 3개의 숫자를 배출하는 `simple`를 구현한다고 생각해봅시다:
 
 ```kotlin
 import kotlinx.coroutines.*
@@ -444,16 +444,16 @@ import kotlinx.coroutines.flow.*
 fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
 
 //sampleStart
-fun foo(): Flow<Int> = flow {
-    log("Started foo flow")
+fun simple(): Flow<Int> = flow {
+    log("Started simple flow")
     for (i in 1..3) {
         emit(i)
     }
 }  
 
 fun main() = runBlocking<Unit> {
-    foo().collect { value -> log("Collected $value") } 
-}            
+    simple().collect { value -> log("Collected $value") } 
+}          
 //sampleEnd
 ```
 
@@ -462,13 +462,13 @@ fun main() = runBlocking<Unit> {
 실행결과는 아래와 같습니다:
 
 ```text
-[main @coroutine#1] Started foo flow
+[main @coroutine#1] Started simple flow
 [main @coroutine#1] Collected 1
 [main @coroutine#1] Collected 2
 [main @coroutine#1] Collected 3
 ```
 
-`foo().collect`는 main 쓰레드에서 호출 되고 `foo` 플로우 바디도 main 쓰레드에서 호출됩니다. 실행된 컨텍스트에 대해 상관하지 않고 호출자를 중단하지 않는 빠른 실행 또는 비동기 코드의 완벽한 기본입니다.
+`simple().collect`는 메인 쓰레드에서 호출 되고 `simple` 플로우 바디도 메인 쓰레드에서 호출됩니다. 실행된 컨텍스트에 대해 상관하지 않고 호출자를 중단하지 않는 빠른 실행 또는 비동기 코드의 완벽한 기본입니다.
 
 ### withContext의 잘못된 배출 \(Wrong emission withContext\)
 
@@ -481,7 +481,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow<Int> = flow {
+fun simple(): Flow<Int> = flow {
     // The WRONG way to change context for CPU-consuming code in flow builder
     kotlinx.coroutines.withContext(Dispatchers.Default) {
         for (i in 1..3) {
@@ -492,8 +492,8 @@ fun foo(): Flow<Int> = flow {
 }
 
 fun main() = runBlocking<Unit> {
-    foo().collect { value -> println(value) } 
-}            
+    simple().collect { value -> println(value) } 
+}              
 //sampleEnd
 ```
 
@@ -520,7 +520,7 @@ import kotlinx.coroutines.flow.*
 fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
 
 //sampleStart
-fun foo(): Flow<Int> = flow {
+fun simple(): Flow<Int> = flow {
     for (i in 1..3) {
         Thread.sleep(100) // pretend we are computing it in CPU-consuming way
         log("Emitting $i")
@@ -529,7 +529,7 @@ fun foo(): Flow<Int> = flow {
 }.flowOn(Dispatchers.Default) // RIGHT way to change context for CPU-consuming code in flow builder
 
 fun main() = runBlocking<Unit> {
-    foo().collect { value ->
+    simple().collect { value ->
         log("Collected $value") 
     } 
 }            
@@ -538,13 +538,13 @@ fun main() = runBlocking<Unit> {
 
 > [여기](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-15.kt)에서 전체 코드를 볼 수 있습니다.
 
-`flow { ... }`는 백그라운드 쓰레드에서 동작하는 반면에 콜렉션은 main 쓰레드에서 동작합니다:
+`flow { ... }`는 백그라운드 쓰레드에서 동작하는 반면에 콜렉션은 메인 쓰레드에서 동작합니다:
 
 또 다른점은 [flowOn](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html) 연산자가 플로우의 기본 순차 특성을 변경 한 것입니다. 수집은 한 코루틴 \("coroutine\#1"\)에서 일어나고 배출은 수집 코루틴과 동시에 다른 코루틴 \("coroutine\#2"\)에서 일어납니다. [flowOn](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html) 연산자는 컨텍스트에서 [CoroutineDispatcher](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-dispatcher/index.html)을 변경하려고 할 때 업스트림 플로우를 위한 다른 코루틴을 생성합니다.
 
 ## 버퍼링 \(Buffering\)
 
-다른 코루틴에서 다른 플로우의 부분을 실행하는 것은 플로우를 수집하는 데 걸리는 전체 시간, 특히 긴 시간이 걸리는 비동기적 작업이 관련된 경우 전체 시간 관점에서 도움이 될 수 있습니다. 예를 들어 `foo()` 플로우에 의해 배출되는 작업이 느려서 하나의 요소를 처리하는데 100ms가 걸리고 콜렉터도 느려서 요소를 처리하는데 300ms가 걸린다고 생각해봅시다. 3개의 숫자를 수집하는데 얼마의 시간이 걸리는지 확인해 봅시다:
+다른 코루틴에서 다른 플로우의 부분을 실행하는 것은 플로우를 수집하는 데 걸리는 전체 시간, 특히 긴 시간이 걸리는 비동기적 작업이 관련된 경우 전체 시간 관점에서 도움이 될 수 있습니다. 예를 들어 `simple()` 플로우에 의해 배출되는 작업이 느려서 하나의 요소를 처리하는데 100ms가 걸리고 콜렉터도 느려서 요소를 처리하는데 300ms가 걸린다고 생각해봅시다. 3개의 숫자를 수집하는데 얼마의 시간이 걸리는지 확인해 봅시다:
 
 ```kotlin
 import kotlinx.coroutines.*
@@ -552,7 +552,7 @@ import kotlinx.coroutines.flow.*
 import kotlin.system.*
 
 //sampleStart
-fun foo(): Flow<Int> = flow {
+fun simple(): Flow<Int> = flow {
     for (i in 1..3) {
         delay(100) // pretend we are asynchronously waiting 100 ms
         emit(i) // emit next value
@@ -561,7 +561,7 @@ fun foo(): Flow<Int> = flow {
 
 fun main() = runBlocking<Unit> { 
     val time = measureTimeMillis {
-        foo().collect { value -> 
+        simple().collect { value -> 
             delay(300) // pretend we are processing it for 300 ms
             println(value) 
         } 
@@ -582,14 +582,14 @@ fun main() = runBlocking<Unit> {
 Collected in 1220 ms
 ```
 
-플로우에서 [buffer](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/buffer.html) 연산자를 사용하여 수집 코드와 동시에 `foo()`의 배출 코드를 실행할 수 있습니다:
+플로우에서 [buffer](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/buffer.html) 연산자를 사용하여 수집 코드와 동시에 `simple()`의 배출 코드를 실행할 수 있습니다:
 
 ```kotlin
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlin.system.*
 
-fun foo(): Flow<Int> = flow {
+fun simple(): Flow<Int> = flow {
     for (i in 1..3) {
         delay(100) // pretend we are asynchronously waiting 100 ms
         emit(i) // emit next value
@@ -599,12 +599,12 @@ fun foo(): Flow<Int> = flow {
 fun main() = runBlocking<Unit> { 
 //sampleStart
     val time = measureTimeMillis {
-        foo()
-            .buffer() // buffer emissions, don't wait
-            .collect { value -> 
-                delay(300) // pretend we are processing it for 300 ms
-                println(value) 
-            } 
+    simple()
+        .buffer() // buffer emissions, don't wait
+        .collect { value -> 
+            delay(300) // pretend we are processing it for 300 ms
+            println(value) 
+        } 
     }   
     println("Collected in $time ms")
 //sampleEnd
@@ -633,7 +633,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlin.system.*
 
-fun foo(): Flow<Int> = flow {
+fun simple(): Flow<Int> = flow {
     for (i in 1..3) {
         delay(100) // pretend we are asynchronously waiting 100 ms
         emit(i) // emit next value
@@ -643,12 +643,12 @@ fun foo(): Flow<Int> = flow {
 fun main() = runBlocking<Unit> { 
 //sampleStart
     val time = measureTimeMillis {
-        foo()
-            .conflate() // conflate emissions, don't process each one
-            .collect { value -> 
-                delay(300) // pretend we are processing it for 300 ms
-                println(value) 
-            } 
+    simple()
+        .conflate() // conflate emissions, don't process each one
+        .collect { value -> 
+            delay(300) // pretend we are processing it for 300 ms
+            println(value) 
+        } 
     }   
     println("Collected in $time ms")
 //sampleEnd
@@ -674,7 +674,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlin.system.*
 
-fun foo(): Flow<Int> = flow {
+fun simple(): Flow<Int> = flow {
     for (i in 1..3) {
         delay(100) // pretend we are asynchronously waiting 100 ms
         emit(i) // emit next value
@@ -684,12 +684,12 @@ fun foo(): Flow<Int> = flow {
 fun main() = runBlocking<Unit> { 
 //sampleStart
     val time = measureTimeMillis {
-        foo()
-            .collectLatest { value -> // cancel & restart on the latest value
-                println("Collecting $value") 
-                delay(300) // pretend we are processing it for 300 ms
-                println("Done $value") 
-            } 
+    simple()
+        .collectLatest { value -> // cancel & restart on the latest value
+            println("Collecting $value") 
+            delay(300) // pretend we are processing it for 300 ms
+            println("Done $value") 
+        } 
     }   
     println("Collected in $time ms")
 //sampleEnd
@@ -950,7 +950,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow<Int> = flow {
+fun simple(): Flow<Int> = flow {
     for (i in 1..3) {
         println("Emitting $i")
         emit(i) // emit next value
@@ -959,14 +959,14 @@ fun foo(): Flow<Int> = flow {
 
 fun main() = runBlocking<Unit> {
     try {
-        foo().collect { value ->         
+        simple().collect { value ->         
             println(value)
             check(value <= 1) { "Collected $value" }
         }
     } catch (e: Throwable) {
         println("Caught $e")
     } 
-}            
+}        
 //sampleEnd
 ```
 
@@ -991,7 +991,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow<String> = 
+fun simple(): Flow<String> = 
     flow {
         for (i in 1..3) {
             println("Emitting $i")
@@ -1005,7 +1005,7 @@ fun foo(): Flow<String> =
 
 fun main() = runBlocking<Unit> {
     try {
-        foo().collect { value -> println(value) }
+        simple().collect { value -> println(value) }
     } catch (e: Throwable) {
         println("Caught $e")
     } 
@@ -1042,7 +1042,7 @@ Caught java.lang.IllegalStateException: Crashed on 2
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-fun foo(): Flow<String> = 
+fun simple(): Flow<String> = 
     flow {
         for (i in 1..3) {
             println("Emitting $i")
@@ -1056,7 +1056,7 @@ fun foo(): Flow<String> =
 
 fun main() = runBlocking<Unit> {
 //sampleStart
-    foo()
+    simple()
         .catch { e -> emit("Caught $e") } // emit on exception
         .collect { value -> println(value) }
 //sampleEnd
@@ -1076,7 +1076,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow<Int> = flow {
+fun simple(): Flow<Int> = flow {
     for (i in 1..3) {
         println("Emitting $i")
         emit(i)
@@ -1084,7 +1084,7 @@ fun foo(): Flow<Int> = flow {
 }
 
 fun main() = runBlocking<Unit> {
-    foo()
+    simple()
         .catch { e -> println("Caught $e") } // does not catch downstream exceptions
         .collect { value ->
             check(value <= 1) { "Collected $value" }                 
@@ -1098,6 +1098,14 @@ fun main() = runBlocking<Unit> {
 
 `catch` 연산자가 있음에도 "Caught ..." 메세지가 출력되지 않음을 확인할 수 있습니다:
 
+```text
+Emitting 1
+1
+Emitting 2
+Exception in thread "main" java.lang.IllegalStateException: Collected 2
+    at ...
+```
+
 ### Catching declaratively
 
 [collect](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html) 연산자의 바디를 [onEach](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-each.html)로 이동하고 `catch` 연산자 앞에 두어 [catch](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html) 연산자로 모든 예외를 처리할 수 있게 선언할 수 있습니다. 플로우의 콜렉션은 파라미터 없는 `collect()`를 호출해야 합니다:
@@ -1106,7 +1114,7 @@ fun main() = runBlocking<Unit> {
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-fun foo(): Flow<Int> = flow {
+fun simple(): Flow<Int> = flow {
     for (i in 1..3) {
         println("Emitting $i")
         emit(i)
@@ -1115,7 +1123,7 @@ fun foo(): Flow<Int> = flow {
 
 fun main() = runBlocking<Unit> {
 //sampleStart
-    foo()
+    simple()
         .onEach { value ->
             check(value <= 1) { "Collected $value" }                 
             println(value) 
@@ -1130,6 +1138,13 @@ fun main() = runBlocking<Unit> {
 
 이제 "Caught ..." 메세지가 출력되는 것을 확인할 수 있고 `try/catch` 블럭 없이 모든 예외를 처리할 수 있습니다:
 
+```text
+Emitting 1
+1
+Emitting 2
+Caught java.lang.IllegalStateException: Collected 2
+```
+
 ## 플로우 완료 \(Flow completion\)
 
 일반적이거나 예외를 발생시켜 플로우 수집이 완료될 때 어떠한 액션을 실행해야 할 수도 있습니다. 이미 알고 있듯이 명령형 또는 선언형의 두가지 방법이 있습니다.
@@ -1143,11 +1158,11 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow<Int> = (1..3).asFlow()
+fun simple(): Flow<Int> = (1..3).asFlow()
 
 fun main() = runBlocking<Unit> {
     try {
-        foo().collect { value -> println(value) }
+        simple().collect { value -> println(value) }
     } finally {
         println("Done")
     }
@@ -1157,7 +1172,7 @@ fun main() = runBlocking<Unit> {
 
 > [여기](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-31.kt)에서 전체 코드를 볼 수 있습니다.
 
-이 코드는 `foo()`를 통해 1부터 3까지의 숫자를 출력하고 "Done" 문자열을 출력합니다:
+이 코드는 `simple()`를 통해 1부터 3까지의 숫자를 출력하고 "Done" 문자열을 출력합니다:
 
 ```text
 1
@@ -1176,11 +1191,11 @@ Done
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-fun foo(): Flow<Int> = (1..3).asFlow()
+fun simple(): Flow<Int> = (1..3).asFlow()
 
 fun main() = runBlocking<Unit> {
 //sampleStart
-    foo()
+    simple()
         .onCompletion { println("Done") }
         .collect { value -> println(value) }
 //sampleEnd
@@ -1189,20 +1204,20 @@ fun main() = runBlocking<Unit> {
 
 > [여기](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-32.kt)에서 전체 코드를 볼 수 있습니다.
 
-[onCompletion](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html)의 주요 장점은 플로우 수집이 정상적으로 완료되었는지 아니면 예외가 발생했는지를 나타내는 람다의 nullable `Throwable` 파라미터 입니다. 다음 예제의 `foo()` 플로우는 숫자 1을 배출하고 예외를 발생합니다:
+[onCompletion](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html)의 주요 장점은 플로우 수집이 정상적으로 완료되었는지 아니면 예외가 발생했는지를 나타내는 람다의 nullable `Throwable` 파라미터 입니다. 다음 예제의 `simple()` 플로우는 숫자 1을 배출하고 예외를 발생합니다:
 
 ```kotlin
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow<Int> = flow {
+fun simple(): Flow<Int> = flow {
     emit(1)
     throw RuntimeException()
 }
 
 fun main() = runBlocking<Unit> {
-    foo()
+    simple()
         .onCompletion { cause -> if (cause != null) println("Flow completed exceptionally") }
         .catch { cause -> println("Caught exception") }
         .collect { value -> println(value) }
@@ -1231,10 +1246,10 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow<Int> = (1..3).asFlow()
+fun simple(): Flow<Int> = (1..3).asFlow()
 
 fun main() = runBlocking<Unit> {
-    foo()
+    simple()
         .onCompletion { cause -> println("Flow completed with $cause") }
         .collect { value ->
             check(value <= 1) { "Collected $value" }                 
