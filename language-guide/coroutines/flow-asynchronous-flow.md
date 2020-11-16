@@ -1,16 +1,16 @@
-# 비동기 Flow \(Asynchronous Flow\)
+# 비동기 플로우 \(Asynchronous Flow\)
 
-중단 함수는 비동기적으로 하나의 값을 반환하지만 비동기적으로 여러개의 계산된 값을 반환하려면 어떻게 해야 할까요? 이를 위해 Kotlin Flow가 존재합니다.
+중단 함수는 비동기적으로 하나의 값을 반환하지만 비동기적으로 여러개의 계산된 값을 반환하려면 어떻게 해야 할까요? 이를 위해 Kotlin 플로우가 존재합니다.
 
 ## 여러 값 표현 \(Representing multiple values\)
 
-[collections](https://kotlinlang.org/docs/reference/collections-overview.html%20)을 이용하여 Kotlin에서 여러개의 값을 표현할 수 있습니다. 예를 들어 [forEach](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/for-each.html)를 이용하여 모든 값을 출력하고 3개의 숫자를 가진 [List](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html) 반환하는 함수 `foo()`를 가질 수 있습니다:
+[collections](https://kotlinlang.org/docs/reference/collections-overview.html%20)을 이용하여 Kotlin에서 여러개의 값을 표현할 수 있습니다. 예를 들어 3개의 숫자를 가진 [List](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html) 반환하고 [forEach](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/for-each.html) 를 이용하여 모든 값을 출력하는 `simple()` 을 가질 수 있습니다:
 
 ```kotlin
-fun foo(): List<Int> = listOf(1, 2, 3)
-
+fun simple(): List<Int> = listOf(1, 2, 3)
+ 
 fun main() {
-    foo().forEach { value -> println(value) } 
+    simple().forEach { value -> println(value) } 
 }
 ```
 
@@ -24,12 +24,12 @@ fun main() {
 3
 ```
 
-### Sequences
+### 시퀀스 \(Sequences\)
 
 각 계산이 100ms 소요되어 CPU가 소모되는 코드는 [Sequence](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/index.html) 사용하여 숫자를 나타낼 수 있습니다:
 
 ```kotlin
-fun foo(): Sequence<Int> = sequence { // sequence builder
+fun simple(): Sequence<Int> = sequence { // sequence builder
     for (i in 1..3) {
         Thread.sleep(100) // pretend we are computing it
         yield(i) // yield next value
@@ -37,7 +37,7 @@ fun foo(): Sequence<Int> = sequence { // sequence builder
 }
 
 fun main() {
-    foo().forEach { value -> println(value) } 
+    simple().forEach { value -> println(value) } 
 }
 ```
 
@@ -47,7 +47,7 @@ fun main() {
 
 ### 중단 함수 \(Suspending functions\)
 
-그러나 위 코드의 계산은 코드를 실행하는 main 쓰레드를 차단합니다. 이러한 값들을 비동기적으로 계산하려면 함수 `foo`에 `suspend` 수식어를 붙여 main 쓰레드를 차단하지 않고 작업을 수행하고 그 결과를 리스트로 반환할 수 있습니다:
+그러나 위 코드의 계산은 코드를 실행하는 main 쓰레드를 차단합니다. 이러한 값들을 비동기적으로 계산하려면 함수 `simple` `ㄴ`에 `suspend` 수식어를 붙여 main 쓰레드를 차단하지 않고 작업을 수행하고 그 결과를 리스트로 반환할 수 있습니다:
 
 ```kotlin
 import kotlinx.coroutines.*                 

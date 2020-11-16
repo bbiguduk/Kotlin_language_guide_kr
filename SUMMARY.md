@@ -59,7 +59,7 @@
   * [취소와 타임아웃 \(Cancellation and Timeouts\)](language-guide/coroutines/cancellation-and-timeouts.md)
   * [일시 중단 함수 구성 \(Composing Suspending Functions\)](language-guide/coroutines/composing-suspending-functions.md)
   * [코루틴 컨택스트와 디스패처 \(Coroutine Context and Dispatchers\)](language-guide/coroutines/dispatchers-coroutine-context-and-dispatchers.md)
-  * [비동기 Flow \(Asynchronous Flow\)](language-guide/coroutines/flow-asynchronous-flow.md)
+  * [비동기 플로우 \(Asynchronous Flow\)](language-guide/coroutines/flow-asynchronous-flow.md)
   * [채널 \(Channels\)](language-guide/coroutines/channels.md)
   * [예외 처리 \(Exception Handling\)](language-guide/coroutines/exception-handling.md)
   * [공유된 변경 가능한 상태와 동시성 \(Shared mutable state and concurrency\)](language-guide/coroutines/untitled.md)
