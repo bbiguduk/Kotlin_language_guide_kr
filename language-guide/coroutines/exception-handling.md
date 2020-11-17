@@ -43,7 +43,7 @@ Throwing exception from async
 Caught ArithmeticException
 ```
 
-## CoroutineExceptionHandler
+## 코루틴 예외 처리 \(CoroutineExceptionHandler\)
 
 **포착되지 않은** 예외를 콘솔에 출력하는 기본 동작을 커스터마이징 할 수 있습니다. _루트_ 코루틴에 [CoroutineExceptionHandler](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html) 컨텍스트 요소는 이 루트 코루틴과 사용자 정의 예외 처리가 발생할 수 있는 모든 하위 요소에 대해 일반적인 `catch` 블럭을 사용할 수 있습니다. 이것은 \[`Thread.uncaughtExceptionHandler`\]\([https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html\#setUncaughtExceptionHandler\(java.lang.Thread.UncaughtExceptionHandler\)\)와](https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html#setUncaughtExceptionHandler%28java.lang.Thread.UncaughtExceptionHandler%29%29와) 비슷합니다. `CoroutineExceptionHandler`에서의 예외는 복구할 수 없습니다. 핸들러가 호출될 때 코루틴은 이미 해당 예외와 함께 완료되었습니다. 일반적으로 핸들러는 예외를 기록하고 약간의 에러 메세지를 보여주고 애플리케이션을 종료 및 재시작 하는데 사용합니다.
 
@@ -257,7 +257,7 @@ CoroutineExceptionHandler got java.io.IOException
 
 다른 예로는 여러 하위 작업을 생성하고 실행을 감독하고 실패를 추적하고 실패한 하위 작업만 다시 시작해야 하는 서버 프로세스 입니다.
 
-### Supervision job
+### 슈퍼비전 작업 \(Supervision job\)
 
 이러한 목적으로 [SupervisorJob](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-supervisor-job.html)을 사용할 수 있습니다. 취소가 아래쪽으로만 전파된다는 점만 제외하면 일반적인 [Job](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job.html)과 유사합니다. 예를 보면 이해하는데 도움이 될 것입니다:
 
@@ -345,7 +345,7 @@ Child is cancelled
 Caught assertion error
 ```
 
-### Exceptions in supervised coroutines
+### 감독하는 코루틴의 예외 \(Exceptions in supervised coroutines\)
 
 일반과 슈퍼비저 작업 사이의 또다른 가장 큰 차이는 예외 처리에 있습니다. 모든 하위 작업은 예외 처리 메커니즘을 통해 스스로 예외를 처리해야합니다. 이 차이는 하위 작업의 실패가 상위 작업으로 전파되지 않는다는 사실에서 비롯됩니다. 이 의미는 [supervisorScope](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/supervisor-scope.html) 내에서 직접 실행된 코루틴은 루트 코루틴과 동일한 방식으로 해당 범위에 설치된 [CoroutineExceptionHandler](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html)을 사용한다는 것입니다 \(자세한 내용은 CoroutineExceptionHandler 섹션을 참고 바랍니다\).
 
