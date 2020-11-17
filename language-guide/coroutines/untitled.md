@@ -4,7 +4,7 @@
 
 ## 문제 \(The problem\)
 
-같은 행동을 천번 하는 코루틴을 100개 실행해 봅시다. 추가 비교를 위해 완료 시간을 측정해 봅시다:
+100개의 코루틴이 모두 같은 행동을 천번 수행하도록 실행해 봅시다. 추가 비교를 위해 완료 시간을 측정해 봅시다:
 
 ```kotlin
 suspend fun massiveRun(action: suspend () -> Unit) {
@@ -62,7 +62,7 @@ fun main() = runBlocking {
 
 마지막에 무엇이 출력됩니까? 100개의 코루틴은 동기화 없이 여러 쓰레드에서 동시에 `counter`를 증가시키므로 "Counter = 100000"을 출력할 가능성이 거의 없습니다.
 
-## Volatiles는 도움이 되지 않음 \(Volatiles are of no help\)
+## 휘발성은 도움이 되지 않음 \(Volatiles are of no help\)
 
 변수를 `volatile`로 만드는 것이 동시성 문제를 해결한다는 일반적인 오해가 있습니다. 직접 적용해 봅시다:
 
@@ -106,7 +106,7 @@ fun main() = runBlocking {
 
 ## 안전한 쓰레드 데이터 구조 \(Thread-safe data structures\)
 
-쓰레드와 코루틴에 모두 동작하는 일반적인 솔루션은 공유 상태에서 수행해야하는 해당 작업에 대한 모든 동기화를 제공하는 안전한 쓰레드 \(일명 동기화, 선형화 또는 atomic\) 데이터 구조를 사용하는 것입니다. 간단한 카운터의 경우 atomic `incrementAndGet` 동작을 가진 `AtomicInteger` class를 사용할 수 있습니다:
+쓰레드와 코루틴에 모두 동작하는 일반적인 솔루션은 공유 상태에서 수행해야하는 해당 작업에 대한 모든 동기화를 제공하는 안전한 쓰레드 \(일명 동기화, 선형화 또는 atomic\) 데이터 구조를 사용하는 것입니다. 간단한 카운터의 경우 원자 `incrementAndGet` 동작을 가진 `AtomicInteger` 클래스를 사용할 수 있습니다:
 
 ```kotlin
 import kotlinx.coroutines.*
