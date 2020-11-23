@@ -364,7 +364,7 @@ fun main() {
 
 자세한 내용은 [클래스 \(Classes\)](../classes-and-objects/class-classes-and-inheritance.md#classes) 와 [타입 캐스팅 \(Type casts\)](https://kotlinlang.org/docs/reference/typecasts.html) 을 참고 바랍니다.
 
-## `for` 루 \(`for` loop\)
+## `for` 루프 \(`for` loop\)
 
 ```kotlin
 fun main() {
